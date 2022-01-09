@@ -1,0 +1,23 @@
+{
+  "button.home": "Home",
+  "button.login.facebook": "Continue with Facebook",
+  "button.logout": "Log Out",
+  "button.profile": "Profile",
+  "button.settings": "Settings",
+  "lang.bg": "Bulgarian",
+  "lang.en": "English",
+  "map.control.geolocate.label": "Find My Location",
+  "map.control.navigation.compassLabel": "Reset North",
+  "map.control.navigation.zoomInLabel": "Zoom In",
+  "map.control.navigation.zoomOutLabel": "Zoom Out",
+  "page.notFound.content": "This page isn't available. Try checking the URL or visit a different page.",
+  "page.notFound.heading": "Error 404: Page not found",
+  "settings.heading": "Settings",
+  "settings.language.chooseLanguage": "Choose language",
+  "settings.tab.language": "Language",
+  "settings.tab.toolbar": "Toolbar",
+  "settings.toolbar.position.button.left": "Left",
+  "settings.toolbar.position.button.top": "Top",
+  "settings.toolbar.position.heading": "Position of the toolbar",
+  "settings.toolbar.disabled": "Toolbar settings are disabled on small screens."
+}

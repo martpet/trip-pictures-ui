@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      const url = new URL(location.href);
+      opener.postMessage({ 
+        token: url.searchParams.get('access_token'),
+        provider: 'facebook'
+      });
+    </script>
+  </head>
+</html>

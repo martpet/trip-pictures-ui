@@ -1,0 +1,23 @@
+{
+  "button.login.facebook": "Влез с Facebook",
+  "button.logout": "Излез от профила",
+  "button.profile": "Профил",
+  "button.settings": "Настройки",
+  "lang.bg": "български",
+  "lang.en": "английски",
+  "button.home": "Начало",
+  "map.control.geolocate.label": "Покажи моето местоположение",
+  "map.control.navigation.compassLabel": "Възстанови север",
+  "map.control.navigation.zoomInLabel": "Увеличи",
+  "map.control.navigation.zoomOutLabel": "Намали",
+  "page.notFound.content": "Такава страница не съществува. Проверете адреса или посетете друга страница.",
+  "page.notFound.heading": "Грешка 404: Страницата не е открита",
+  "settings.heading": "Настройки",
+  "settings.language.chooseLanguage": "Избор на език",
+  "settings.tab.language": "Език",
+  "settings.tab.toolbar": "Лента с инструменти",
+  "settings.toolbar.position.button.left": "в ляво",
+  "settings.toolbar.position.button.top": "отгоре",
+  "settings.toolbar.position.heading": "Позиция на лентата с инструменти",
+  "settings.toolbar.disabled": "Настройките на лентата с инструменти не се прилагат на малки екрани."
+}

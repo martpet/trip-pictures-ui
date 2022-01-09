@@ -1,0 +1,17 @@
+{
+  "root": "dist/",
+  "https_only": true,
+  "headers": {
+    "/**": {
+      "Strict-Transport-Security": "max-age=31557600"
+    }
+  },
+  "routes": {
+    "/**": "index.html"
+  },
+  "proxies": {
+    "/api": {
+      "origin": "${STRAPI_API_URL}"
+    }
+  }
+}
