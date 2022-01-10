@@ -11,7 +11,7 @@ interface LayoutProps {
 }
 
 export function Layout({ children }: LayoutProps) {
-  const barOnTop = useToolbarPosition() === 'top';
+  const topBar = useToolbarPosition() === 'top';
   const barSize = '48px';
   const mainAreaSize = '1fr';
   const contenSizes = [barSize, mainAreaSize];
@@ -22,9 +22,9 @@ export function Layout({ children }: LayoutProps) {
       <Toaster />
       <Grid
         height="100vh"
-        areas={barOnTop ? [barArea, mainArea] : [`${barArea} ${mainArea}`]}
-        columns={barOnTop ? ['1fr'] : contenSizes}
-        rows={barOnTop ? contenSizes : ['1fr']}
+        areas={topBar ? [barArea, mainArea] : [`${barArea} ${mainArea}`]}
+        columns={topBar ? ['1fr'] : contenSizes}
+        rows={topBar ? contenSizes : ['1fr']}
       >
         <View gridArea={barArea} elementType="header">
           <Toolbar />
