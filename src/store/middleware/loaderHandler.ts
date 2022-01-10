@@ -5,7 +5,7 @@ import { loadingFinished, loadingStarted } from '~/slices';
 
 const endpoints = [userEndpoints.sendOAuthToken, userEndpoints.getMe];
 
-export const loadingIndicatorHandler: Middleware =
+export const loaderHandler: Middleware =
   ({ dispatch }) =>
   (next) =>
   (action) => {

@@ -22,7 +22,7 @@ import {
   settingsSlice,
   SettingsSliceState,
 } from '~/slices';
-import { errorLogger, forbiddenRequestHandler, loadingIndicatorHandler } from '~/store';
+import { errorLogger, forbiddenRequestHandler, loaderHandler } from '~/store';
 
 const authSlicePersistConfig: PersistConfig<AuthSliceState> = {
   key: authSlice.name,
@@ -61,7 +61,7 @@ export const store = configureStore({
       strapiApi.middleware,
       staticApi.middleware,
       errorLogger,
-      loadingIndicatorHandler,
+      loaderHandler,
       forbiddenRequestHandler
     ),
 });
