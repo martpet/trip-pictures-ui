@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { appPaths } from '~/consts';
 
-interface LogoProps {
+type LogoProps = {
   size?: StyleProps['width'];
-}
+};
 
 export function Logo({ size = 'static-size-400' }: LogoProps) {
   const { formatMessage } = useIntl();

@@ -8,9 +8,9 @@ import { mapboxTokenProd, mapInnerContainerId } from '~/consts';
 import { useDebounce } from '~/hooks';
 import { mapDataChanged, selectDeviceColorMode, selectMapData } from '~/slices';
 
-interface MapProps {
+type MapProps = {
   children: ReactNode;
-}
+};
 
 export function Map({ children }: MapProps) {
   const dispatch = useDispatch();

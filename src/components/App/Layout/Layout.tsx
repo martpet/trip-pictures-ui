@@ -6,9 +6,9 @@ import { Loader, Toolbar } from '~/components';
 import { barArea, mainArea } from '~/consts';
 import { useToolbarPosition } from '~/hooks';
 
-interface LayoutProps {
+type LayoutProps = {
   children: ReactNode;
-}
+};
 
 export function Layout({ children }: LayoutProps) {
   const topBar = useToolbarPosition() === 'top';

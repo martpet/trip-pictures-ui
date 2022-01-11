@@ -1,3 +1,3 @@
-export interface Photo {
+export type Photo = {
   s3key: string;
-}
+};

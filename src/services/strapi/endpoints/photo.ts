@@ -2,10 +2,10 @@ import { strapiApiPaths } from '~/consts';
 import { strapiApi } from '~/services';
 import { Photo } from '~/types';
 
-interface GenerateUploadUrlRes {
+type GenerateUploadUrlRes = {
   url: string;
   fields: { [key: string]: string };
-}
+};
 
 const photosApiSlice = strapiApi.injectEndpoints({
   endpoints: (build) => ({

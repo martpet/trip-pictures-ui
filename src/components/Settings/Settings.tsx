@@ -18,11 +18,11 @@ export function Settings() {
     dispatch(settingsTabSelected(key as SettingsTabKey));
   };
 
-  interface TabItem {
+  type TabItem = {
     id: SettingsTabKey;
     textId: string;
     children: ReactElement;
-  }
+  };
 
   const tabsItems: TabItem[] = [
     {

@@ -19,11 +19,11 @@ export function ToolbarSettings() {
     dispatch(toolbarPositionSelected(key as ToolbarPosition));
   };
 
-  interface PositionButton {
+  type PositionButton = {
     id: string;
     textKey: string;
     icon: ReactElement;
-  }
+  };
 
   const buttons: PositionButton[] = [
     {
