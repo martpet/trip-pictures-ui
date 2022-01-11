@@ -1,20 +1,22 @@
-import { ActionButton, Text } from '@adobe/react-spectrum';
-import Add from '@spectrum-icons/workflow/Add';
-import { FormattedMessage } from 'react-intl';
+import { ActionButton, Button } from '@adobe/react-spectrum';
+import IconAdd from '@spectrum-icons/workflow/Add';
+import { useIntl } from 'react-intl';
 
-import { useToolbarPosition } from '~/hooks';
+import { useIsMobile, useToolbarPosition } from '~/hooks';
 
-export function UploadButton() {
+export function AddPhotosButton() {
+  const { formatMessage } = useIntl();
+  const buttonText = formatMessage({ id: 'button.addImages' });
   const topBar = useToolbarPosition() === 'top';
+  const isMobile = useIsMobile();
 
-  return (
+  const largeButton = <Button variant="secondary">{buttonText}</Button>;
+
+  const compactButton = (
     <ActionButton>
-      <Add />
-      {topBar && (
-        <Text>
-          <FormattedMessage id="button.addImages" />
-        </Text>
-      )}
+      <IconAdd />
     </ActionButton>
   );
+
+  return topBar && !isMobile ? largeButton : compactButton;
 }

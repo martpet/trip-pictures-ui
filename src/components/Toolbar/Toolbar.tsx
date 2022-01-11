@@ -1,6 +1,6 @@
 import { Divider, Flex } from '@adobe/react-spectrum';
 
-import { Logo, SettingsMenu, UploadButton, UserMenu } from '~/components';
+import { AddPhotosButton, Logo, SettingsMenu, UserMenu } from '~/components';
 import { sideSpace } from '~/consts';
 import { useToolbarPosition } from '~/hooks';
 
@@ -19,8 +19,8 @@ export function Toolbar() {
         marginY={topBar ? 0 : sideSpace}
       >
         <Logo />
-        <Flex direction={direction} gap="size-100">
-          <UploadButton />
+        <Flex direction={direction} gap="size-85">
+          <AddPhotosButton />
           <SettingsMenu />
           <UserMenu />
         </Flex>

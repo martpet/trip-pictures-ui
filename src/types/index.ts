@@ -1,6 +1,6 @@
 export * from './AppDispatch';
 export * from './Breakpoint';
-export * from './BreakpointLabel';
+export * from './BreakpointName';
 export * from './DeviceColorMode';
 export * from './Lang';
 export * from './OAuthProvider';

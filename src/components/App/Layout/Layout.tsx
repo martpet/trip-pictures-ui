@@ -12,7 +12,7 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   const topBar = useToolbarPosition() === 'top';
-  const barSize = '48px';
+  const barSize = topBar ? '58px' : '52px';
   const mainAreaSize = '1fr';
   const contenSizes = [barSize, mainAreaSize];
 
