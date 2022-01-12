@@ -3,10 +3,10 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { userEndpoints } from '~/services';
 import { RootState, User } from '~/types';
 
-export interface AuthSliceState {
+export type AuthSliceState = {
   currentUser?: User;
   token?: string;
-}
+};
 
 const initialState: AuthSliceState = {};
 

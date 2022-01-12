@@ -4,15 +4,15 @@ import { strapiApiPaths } from '~/consts';
 import { strapiApi } from '~/services';
 import { User } from '~/types';
 
-interface SendOAuthTokenReq {
+type SendOAuthTokenReq = {
   token: string;
   provider: string;
-}
+};
 
-interface SendOAuthTokenRes {
+type SendOAuthTokenRes = {
   jwt: string;
   user: User;
-}
+};
 
 const userApiSlice = strapiApi.injectEndpoints({
   endpoints: (build) => ({

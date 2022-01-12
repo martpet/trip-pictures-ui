@@ -7,9 +7,9 @@ import { useGetTranslationsQuery } from '~/services';
 import { selectLang } from '~/slices';
 import { toastDev } from '~/utils';
 
-interface IntlProps {
+type IntlProps = {
   children: ReactNode;
-}
+};
 
 export function Intl({ children }: IntlProps) {
   const lang = useSelector(selectLang);

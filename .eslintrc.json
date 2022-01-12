@@ -52,7 +52,7 @@
       "error",
       {
         "exceptions": [
-          "MapGL"
+          "ReactMapGL"
         ]
       }
     ],

@@ -3,10 +3,10 @@ import { IconPropsWithoutChildren } from '@react-spectrum/icon';
 
 import { User } from '~/types';
 
-interface AvatarProps {
+type AvatarProps = {
   user: User;
   size?: IconPropsWithoutChildren['size'];
-}
+};
 
 export function Avatar({ user, size }: AvatarProps) {
   return (

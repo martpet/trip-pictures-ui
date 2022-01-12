@@ -3,10 +3,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { defaultLang } from '~/consts';
 import { RootState, Settings } from '~/types';
 
-export interface SettingsSliceState {
+export type SettingsSliceState = {
   data: Settings;
-  changedSettings: Partial<{ [K in keyof this['data']]: boolean }>;
-}
+  changedSettings: Partial<{ [K in keyof Settings]: boolean }>;
+};
 
 const initialState: SettingsSliceState = {
   data: {

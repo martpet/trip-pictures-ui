@@ -1,10 +1,10 @@
 import { Divider, Heading } from '@adobe/react-spectrum';
 import { ReactNode } from 'react';
 
-interface HeadlineProps {
+type HeadlineProps = {
   children: ReactNode;
   id?: string;
-}
+};
 
 export function Headline({ children, id }: HeadlineProps) {
   return (

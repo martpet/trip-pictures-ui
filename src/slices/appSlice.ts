@@ -3,12 +3,12 @@ import { ViewportProps } from 'react-map-gl';
 
 import { DeviceColorMode, RootState, SettingsTabKey } from '~/types';
 
-export interface AppSliceState {
+export type AppSliceState = {
   loadersCount: number;
   mapProps?: ViewportProps;
   deviceColorMode?: DeviceColorMode;
   activeSettingsTab: SettingsTabKey;
-}
+};
 
 export const appSliceInitialState: AppSliceState = {
   loadersCount: 0,

@@ -1,31 +1,31 @@
 import { Divider, Flex } from '@adobe/react-spectrum';
 
-import { Logo, SettingsMenu, UserMenu } from '~/components';
+import { AddPhotosButton, Logo, SettingsMenu, UserMenu } from '~/components';
 import { sideSpace } from '~/consts';
 import { useToolbarPosition } from '~/hooks';
 
 export function Toolbar() {
-  const toolbarPosition = useToolbarPosition();
-  const barOnTop = toolbarPosition === 'top';
-  const itemsDirection = barOnTop ? 'row' : 'column';
+  const topBar = useToolbarPosition() === 'top';
+  const direction = topBar ? 'row' : 'column';
 
   return (
-    <Flex direction={barOnTop ? 'column' : 'row'} height="100%">
+    <Flex direction={topBar ? 'column' : 'row'} height="100%">
       <Flex
         flexGrow={1}
-        direction={itemsDirection}
+        direction={direction}
         alignItems="center"
         justifyContent="space-between"
-        marginX={barOnTop ? sideSpace : 0}
-        marginY={barOnTop ? 0 : sideSpace}
+        marginX={topBar ? sideSpace : 0}
+        marginY={topBar ? 0 : sideSpace}
       >
         <Logo />
-        <Flex direction={itemsDirection} gap="size-25">
+        <Flex direction={direction} gap="size-85">
+          <AddPhotosButton />
           <SettingsMenu />
           <UserMenu />
         </Flex>
       </Flex>
-      <Divider size="M" orientation={barOnTop ? 'horizontal' : 'vertical'} />
+      <Divider size="M" orientation={topBar ? 'horizontal' : 'vertical'} />
     </Flex>
   );
 }

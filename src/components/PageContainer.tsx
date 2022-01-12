@@ -1,9 +1,9 @@
 import { View } from '@adobe/react-spectrum';
 import { ReactNode } from 'react';
 
-interface PageContainerProps {
+type PageContainerProps = {
   children: ReactNode;
-}
+};
 
 export function PageContainer({ children }: PageContainerProps) {
   return (
