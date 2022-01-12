@@ -2,21 +2,24 @@ import { ActionButton, Button } from '@adobe/react-spectrum';
 import IconAdd from '@spectrum-icons/workflow/Add';
 import { useIntl } from 'react-intl';
 
-import { useIsMobile, useToolbarPosition } from '~/hooks';
+import { useToolbarPosition } from '~/hooks';
 
 export function AddPhotosButton() {
   const { formatMessage } = useIntl();
-  const buttonText = formatMessage({ id: 'button.addImages' });
-  const topBar = useToolbarPosition() === 'top';
-  const isMobile = useIsMobile();
+  const text = formatMessage({ id: 'button.addImages' });
+  const isTopBar = useToolbarPosition() === 'top';
 
-  const largeButton = <Button variant="secondary">{buttonText}</Button>;
+  const textButton = (
+    <Button variant="primary" isQuiet>
+      {text}
+    </Button>
+  );
 
-  const compactButton = (
+  const iconButton = (
     <ActionButton>
       <IconAdd />
     </ActionButton>
   );
 
-  return topBar && !isMobile ? largeButton : compactButton;
+  return isTopBar ? textButton : iconButton;
 }
