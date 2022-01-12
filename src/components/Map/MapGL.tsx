@@ -6,43 +6,43 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { mapboxTokenProd, mapInnerContainerId } from '~/consts';
 import { useDebounce } from '~/hooks';
-import { mapDataChanged, selectDeviceColorMode, selectMapData } from '~/slices';
+import { mapViewportChanged, selectDeviceColorMode, selectMapViewport } from '~/slices';
 
-type MapProps = {
+type MapGLProps = {
   children: ReactNode;
 };
 
-export function MapGL({ children }: MapProps) {
+export function MapGL({ children }: MapGLProps) {
   const dispatch = useDispatch();
-  const storedMapData = useSelector(selectMapData);
-  const [viewport, setViewport] = useState(storedMapData);
+  const storedViewport = useSelector(selectMapViewport);
+  const [viewport, setViewport] = useState(storedViewport);
   const debouncedViewport = useDebounce(viewport);
   const colorMode = useSelector(selectDeviceColorMode);
   const mapStyle = `mapbox://styles/mapbox/${colorMode}-v10`;
   const devToken = import.meta.env.VITE_MAPBOX_TOKEN;
   const accessToken = import.meta.env.PROD ? mapboxTokenProd : devToken;
 
-  const onDblClick = (e: MapEvent) => {
+  const handleDoubleClick = (e: MapEvent) => {
     if (e.target.id !== mapInnerContainerId) e.stopImmediatePropagation();
   };
 
-  const saveMapData = () => {
+  const storeViewport = () => {
     if (!viewport?.width) return;
     const { latitude, longitude, zoom, bearing } = viewport;
     const data = { latitude, longitude, zoom, bearing };
-    const isNew = JSON.stringify(data) !== JSON.stringify(storedMapData);
-    if (isNew) dispatch(mapDataChanged(data));
+    const isNew = JSON.stringify(data) !== JSON.stringify(storedViewport);
+    if (isNew) dispatch(mapViewportChanged(data));
   };
 
   useEffect(() => {
-    saveMapData();
+    storeViewport();
   }, [debouncedViewport]);
 
   return (
     <ReactMapGL
       {...viewport}
       onViewportChange={setViewport}
-      onDblClick={onDblClick}
+      onDblClick={handleDoubleClick}
       mapboxApiAccessToken={accessToken}
       mapStyle={mapStyle}
       attributionControl={false}

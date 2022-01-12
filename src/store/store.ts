@@ -32,7 +32,7 @@ const authSlicePersistConfig: PersistConfig<AuthSliceState> = {
 
 const appSlicePersistConfig: PersistConfig<AppSliceState> = {
   key: appSlice.name,
-  whitelist: ['mapProps'],
+  whitelist: ['mapViewport'],
   storage,
 };
 

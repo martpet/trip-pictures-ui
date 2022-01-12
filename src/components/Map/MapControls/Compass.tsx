@@ -3,10 +3,10 @@ import CompassIcon from '@spectrum-icons/workflow/Compass';
 import { FormattedMessage } from 'react-intl';
 import { useSelector } from 'react-redux';
 
-import { selectMapData } from '~/slices';
+import { selectMapViewport } from '~/slices';
 
 export function Compass() {
-  const viewport = useSelector(selectMapData);
+  const viewport = useSelector(selectMapViewport);
   const mapboxControlSelector = '.mapboxgl-ctrl-compass';
 
   const handlePress = () => {

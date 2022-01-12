@@ -5,7 +5,7 @@ import { DeviceColorMode, RootState, SettingsTabKey } from '~/types';
 
 export type AppSliceState = {
   loadersCount: number;
-  mapProps?: ViewportProps;
+  mapViewport?: ViewportProps;
   deviceColorMode?: DeviceColorMode;
   activeSettingsTab: SettingsTabKey;
 };
@@ -25,8 +25,8 @@ export const appSlice = createSlice({
     loadingFinished: (state) => {
       state.loadersCount -= 1;
     },
-    mapDataChanged: (state, { payload }: PayloadAction<ViewportProps>) => {
-      state.mapProps = payload;
+    mapViewportChanged: (state, { payload }: PayloadAction<ViewportProps>) => {
+      state.mapViewport = payload;
     },
     deviceColorModeChanged: (state, { payload }: PayloadAction<DeviceColorMode>) => {
       state.deviceColorMode = payload;
@@ -38,14 +38,14 @@ export const appSlice = createSlice({
 });
 
 export const selectIsAppLoading = ({ app }: RootState) => app.loadersCount > 0;
-export const selectMapData = ({ app }: RootState) => app.mapProps;
+export const selectMapViewport = ({ app }: RootState) => app.mapViewport;
 export const selectDeviceColorMode = ({ app }: RootState) => app.deviceColorMode;
 export const selectActiveSettingsTab = ({ app }: RootState) => app.activeSettingsTab;
 
 export const {
   loadingStarted,
   loadingFinished,
-  mapDataChanged,
+  mapViewportChanged,
   deviceColorModeChanged,
   settingsTabSelected,
 } = appSlice.actions;
