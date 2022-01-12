@@ -10,7 +10,7 @@ export function AddPhotosButton() {
   const isTopBar = useToolbarPosition() === 'top';
 
   const textButton = (
-    <Button variant="primary" isQuiet>
+    <Button variant="secondary" isQuiet>
       {text}
     </Button>
   );

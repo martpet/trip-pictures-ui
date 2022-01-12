@@ -52,7 +52,6 @@ export function Settings() {
         <TabList
           marginEnd={isMobile ? 0 : tabsSideSpace}
           marginBottom={isMobile ? tabsSideSpace : 0}
-          minWidth="size-1000"
         >
           {(item: TabItem) => (
             <Item>
