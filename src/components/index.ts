@@ -14,6 +14,7 @@ export * from './Map/MapControls/Compass';
 export * from './Map/MapControls/Geolocate';
 export * from './Map/MapControls/MapControls';
 export * from './Map/MapControls/Zoom';
+export * from './Map/MapGL';
 export * from './PageContainer';
 export * from './Settings/Headline';
 export * from './Settings/LanguageSettings';

@@ -6,7 +6,7 @@ import { useToolbarPosition } from '~/hooks';
 
 export function AddPhotosButton() {
   const { formatMessage } = useIntl();
-  const text = formatMessage({ id: 'button.addImages' });
+  const text = formatMessage({ id: 'button.addPhotos' });
   const isTopBar = useToolbarPosition() === 'top';
 
   const textButton = (
