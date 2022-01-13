@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { Settings } from '~/components';
 import { selectToolbarPosition } from '~/slices';
 
-export function SettingsMenu() {
+export function SettingsButton() {
   const [open, setOpen] = useState(false);
   const toolbarPosition = useSelector(selectToolbarPosition);
   const { formatMessage } = useIntl();

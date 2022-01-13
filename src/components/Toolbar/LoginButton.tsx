@@ -13,7 +13,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { useLoginWithProvider } from '~/hooks';
 import { OAuthProvider } from '~/types';
 
-export function LoginMenu() {
+export function LoginButton() {
   const { formatMessage } = useIntl();
   const loginWithProvider = useLoginWithProvider();
   const handleLogin = (key: Key) => loginWithProvider(key as OAuthProvider);
