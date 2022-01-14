@@ -4,14 +4,14 @@ import { Toaster } from 'react-hot-toast';
 
 import { Loader, Toolbar } from '~/components';
 import { barArea, mainArea } from '~/consts';
-import { useToolbarPosition } from '~/hooks';
+import { useIsTopToolbar } from '~/hooks';
 
 type LayoutProps = {
   children: ReactNode;
 };
 
 export function Layout({ children }: LayoutProps) {
-  const topBar = useToolbarPosition() === 'top';
+  const topBar = useIsTopToolbar();
   const barSize = topBar ? '58px' : '52px';
   const mainAreaSize = '1fr';
   const contenSizes = [barSize, mainAreaSize];

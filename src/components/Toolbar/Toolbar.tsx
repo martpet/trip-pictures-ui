@@ -2,10 +2,10 @@ import { Divider, Flex } from '@adobe/react-spectrum';
 
 import { AddPhotosButton, Logo, SettingsButton, UserButtons } from '~/components';
 import { sideSpace } from '~/consts';
-import { useToolbarPosition } from '~/hooks';
+import { useIsTopToolbar } from '~/hooks';
 
 export function Toolbar() {
-  const isTopBar = useToolbarPosition() === 'top';
+  const isTopBar = useIsTopToolbar();
   const direction = isTopBar ? 'row' : 'column';
 
   return (

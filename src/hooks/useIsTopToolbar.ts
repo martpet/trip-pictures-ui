@@ -2,11 +2,11 @@ import { useSelector } from 'react-redux';
 
 import { useIsToolbarInMobileMode } from '~/hooks';
 import { selectToolbarPosition } from '~/slices';
-import { ToolbarPosition } from '~/types';
 
-export const useToolbarPosition = (): ToolbarPosition => {
+export const useIsTopToolbar = () => {
   const isToolbarInMobileMode = useIsToolbarInMobileMode();
   const preferredPosition = useSelector(selectToolbarPosition);
+  const position = isToolbarInMobileMode ? 'top' : preferredPosition;
 
-  return isToolbarInMobileMode ? 'top' : preferredPosition;
+  return position === 'top';
 };
