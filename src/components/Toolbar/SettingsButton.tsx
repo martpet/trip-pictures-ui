@@ -1,10 +1,10 @@
-import { ActionButton, Content, Dialog, DialogTrigger } from '@adobe/react-spectrum';
+import { ActionButton, DialogTrigger } from '@adobe/react-spectrum';
 import SettingsIcon from '@spectrum-icons/workflow/Settings';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 
-import { Settings } from '~/components';
+import { SettingsDialog } from '~/components';
 import { selectToolbarPosition } from '~/slices';
 
 export function SettingsButton() {
@@ -21,11 +21,7 @@ export function SettingsButton() {
       <ActionButton isQuiet aria-label={formatMessage({ id: 'button.settings' })}>
         <SettingsIcon />
       </ActionButton>
-      <Dialog size="L">
-        <Content>
-          <Settings />
-        </Content>
-      </Dialog>
+      <SettingsDialog />
     </DialogTrigger>
   );
 }

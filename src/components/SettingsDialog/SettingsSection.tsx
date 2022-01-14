@@ -1,0 +1,21 @@
+import { Divider, Heading } from '@adobe/react-spectrum';
+import { ReactNode } from 'react';
+import { FormattedMessage } from 'react-intl';
+
+type SettingsSectionProps = {
+  headingKey: string;
+  children: ReactNode;
+};
+
+export function SettingsSection({ children, headingKey }: SettingsSectionProps) {
+  return (
+    <>
+      <Heading id={headingKey} level={3} marginTop={0}>
+        <FormattedMessage id={headingKey} />
+      </Heading>
+
+      <Divider size="S" marginBottom="size-300" />
+      {children}
+    </>
+  );
+}

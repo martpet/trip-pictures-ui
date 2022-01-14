@@ -1,9 +1,9 @@
 import { Flex, Item, Picker, ProgressCircle } from '@adobe/react-spectrum';
 import { Key } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Headline } from '~/components';
+import { SettingsSection } from '~/components';
 import { langs } from '~/consts';
 import { translationsEndpoints } from '~/services';
 import { languageSelected, selectLang } from '~/slices';
@@ -28,11 +28,7 @@ export function LanguageSettings() {
   pickerItems.sort((a, b) => a.label.localeCompare(b.label, currentLang));
 
   return (
-    <>
-      <Headline id={headingId}>
-        <FormattedMessage id={headingId} />
-      </Headline>
-
+    <SettingsSection headingKey={headingId}>
       <Flex alignItems="center">
         <Picker
           aria-labelledby={headingId}
@@ -52,6 +48,6 @@ export function LanguageSettings() {
           />
         )}
       </Flex>
-    </>
+    </SettingsSection>
   );
 }

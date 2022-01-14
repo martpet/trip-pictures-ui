@@ -60,7 +60,8 @@
     "react/require-default-props": "off",
     "simple-import-sort/exports": "warn",
     "simple-import-sort/imports": "warn",
-    "unused-imports/no-unused-imports": "error"
+    "unused-imports/no-unused-imports": "error",
+    "react/no-unused-prop-types": "off"
   },
   "settings": {
     "react": {

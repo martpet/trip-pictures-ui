@@ -1,14 +1,34 @@
 import { ActionGroup, Item, Text } from '@adobe/react-spectrum';
+import { IconPropsWithoutChildren } from '@react-spectrum/icon';
 import ArrowLeft from '@spectrum-icons/workflow/ArrowLeft';
 import ArrowUp from '@spectrum-icons/workflow/ArrowUp';
-import { Key, ReactElement } from 'react';
+import { Key } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Headline } from '~/components';
+import { SettingsSection } from '~/components';
 import { useIsToolbarInMobileMode } from '~/hooks';
 import { selectToolbarPosition, toolbarPositionSelected } from '~/slices';
 import { ToolbarPosition } from '~/types';
+
+type PositionButton = {
+  id: string;
+  textId: string;
+  Icon: (props: IconPropsWithoutChildren) => JSX.Element;
+};
+
+const positionButtons: PositionButton[] = [
+  {
+    id: 'left',
+    textId: 'settings.toolbar.position.button.left',
+    Icon: ArrowLeft,
+  },
+  {
+    id: 'top',
+    textId: 'settings.toolbar.position.button.top',
+    Icon: ArrowUp,
+  },
+];
 
 export function ToolbarSettings() {
   const dispatch = useDispatch();
@@ -19,25 +39,6 @@ export function ToolbarSettings() {
     dispatch(toolbarPositionSelected(key as ToolbarPosition));
   };
 
-  type PositionButton = {
-    id: string;
-    textKey: string;
-    icon: ReactElement;
-  };
-
-  const buttons: PositionButton[] = [
-    {
-      id: 'left',
-      textKey: 'settings.toolbar.position.button.left',
-      icon: <ArrowLeft />,
-    },
-    {
-      id: 'top',
-      textKey: 'settings.toolbar.position.button.top',
-      icon: <ArrowUp />,
-    },
-  ];
-
   if (toolbarSettingsDisabled) {
     return (
       <em>
@@ -47,27 +48,23 @@ export function ToolbarSettings() {
   }
 
   return (
-    <>
-      <Headline>
-        <FormattedMessage id="settings.toolbar.position.heading" />
-      </Headline>
-
+    <SettingsSection headingKey="settings.toolbar.position.heading">
       <ActionGroup
         selectionMode="single"
-        items={buttons}
+        items={positionButtons}
         selectedKeys={[selectedPosition]}
         onAction={handleAction}
         density="compact"
       >
-        {(button: PositionButton) => (
+        {({ Icon, textId }: PositionButton) => (
           <Item>
-            {button.icon}
+            <Icon />
             <Text>
-              <FormattedMessage id={button.textKey} />
+              <FormattedMessage id={textId} />
             </Text>
           </Item>
         )}
       </ActionGroup>
-    </>
+    </SettingsSection>
   );
 }
