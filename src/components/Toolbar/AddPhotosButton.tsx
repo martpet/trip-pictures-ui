@@ -1,25 +1,31 @@
-import { ActionButton, Button } from '@adobe/react-spectrum';
+import { ActionButton, Button, DialogTrigger } from '@adobe/react-spectrum';
 import IconAdd from '@spectrum-icons/workflow/Add';
-import { useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
+import { UploadDialog } from '~/components';
 import { useIsTopToolbar } from '~/hooks';
 
 export function AddPhotosButton() {
-  const { formatMessage } = useIntl();
-  const text = formatMessage({ id: 'button.addPhotos' });
   const isTopBar = useIsTopToolbar();
 
-  const textButton = (
+  const largeButton = (
     <Button variant="secondary" isQuiet>
-      {text}
+      <FormattedMessage id="button.addPhotos" />
     </Button>
   );
 
-  const iconButton = (
+  const compactButton = (
     <ActionButton>
       <IconAdd />
     </ActionButton>
   );
 
-  return isTopBar ? textButton : iconButton;
+  const button = isTopBar ? largeButton : compactButton;
+
+  return (
+    <DialogTrigger type="popover">
+      {button}
+      <UploadDialog />
+    </DialogTrigger>
+  );
 }

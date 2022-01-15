@@ -1,5 +1,7 @@
-import { Flex, ProgressCircle, View } from '@adobe/react-spectrum';
+import { Flex, View } from '@adobe/react-spectrum';
 import { ReactNode } from 'react';
+
+import { Spinner } from '~/components';
 
 function Overlay({ children }: { children: ReactNode }) {
   return (
@@ -19,7 +21,7 @@ export function LoadingOverlay() {
       </Overlay>
       <Overlay>
         <Flex height="100%" alignItems="center" justifyContent="center">
-          <ProgressCircle isIndeterminate aria-label="Loading" />
+          <Spinner />
         </Flex>
       </Overlay>
     </>

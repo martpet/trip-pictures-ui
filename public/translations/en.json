@@ -1,10 +1,11 @@
 {
-  "button.addPhotos": "Add Photos",
+  "button.addPhotos": "Add photos",
   "button.home": "Home",
   "button.login.facebook": "Continue with Facebook",
   "button.logout": "Log Out",
   "button.profile": "Profile",
   "button.settings": "Settings",
+  "dialog.upload.heading": "Add photos",
   "lang.bg": "Bulgarian",
   "lang.en": "English",
   "map.control.geolocate.label": "Find My Location",
@@ -17,8 +18,8 @@
   "settings.language.chooseLanguage": "Choose language",
   "settings.tab.language": "Language",
   "settings.tab.toolbar": "Toolbar",
+  "settings.toolbar.disabled": "Toolbar settings are disabled on small screens.",
   "settings.toolbar.position.button.left": "Left",
   "settings.toolbar.position.button.top": "Top",
-  "settings.toolbar.position.heading": "Position of the toolbar",
-  "settings.toolbar.disabled": "Toolbar settings are disabled on small screens."
+  "settings.toolbar.position.heading": "Position of the toolbar"
 }

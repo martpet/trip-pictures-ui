@@ -1,33 +1,37 @@
 {
-  "env": {
-    "amd": true,
-    "browser": true,
-    "node": true
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   },
-  "extends": [
-    "airbnb",
-    "airbnb-typescript",
-    "plugin:jsx-a11y/recommended",
-    "plugin:prettier/recommended",
-    "plugin:react/jsx-runtime"
-  ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 2021,
-    "project": "./tsconfig.eslint.json",
-    "sourceType": "module"
-  },
-  "plugins": [
-    "simple-import-sort",
-    "prettier",
-    "import",
-    "unused-imports"
-  ],
-  "root": true,
   "rules": {
+    "simple-import-sort/exports": "warn",
+    "simple-import-sort/imports": "warn",
+    "react/jsx-props-no-spreading": [
+      "error",
+      {
+        "exceptions": [
+          "ReactMapGL",
+          "ProgressCircle"
+        ]
+      }
+    ],
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": [
+          "state"
+        ]
+      }
+    ],
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off",
+    "react/prop-types": "off",
+    "react/require-default-props": "off",
+    "react/no-unused-prop-types": "off",
+    "no-restricted-exports": "off",
+    "unused-imports/no-unused-imports": "error",
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -36,36 +40,34 @@
         "ts": "never",
         "tsx": "never"
       }
-    ],
-    "import/no-extraneous-dependencies": "off",
-    "import/prefer-default-export": "off",
-    "no-param-reassign": [
-      "error",
-      {
-        "ignorePropertyModificationsFor": [
-          "state"
-        ],
-        "props": true
-      }
-    ],
-    "react/jsx-props-no-spreading": [
-      "error",
-      {
-        "exceptions": [
-          "ReactMapGL"
-        ]
-      }
-    ],
-    "react/prop-types": "off",
-    "react/require-default-props": "off",
-    "simple-import-sort/exports": "warn",
-    "simple-import-sort/imports": "warn",
-    "unused-imports/no-unused-imports": "error",
-    "react/no-unused-prop-types": "off"
+    ]
   },
-  "settings": {
-    "react": {
-      "version": "detect"
+  "root": true,
+  "plugins": [
+    "simple-import-sort",
+    "prettier",
+    "import",
+    "unused-imports"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "project": "./tsconfig.eslint.json",
+    "ecmaFeatures": {
+      "jsx": true
     }
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/jsx-runtime"
+  ],
+  "env": {
+    "node": true,
+    "browser": true,
+    "amd": true
   }
 }

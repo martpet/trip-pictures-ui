@@ -6,10 +6,10 @@ import { Key } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { SettingsSection } from '~/components';
+import { SettingsSection } from '~/components/Settings';
 import { useIsToolbarInMobileMode } from '~/hooks';
 import { selectToolbarPosition, toolbarPositionSelected } from '~/slices';
-import { ToolbarPosition } from '~/types';
+import { ToolbarPosition as ToolbarPos } from '~/types';
 
 type PositionButton = {
   id: string;
@@ -30,13 +30,13 @@ const positionButtons: PositionButton[] = [
   },
 ];
 
-export function ToolbarSettings() {
+export function ToolbarPosition() {
   const dispatch = useDispatch();
   const selectedPosition = useSelector(selectToolbarPosition);
   const toolbarSettingsDisabled = useIsToolbarInMobileMode();
 
   const handleAction = (key: Key) => {
-    dispatch(toolbarPositionSelected(key as ToolbarPosition));
+    dispatch(toolbarPositionSelected(key as ToolbarPos));
   };
 
   if (toolbarSettingsDisabled) {

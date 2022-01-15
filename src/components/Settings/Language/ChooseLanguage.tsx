@@ -1,15 +1,16 @@
-import { Flex, Item, Picker, ProgressCircle } from '@adobe/react-spectrum';
+import { Flex, Item, Picker } from '@adobe/react-spectrum';
 import { Key } from 'react';
 import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { SettingsSection } from '~/components';
+import { Spinner } from '~/components';
+import { SettingsSection } from '~/components/Settings';
 import { langs } from '~/consts';
 import { translationsEndpoints } from '~/services';
 import { languageSelected, selectLang } from '~/slices';
 import { Lang } from '~/types';
 
-export function LanguageSettings() {
+export function ChooseLanguage() {
   const currentLang = useSelector(selectLang);
   const { isFetching } = translationsEndpoints.getTranslations.useQueryState(currentLang);
   const dispatch = useDispatch();
@@ -39,14 +40,7 @@ export function LanguageSettings() {
           {(item) => <Item>{item.label}</Item>}
         </Picker>
 
-        {isFetching && (
-          <ProgressCircle
-            size="S"
-            isIndeterminate
-            aria-label="Loading"
-            marginStart="size-125"
-          />
-        )}
+        {isFetching && <Spinner size="S" marginStart="size-125" />}
       </Flex>
     </SettingsSection>
   );

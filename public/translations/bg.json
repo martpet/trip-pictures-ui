@@ -1,12 +1,13 @@
 {
   "button.addPhotos": "Добави снимки",
+  "button.home": "Начало",
   "button.login.facebook": "Влез с Facebook",
   "button.logout": "Излез от профила",
   "button.profile": "Профил",
   "button.settings": "Настройки",
+  "dialog.upload.heading": "Добави снимки",
   "lang.bg": "български",
   "lang.en": "английски",
-  "button.home": "Начало",
   "map.control.geolocate.label": "Покажи моето местоположение",
   "map.control.navigation.compassLabel": "Възстанови север",
   "map.control.navigation.zoomInLabel": "Увеличи",
@@ -17,8 +18,8 @@
   "settings.language.chooseLanguage": "Избор на език",
   "settings.tab.language": "Език",
   "settings.tab.toolbar": "Лента с инструменти",
+  "settings.toolbar.disabled": "Настройките на лентата с инструменти не се прилагат на малки екрани.",
   "settings.toolbar.position.button.left": "в ляво",
   "settings.toolbar.position.button.top": "отгоре",
-  "settings.toolbar.position.heading": "Позиция на лентата с инструменти",
-  "settings.toolbar.disabled": "Настройките на лентата с инструменти не се прилагат на малки екрани."
+  "settings.toolbar.position.heading": "Позиция на лентата с инструменти"
 }
