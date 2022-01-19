@@ -1,5 +1,4 @@
 {
-  "button.cancel": "Cancel",
   "button.login.facebook": "Continue with Facebook",
   "button.logout": "Log Out",
   "dialog.upload.heading": "Upload photos",
@@ -16,13 +15,12 @@
   "settings.tab.language": "Language",
   "settings.tab.toolbar": "Toolbar",
   "settings.toolbar.disabled": "Toolbar settings are disabled on small screens.",
-  "settings.toolbar.position.button.left": "Left",
-  "settings.toolbar.position.button.top": "Top",
+  "settings.toolbar.position.left": "Left",
+  "settings.toolbar.position.top": "Top",
   "settings.toolbar.position.heading": "Position of the toolbar",
   "toolbar.button.home": "Home",
   "toolbar.button.profile": "Profile",
   "toolbar.button.settings": "Settings",
   "toolbar.button.upload": "Add photos",
-  "upload.dialog.addPhotosButton": "Add {photosCount, plural, =0 {} other {more}} photos",
-  "upload.dialog.uploadButton": "Upload"
+  "upload.dialog.addPhotosButton": "Add {photosCount, plural, =0 {} other {more}} photos"
 }

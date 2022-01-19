@@ -1,16 +1,13 @@
-import { useContext } from 'react';
+import { Flex } from '@adobe/react-spectrum';
 
-import { UploadContext } from '~/components';
-import { AddPhotosButton } from '~/components/Upload';
+import { AddPhotosButton, UploadProvider } from '~/components/Upload';
 
 export function Upload() {
-  const { files } = useContext(UploadContext);
-
   return (
-    <>
-      <AddPhotosButton />
-      <br />
-      Selected files: {files.length}
-    </>
+    <UploadProvider>
+      <Flex justifyContent="end">
+        <AddPhotosButton />
+      </Flex>
+    </UploadProvider>
   );
 }

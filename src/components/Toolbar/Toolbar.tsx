@@ -1,12 +1,16 @@
 import { Divider, Flex } from '@adobe/react-spectrum';
+import { lazy, Suspense } from 'react';
 
-import { Logo, SettingsButton, UploadButton, UserButtons } from '~/components';
+import { Logo, UserButton } from '~/components';
 import { sideSpace } from '~/consts';
 import { useIsTopToolbar } from '~/hooks';
 
 export function Toolbar() {
   const isTopBar = useIsTopToolbar();
   const direction = isTopBar ? 'row' : 'column';
+
+  const UploadDialogTrigger = lazy(() => import('~/components/Upload'));
+  const SettingsDialogTrigger = lazy(() => import('~/components/Settings'));
 
   return (
     <Flex direction={isTopBar ? 'column' : 'row'} height="100%">
@@ -20,9 +24,11 @@ export function Toolbar() {
       >
         <Logo />
         <Flex direction={direction} gap="size-85">
-          <UploadButton />
-          <SettingsButton />
-          <UserButtons />
+          <Suspense fallback={null}>
+            <UploadDialogTrigger />
+            <SettingsDialogTrigger />
+          </Suspense>
+          <UserButton />
         </Flex>
       </Flex>
       <Divider size="M" orientation={isTopBar ? 'horizontal' : 'vertical'} />

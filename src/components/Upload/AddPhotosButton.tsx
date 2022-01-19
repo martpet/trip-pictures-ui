@@ -3,7 +3,7 @@ import AddPhotosIcon from '@spectrum-icons/workflow/AddToSelection';
 import { useContext, useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { UploadContext } from '~/components';
+import { UploadContext } from '~/components/Upload';
 
 export function AddPhotosButton() {
   const { files, setFiles } = useContext(UploadContext);

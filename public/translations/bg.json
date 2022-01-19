@@ -1,5 +1,4 @@
 {
-  "button.cancel": "Откажи",
   "button.login.facebook": "Влез с Facebook",
   "button.logout": "Излез от профила",
   "dialog.upload.heading": "Качи снимки",
@@ -16,13 +15,12 @@
   "settings.tab.language": "Език",
   "settings.tab.toolbar": "Лента с инструменти",
   "settings.toolbar.disabled": "Настройките на лентата с инструменти не се прилагат на малки екрани.",
-  "settings.toolbar.position.button.left": "в ляво",
-  "settings.toolbar.position.button.top": "отгоре",
+  "settings.toolbar.position.left": "ляво",
+  "settings.toolbar.position.top": "горе",
   "settings.toolbar.position.heading": "Позиция на лентата с инструменти",
   "toolbar.button.home": "Начало",
   "toolbar.button.profile": "Профил",
   "toolbar.button.settings": "Настройки",
   "toolbar.button.upload": "Качи снимки",
-  "upload.dialog.addPhotosButton": "Избери {photosCount, plural, =0 {} other {още}} снимки",
-  "upload.dialog.uploadButton": "Качвай"
+  "upload.dialog.addPhotosButton": "Избери {photosCount, plural, =0 {} other {още}} снимки"
 }
