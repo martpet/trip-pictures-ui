@@ -1,4 +1,6 @@
 export * from './Language/ChooseLanguage';
-export { Settings as default } from './Settings';
+export * from './Settings';
+export * from './SettingsDialog';
+export { SettingsDialogTrigger as default } from './SettingsDialogTrigger';
 export * from './SettingsSection';
 export * from './Toolbar/ToolbarPosition';

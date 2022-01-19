@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 
-import { SettingsDialog } from '~/components';
+import { SettingsDialog } from '~/components/Settings';
 import { selectToolbarPosition } from '~/slices';
 
-export function SettingsButton() {
+export function SettingsDialogTrigger() {
   const [open, setOpen] = useState(false);
   const toolbarPosition = useSelector(selectToolbarPosition);
   const { formatMessage } = useIntl();

@@ -20,12 +20,12 @@ type PositionButton = {
 const positionButtons: PositionButton[] = [
   {
     id: 'left',
-    textId: 'settings.toolbar.position.button.left',
+    textId: 'settings.toolbar.position.left',
     Icon: ArrowLeft,
   },
   {
     id: 'top',
-    textId: 'settings.toolbar.position.button.top',
+    textId: 'settings.toolbar.position.top',
     Icon: ArrowUp,
   },
 ];

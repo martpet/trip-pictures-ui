@@ -1,6 +1,14 @@
-import { ProgressCircle } from '@adobe/react-spectrum';
+import { Flex, ProgressCircle } from '@adobe/react-spectrum';
 import { SpectrumProgressCircleProps } from '@react-types/progress';
 
-export function Spinner(props: SpectrumProgressCircleProps) {
-  return <ProgressCircle isIndeterminate aria-label="Loading" {...props} />;
+type SpinnerProps = SpectrumProgressCircleProps & {
+  centered?: boolean;
+};
+
+export function Spinner({ centered, ...circleProps }: SpinnerProps) {
+  return (
+    <Flex justifyContent={centered ? 'center' : 'start'}>
+      <ProgressCircle isIndeterminate aria-label="Loading" {...circleProps} />
+    </Flex>
+  );
 }

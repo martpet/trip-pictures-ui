@@ -9,15 +9,19 @@ import {
 import { useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { UploadContext } from '~/components';
-import { Upload } from '~/components/Upload';
+import { AddPhotosButton, Preview, UploadContext } from '~/components/Upload';
 
 type UploadDialogProps = {
   close(): void;
 };
 
 export function UploadDialog({ close }: UploadDialogProps) {
-  const { files } = useContext(UploadContext);
+  const { files, setFiles } = useContext(UploadContext);
+
+  const handleCancel = () => {
+    setFiles([]);
+    close();
+  };
 
   return (
     <Dialog>
@@ -26,15 +30,18 @@ export function UploadDialog({ close }: UploadDialogProps) {
       </Heading>
       <Divider />
       <Content>
-        <Upload />
+        <Preview />
+        <AddPhotosButton />
       </Content>
       <ButtonGroup>
-        <Button variant="secondary" onPress={close}>
-          <FormattedMessage id="button.cancel" />
+        <Button variant="secondary" onPress={handleCancel}>
+          <FormattedMessage id="upload.dialog.button.cancel" />
         </Button>
-        <Button variant="cta" onPress={close} isDisabled={!files.length}>
-          <FormattedMessage id="upload.dialog.uploadButton" />
-        </Button>
+        {files.length > 0 && (
+          <Button variant="cta" autoFocus>
+            <FormattedMessage id="upload.dialog.button.post" />
+          </Button>
+        )}
       </ButtonGroup>
     </Dialog>
   );

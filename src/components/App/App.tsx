@@ -1,6 +1,6 @@
 import '~/assets/css/index.css';
 
-import { Intl, Layout, Router, Spectrum, UploadProvider } from '~/components';
+import { Intl, Layout, Router, Spectrum } from '~/components';
 import { useAppHooks } from '~/hooks';
 
 export function App() {
@@ -9,11 +9,9 @@ export function App() {
   return (
     <Spectrum>
       <Intl>
-        <UploadProvider>
-          <Layout>
-            <Router />
-          </Layout>
-        </UploadProvider>
+        <Layout>
+          <Router />
+        </Layout>
       </Intl>
     </Spectrum>
   );

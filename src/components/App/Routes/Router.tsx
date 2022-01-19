@@ -1,10 +1,9 @@
-import { memo } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { MapView, NotFound, Upload } from '~/components';
 import { paths } from '~/consts';
 
-function Router() {
+export function Router() {
   return (
     <Routes>
       <Route path={paths.home} element={<MapView />} />
@@ -13,6 +12,3 @@ function Router() {
     </Routes>
   );
 }
-
-const MemoizedRouter = memo(Router);
-export { MemoizedRouter as Router };

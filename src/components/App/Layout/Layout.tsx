@@ -1,5 +1,5 @@
 import { Grid, View } from '@adobe/react-spectrum';
-import { memo, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Toaster } from 'react-hot-toast';
 
 import { Loader, Toolbar } from '~/components';
@@ -10,7 +10,7 @@ type LayoutProps = {
   children: ReactNode;
 };
 
-function Layout({ children }: LayoutProps) {
+export function Layout({ children }: LayoutProps) {
   const topBar = useIsTopToolbar();
   const barSize = topBar ? '58px' : '52px';
   const mainAreaSize = '1fr';
@@ -36,6 +36,3 @@ function Layout({ children }: LayoutProps) {
     </>
   );
 }
-
-const MemoizedLayout = memo(Layout);
-export { MemoizedLayout as Layout };
