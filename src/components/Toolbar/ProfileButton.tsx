@@ -12,7 +12,7 @@ export function ProfileButton() {
 
   return (
     <DialogTrigger type="popover">
-      <ActionButton isQuiet aria-label={formatMessage({ id: 'button.profile' })}>
+      <ActionButton isQuiet aria-label={formatMessage({ id: 'toolbar.button.profile' })}>
         <Avatar user={user} />
       </ActionButton>
       <Dialog>

@@ -1,23 +1,41 @@
-import { Content, Dialog, Divider, Heading } from '@adobe/react-spectrum';
-import { lazy, Suspense } from 'react';
+import {
+  Button,
+  ButtonGroup,
+  Content,
+  Dialog,
+  Divider,
+  Heading,
+} from '@adobe/react-spectrum';
+import { useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { Spinner } from '~/components';
+import { UploadContext } from '~/components';
+import { Upload } from '~/components/Upload';
 
-const Upload = lazy(() => import('~/components/Upload'));
+type UploadDialogProps = {
+  close(): void;
+};
 
-export function UploadDialog() {
+export function UploadDialog({ close }: UploadDialogProps) {
+  const { files } = useContext(UploadContext);
+
   return (
-    <Dialog size="L">
+    <Dialog>
       <Heading>
         <FormattedMessage id="dialog.upload.heading" />
       </Heading>
       <Divider />
       <Content>
-        <Suspense fallback={<Spinner />}>
-          <Upload />
-        </Suspense>
+        <Upload />
       </Content>
+      <ButtonGroup>
+        <Button variant="secondary" onPress={close}>
+          <FormattedMessage id="button.cancel" />
+        </Button>
+        <Button variant="cta" onPress={close} isDisabled={!files.length}>
+          <FormattedMessage id="upload.dialog.uploadButton" />
+        </Button>
+      </ButtonGroup>
     </Dialog>
   );
 }

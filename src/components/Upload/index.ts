@@ -1,1 +1,3 @@
-export { Upload as default } from './Upload';
+export { AddPhotosButton } from './AddPhotosButton';
+export * from './Upload';
+export { UploadDialog as default } from './UploadDialog';

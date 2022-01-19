@@ -1,11 +1,8 @@
 {
-  "button.addPhotos": "Добави снимки",
-  "button.home": "Начало",
+  "button.cancel": "Откажи",
   "button.login.facebook": "Влез с Facebook",
   "button.logout": "Излез от профила",
-  "button.profile": "Профил",
-  "button.settings": "Настройки",
-  "dialog.upload.heading": "Добави снимки",
+  "dialog.upload.heading": "Качи снимки",
   "lang.bg": "български",
   "lang.en": "английски",
   "map.control.geolocate.label": "Покажи моето местоположение",
@@ -21,5 +18,11 @@
   "settings.toolbar.disabled": "Настройките на лентата с инструменти не се прилагат на малки екрани.",
   "settings.toolbar.position.button.left": "в ляво",
   "settings.toolbar.position.button.top": "отгоре",
-  "settings.toolbar.position.heading": "Позиция на лентата с инструменти"
+  "settings.toolbar.position.heading": "Позиция на лентата с инструменти",
+  "toolbar.button.home": "Начало",
+  "toolbar.button.profile": "Профил",
+  "toolbar.button.settings": "Настройки",
+  "toolbar.button.upload": "Качи снимки",
+  "upload.dialog.addPhotosButton": "Избери {photosCount, plural, =0 {} other {още}} снимки",
+  "upload.dialog.uploadButton": "Качвай"
 }

@@ -24,7 +24,7 @@ export function LoginButton() {
         <TooltipTrigger>
           <ProfileIcon />
           <Tooltip>
-            <FormattedMessage id="button.profile" />
+            <FormattedMessage id="toolbar.button.profile" />
           </Tooltip>
         </TooltipTrigger>
       </ActionButton>

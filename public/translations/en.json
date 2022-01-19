@@ -1,11 +1,8 @@
 {
-  "button.addPhotos": "Add photos",
-  "button.home": "Home",
+  "button.cancel": "Cancel",
   "button.login.facebook": "Continue with Facebook",
   "button.logout": "Log Out",
-  "button.profile": "Profile",
-  "button.settings": "Settings",
-  "dialog.upload.heading": "Add photos",
+  "dialog.upload.heading": "Upload photos",
   "lang.bg": "Bulgarian",
   "lang.en": "English",
   "map.control.geolocate.label": "Find My Location",
@@ -21,5 +18,11 @@
   "settings.toolbar.disabled": "Toolbar settings are disabled on small screens.",
   "settings.toolbar.position.button.left": "Left",
   "settings.toolbar.position.button.top": "Top",
-  "settings.toolbar.position.heading": "Position of the toolbar"
+  "settings.toolbar.position.heading": "Position of the toolbar",
+  "toolbar.button.home": "Home",
+  "toolbar.button.profile": "Profile",
+  "toolbar.button.settings": "Settings",
+  "toolbar.button.upload": "Add photos",
+  "upload.dialog.addPhotosButton": "Add {photosCount, plural, =0 {} other {more}} photos",
+  "upload.dialog.uploadButton": "Upload"
 }

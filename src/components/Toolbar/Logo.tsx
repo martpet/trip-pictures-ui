@@ -3,7 +3,7 @@ import { StyleProps } from '@react-types/shared';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
-import { appPaths } from '~/consts';
+import { paths } from '~/consts';
 
 type LogoProps = {
   size?: StyleProps['width'];
@@ -12,12 +12,12 @@ type LogoProps = {
 export function Logo({ size = 'static-size-400' }: LogoProps) {
   const { formatMessage } = useIntl();
   const navigate = useNavigate();
-  const handlePress = () => navigate(appPaths.home);
+  const handlePress = () => navigate(paths.home);
 
   return (
     <ActionButton
       isQuiet
-      aria-label={formatMessage({ id: 'button.home' })}
+      aria-label={formatMessage({ id: 'toolbar.button.home' })}
       onPress={handlePress}
     >
       <View

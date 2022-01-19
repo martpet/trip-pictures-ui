@@ -1,3 +1,16 @@
+import { useContext } from 'react';
+
+import { UploadContext } from '~/components';
+import { AddPhotosButton } from '~/components/Upload';
+
 export function Upload() {
-  return <>fooo</>;
+  const { files } = useContext(UploadContext);
+
+  return (
+    <>
+      <AddPhotosButton />
+      <br />
+      Selected files: {files.length}
+    </>
+  );
 }

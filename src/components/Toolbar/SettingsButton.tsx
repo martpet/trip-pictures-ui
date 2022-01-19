@@ -18,7 +18,7 @@ export function SettingsButton() {
 
   return (
     <DialogTrigger type="popover" isOpen={open} onOpenChange={setOpen}>
-      <ActionButton isQuiet aria-label={formatMessage({ id: 'button.settings' })}>
+      <ActionButton isQuiet aria-label={formatMessage({ id: 'toolbar.button.settings' })}>
         <SettingsIcon />
       </ActionButton>
       <SettingsDialog />
