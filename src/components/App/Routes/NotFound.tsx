@@ -1,7 +1,7 @@
 import { Content, Heading, IllustratedMessage } from '@adobe/react-spectrum';
 import { FormattedMessage } from 'react-intl';
 
-import { ReactComponent as NotFoundIcon } from '~/assets/images/notFoundIcon.svg';
+import { ReactComponent as NotFoundIcon } from '~/assets/images/illustrationNotFound.svg';
 import { PageContainer } from '~/components';
 
 export function NotFound() {

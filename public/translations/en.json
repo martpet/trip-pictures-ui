@@ -1,7 +1,6 @@
 {
   "button.login.facebook": "Continue with Facebook",
   "button.logout": "Log Out",
-  "dialog.upload.heading": "Upload photos",
   "lang.bg": "Bulgarian",
   "lang.en": "English",
   "map.control.geolocate.label": "Find My Location",
@@ -22,7 +21,10 @@
   "toolbar.button.profile": "Profile",
   "toolbar.button.settings": "Settings",
   "toolbar.button.upload": "Upload photos",
-  "upload.dialog.addPhotosButton": "Add {photosCount, plural, =0 {} other {more}} photos",
-  "upload.dialog.button.post": "Post",
-  "upload.dialog.button.cancel": "Cancel"
+  "upload.button.addPhotos": "Add {photosCount, plural, =0 {} other {more}} photos",
+  "upload.button.cancel": "Cancel",
+  "upload.button.start": "Start upload",
+  "upload.heading": "Upload photos",
+  "upload.dragAndDrop.heading": "Drag your files here",
+  "upload.dragAndDrop.subHeading": "or select from your device"
 }

@@ -1,48 +1,81 @@
 import {
-  Button,
+  ActionButton,
   ButtonGroup,
   Content,
   Dialog,
+  DialogTrigger,
   Divider,
+  Header,
   Heading,
 } from '@adobe/react-spectrum';
-import { useContext } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { ReactNode, useContext, useEffect } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
 
-import { AddPhotosButton, Preview, UploadContext } from '~/components/Upload';
+import {
+  ButtonAddPhotos,
+  ButtonCancel,
+  ButtonUpload,
+  ConfirmCloseUploadDialog,
+  DropZone,
+  PhotosPreview,
+  UploadContext,
+  UploadProvider,
+} from '~/components/Upload';
 
 type UploadDialogProps = {
-  close(): void;
+  trigger: ReactNode;
 };
 
-export function UploadDialog({ close }: UploadDialogProps) {
-  const { files, setFiles } = useContext(UploadContext);
+function UploadDialog({ trigger }: UploadDialogProps) {
+  const { formatMessage } = useIntl();
+  const { files, openDialog, closeDialog, isDialogOpen } = useContext(UploadContext);
 
-  const handleCancel = () => {
-    setFiles([]);
-    close();
-  };
+  useEffect(() => {
+    const listener = ({ key }: KeyboardEvent) => {
+      if (key === 'Escape' && !files.length) closeDialog();
+    };
+    document.addEventListener('keydown', listener);
+    return () => document.removeEventListener('keydown', listener);
+  }, [closeDialog]);
 
   return (
-    <Dialog>
-      <Heading>
-        <FormattedMessage id="dialog.upload.heading" />
-      </Heading>
-      <Divider />
-      <Content>
-        <Preview />
-        <AddPhotosButton />
-      </Content>
-      <ButtonGroup>
-        <Button variant="secondary" onPress={handleCancel}>
-          <FormattedMessage id="upload.dialog.button.cancel" />
-        </Button>
-        {files.length > 0 && (
-          <Button variant="cta" autoFocus>
-            <FormattedMessage id="upload.dialog.button.post" />
-          </Button>
-        )}
-      </ButtonGroup>
-    </Dialog>
+    <>
+      <DialogTrigger type="fullscreen" isOpen={isDialogOpen}>
+        <ActionButton
+          onPress={openDialog}
+          isQuiet
+          aria-label={formatMessage({ id: 'toolbar.button.upload' })}
+        >
+          {trigger}
+        </ActionButton>
+        <Dialog>
+          <Heading>
+            <FormattedMessage id="upload.heading" />
+          </Heading>
+          <Header>{!!files.length && <ButtonAddPhotos />}</Header>
+          <Divider />
+          <Content>
+            <DropZone>
+              <PhotosPreview />
+            </DropZone>
+          </Content>
+          <ButtonGroup>
+            <ButtonCancel />
+            <ButtonUpload />
+          </ButtonGroup>
+        </Dialog>
+      </DialogTrigger>
+      <ConfirmCloseUploadDialog />
+    </>
   );
 }
+
+function WithContext({ trigger }: UploadDialogProps) {
+  return (
+    <UploadProvider>
+      <UploadDialog trigger={trigger} />
+    </UploadProvider>
+  );
+}
+
+export { WithContext as UploadDialog };

@@ -1,5 +1,11 @@
-export { AddPhotosButton } from './AddPhotosButton';
-export * from './Preview';
+export * from './ButtonAddPhotos';
+export * from './ButtonCancel';
+export * from './ButtonUpload';
+export * from './ConfirmCloseUploadDialog';
+export * from './DropZone';
+export * from './hooks/useAddFiles';
+export * from './hooks/useCloseDialog';
+export * from './PhotosPreview';
 export * from './UploadContext';
-export * from './UploadDialog';
-export { UploadDialogTrigger as default } from './UploadDialogTrigger';
+export { UploadDialog as default } from './UploadDialog';
+export * from './utils/splitDuplicateFiles';

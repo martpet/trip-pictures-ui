@@ -1,13 +1,3 @@
-body {
-  margin: 0;
-}
-
-button[class^="_spectrum-Button"]:not(:disabled),
-button[class^="_spectrum-ActionButton"]:not([aria-checked="true"]),
-[class^="_spectrum-Tabs-item"]:not([aria-selected="true"]) {
-  cursor: pointer !important;
-}
-
 @font-face {
   font-family: adobe-clean;
   font-style: normal;
@@ -48,4 +38,14 @@ button[class^="_spectrum-ActionButton"]:not([aria-checked="true"]),
   font-style: italic;
   font-weight: 700;
   src: url("~//assets/fonts/AdobeClean-BoldIt.woff2") format("woff2");
+}
+
+body {
+  margin: 0;
+}
+
+button[class^="_spectrum-Button"]:not(:disabled),
+button[class^="_spectrum-ActionButton"]:not([aria-checked="true"]),
+[class^="_spectrum-Tabs-item"]:not([aria-selected="true"]) {
+  cursor: pointer !important;
 }
