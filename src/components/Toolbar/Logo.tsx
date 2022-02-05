@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { paths } from '~/consts';
 
-type LogoProps = {
+type Props = {
   size?: StyleProps['width'];
 };
 
-export function Logo({ size = 'static-size-400' }: LogoProps) {
+export function Logo({ size = 'static-size-400' }: Props) {
   const { formatMessage } = useIntl();
   const navigate = useNavigate();
   const handlePress = () => navigate(paths.home);

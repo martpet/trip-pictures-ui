@@ -6,11 +6,11 @@ import { useSelector } from 'react-redux';
 import { Settings } from '~/components/Settings';
 import { selectToolbarPosition } from '~/slices';
 
-type SettingsDialogProps = {
+type Props = {
   trigger: ReactNode;
 };
 
-export function SettingsDialog({ trigger }: SettingsDialogProps) {
+export function SettingsDialog({ trigger }: Props) {
   const [open, setOpen] = useState(false);
   const toolbarPosition = useSelector(selectToolbarPosition);
   const { formatMessage } = useIntl();

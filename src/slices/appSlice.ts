@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ViewportProps } from 'react-map-gl';
 
-import { DeviceColorMode, RootState, SettingsTabKey } from '~/types';
+import { DeviceColorMode, RootState, SettingsMenuKey } from '~/types';
 
 export type AppSliceState = {
   loadersCount: number;
   mapViewport?: ViewportProps;
   deviceColorMode?: DeviceColorMode;
-  activeSettingsTab: SettingsTabKey;
+  activeSettingsTab: SettingsMenuKey;
 };
 
 export const appSliceInitialState: AppSliceState = {
@@ -31,7 +31,7 @@ export const appSlice = createSlice({
     deviceColorModeChanged: (state, { payload }: PayloadAction<DeviceColorMode>) => {
       state.deviceColorMode = payload;
     },
-    settingsTabSelected: (state, { payload }: PayloadAction<SettingsTabKey>) => {
+    settingsMenuSelected: (state, { payload }: PayloadAction<SettingsMenuKey>) => {
       state.activeSettingsTab = payload;
     },
   },
@@ -40,12 +40,12 @@ export const appSlice = createSlice({
 export const selectIsAppLoading = ({ app }: RootState) => app.loadersCount > 0;
 export const selectMapViewport = ({ app }: RootState) => app.mapViewport;
 export const selectDeviceColorMode = ({ app }: RootState) => app.deviceColorMode;
-export const selectActiveSettingsTab = ({ app }: RootState) => app.activeSettingsTab;
+export const selectActiveSettingsMenu = ({ app }: RootState) => app.activeSettingsTab;
 
 export const {
   loadingStarted,
   loadingFinished,
   mapViewportChanged,
   deviceColorModeChanged,
-  settingsTabSelected,
+  settingsMenuSelected,
 } = appSlice.actions;

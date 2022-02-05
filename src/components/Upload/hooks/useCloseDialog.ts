@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-type UseCloseDialog = {
+type Arg = {
   files: File[];
   setFiles: Dispatch<SetStateAction<File[]>>;
   setDialogOpen: Dispatch<SetStateAction<boolean>>;
@@ -12,7 +12,7 @@ export const useCloseDialog = ({
   setFiles,
   setDialogOpen,
   setShowConfirmClose,
-}: UseCloseDialog) => {
+}: Arg) => {
   return (forceClose?: boolean) => {
     if (files.length && !forceClose) {
       setShowConfirmClose(true);

@@ -1,4 +1,4 @@
 import { breakpoints } from '~/consts';
-import { BreakpointName } from '~/types/BreakpointName';
+import { BreakpointLabel } from '~/types/BreakpointLabel';
 
-export type Breakpoint = typeof breakpoints[BreakpointName];
+export type Breakpoint = typeof breakpoints[BreakpointLabel];

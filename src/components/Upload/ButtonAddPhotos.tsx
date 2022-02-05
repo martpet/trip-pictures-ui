@@ -6,15 +6,12 @@ import { FormattedMessage } from 'react-intl';
 
 import { UploadContext } from '~/components/Upload';
 
-type ButtonAddPhotosProps = {
+type Props = {
   isQuiet?: boolean;
   variant?: SpectrumButtonProps['variant'];
 };
 
-export function ButtonAddPhotos({
-  isQuiet = true,
-  variant = 'primary',
-}: ButtonAddPhotosProps) {
+export function ButtonAddPhotos({ isQuiet = true, variant = 'primary' }: Props) {
   const { files, addFiles } = useContext(UploadContext);
   const inputRef = useRef<HTMLInputElement>(null);
 

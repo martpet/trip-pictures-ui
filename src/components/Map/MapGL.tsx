@@ -8,11 +8,11 @@ import { mapboxTokenProd, mapInnerContainerId } from '~/consts';
 import { useDebounce } from '~/hooks';
 import { mapViewportChanged, selectDeviceColorMode, selectMapViewport } from '~/slices';
 
-type MapGLProps = {
+type Props = {
   children: ReactNode;
 };
 
-export function MapGL({ children }: MapGLProps) {
+export function MapGL({ children }: Props) {
   const dispatch = useDispatch();
   const storedViewport = useSelector(selectMapViewport);
   const [viewport, setViewport] = useState(storedViewport);

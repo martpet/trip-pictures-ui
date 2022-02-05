@@ -1,11 +1,11 @@
 import { View } from '@adobe/react-spectrum';
 import { ReactNode } from 'react';
 
-type PageContainerProps = {
+type Props = {
   children: ReactNode;
 };
 
-export function PageContainer({ children }: PageContainerProps) {
+export function PageContainer({ children }: Props) {
   return (
     <View
       height="100%"
