@@ -6,11 +6,11 @@ import { ButtonAddPhotos, UploadContext } from '~/components/Upload';
 
 import { ReactComponent as UploadIcon } from './images/illustrationUpload.svg';
 
-type DropZoneProps = {
+type Props = {
   children: ReactNode;
 };
 
-export function DropZone({ children }: DropZoneProps) {
+export function DropZone({ children }: Props) {
   const { files, addFiles } = useContext(UploadContext);
   const [isOnTarget, setOnTarget] = useState(false);
 

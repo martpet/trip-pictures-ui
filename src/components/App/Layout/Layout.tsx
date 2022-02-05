@@ -6,11 +6,11 @@ import { Loader, Toolbar } from '~/components';
 import { barArea, mainArea } from '~/consts';
 import { useIsTopToolbar } from '~/hooks';
 
-type LayoutProps = {
+type Props = {
   children: ReactNode;
 };
 
-export function Layout({ children }: LayoutProps) {
+export function Layout({ children }: Props) {
   const topBar = useIsTopToolbar();
   const barSize = topBar ? '58px' : '52px';
   const mainAreaSize = '1fr';

@@ -1,9 +1,9 @@
-type SplitDuplicateFilesProps = {
+type Arg = {
   oldFiles: File[];
   newFiles: File[];
 };
 
-export const splitDuplicateFiles = ({ oldFiles, newFiles }: SplitDuplicateFilesProps) => {
+export const splitDuplicateFiles = ({ oldFiles, newFiles }: Arg) => {
   const duplicates: File[] = [];
   const nonDuplicates: File[] = [];
 

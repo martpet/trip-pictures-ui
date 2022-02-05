@@ -9,7 +9,7 @@ import {
 
 import { useAddFiles, useCloseDialog } from '~/components/Upload';
 
-type UploadContextType = {
+type Context = {
   files: File[];
   addFiles(files: FileList): void;
   openDialog(): void;
@@ -19,13 +19,13 @@ type UploadContextType = {
   setShowConfirmClose: Dispatch<SetStateAction<boolean>>;
 };
 
-export const UploadContext = createContext({} as UploadContextType);
+export const UploadContext = createContext({} as Context);
 
-type UploadProviderProps = {
+type ProviderProps = {
   children: ReactNode;
 };
 
-export function UploadProvider({ children }: UploadProviderProps) {
+export function UploadProvider({ children }: ProviderProps) {
   const [files, setFiles] = useState<File[]>([]);
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [showConfirmClose, setShowConfirmClose] = useState(false);

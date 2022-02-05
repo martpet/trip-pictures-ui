@@ -22,11 +22,11 @@ import {
   UploadProvider,
 } from '~/components/Upload';
 
-type UploadDialogProps = {
+type Props = {
   trigger: ReactNode;
 };
 
-function UploadDialog({ trigger }: UploadDialogProps) {
+function UploadDialog({ trigger }: Props) {
   const { formatMessage } = useIntl();
   const { files, openDialog, closeDialog, isDialogOpen } = useContext(UploadContext);
 
@@ -70,7 +70,7 @@ function UploadDialog({ trigger }: UploadDialogProps) {
   );
 }
 
-function WithContext({ trigger }: UploadDialogProps) {
+function WithContext({ trigger }: Props) {
   return (
     <UploadProvider>
       <UploadDialog trigger={trigger} />

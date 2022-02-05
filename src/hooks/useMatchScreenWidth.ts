@@ -1,8 +1,8 @@
 import { useMediaQuery } from '@react-spectrum/utils';
 
 import { breakpoints } from '~/consts';
-import { BreakpointName } from '~/types';
+import { BreakpointLabel } from '~/types';
 
-export const useMatchScreenWidth = (label: BreakpointName) => {
+export const useMatchScreenWidth = (label: BreakpointLabel) => {
   return useMediaQuery(`(max-width: ${breakpoints[label]}px)`);
 };

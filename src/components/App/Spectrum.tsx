@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux';
 import { breakpoints } from '~/consts';
 import { selectLang } from '~/slices';
 
-type SpectrumProps = {
+type Props = {
   children: ReactNode;
 };
 
-export function Spectrum({ children }: SpectrumProps) {
+export function Spectrum({ children }: Props) {
   const lang = useSelector(selectLang);
 
   return (

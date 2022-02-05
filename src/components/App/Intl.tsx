@@ -7,11 +7,11 @@ import { useGetTranslationsQuery } from '~/services';
 import { selectLang } from '~/slices';
 import { toastDev } from '~/utils';
 
-type IntlProps = {
+type Props = {
   children: ReactNode;
 };
 
-export function Intl({ children }: IntlProps) {
+export function Intl({ children }: Props) {
   const lang = useSelector(selectLang);
   const { data } = useGetTranslationsQuery(lang);
   const hasData = data && Object.keys(data).length;

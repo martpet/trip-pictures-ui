@@ -1,39 +1,40 @@
 import { Heading, Item, TabList, TabPanels, Tabs, View } from '@adobe/react-spectrum';
 import { Key, ReactElement } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ChooseLanguage, ToolbarPosition } from '~/components/Settings';
 import { useIsMobile } from '~/hooks';
-import { selectActiveSettingsTab, settingsTabSelected } from '~/slices';
-import { SettingsTabKey } from '~/types';
-
-type SettingsItem = {
-  key: SettingsTabKey;
-  textId: string;
-  content: ReactElement;
-};
+import { selectActiveSettingsMenu, settingsMenuSelected } from '~/slices';
+import { SettingsMenuKey } from '~/types';
 
 export function Settings() {
-  const activeTab = useSelector(selectActiveSettingsTab);
+  const activeTab = useSelector(selectActiveSettingsMenu);
   const isMobile = useIsMobile();
   const dispatch = useDispatch();
+  const { formatMessage } = useIntl();
   const tabsSideSpace = 'size-400';
   const headingId = 'settings-heading';
 
   const handleTabSelect = (key: Key) => {
-    dispatch(settingsTabSelected(key as SettingsTabKey));
+    dispatch(settingsMenuSelected(key as SettingsMenuKey));
   };
 
-  const items: SettingsItem[] = [
+  type TabItem = {
+    id: SettingsMenuKey;
+    label: string;
+    content: ReactElement;
+  };
+
+  const tabItems: TabItem[] = [
     {
-      key: 'language',
-      textId: 'settings.tab.language',
+      id: 'language',
+      label: formatMessage({ id: 'settings.tab.language' }),
       content: <ChooseLanguage />,
     },
     {
-      key: 'toolbar',
-      textId: 'settings.tab.toolbar',
+      id: 'toolbar',
+      label: formatMessage({ id: 'settings.tab.toolbar' }),
       content: <ToolbarPosition />,
     },
   ];
@@ -42,7 +43,7 @@ export function Settings() {
     <Tabs
       selectedKey={activeTab}
       onSelectionChange={handleTabSelect}
-      items={items}
+      items={tabItems}
       orientation={isMobile ? 'horizontal' : 'vertical'}
       aria-labelledby={headingId}
     >
@@ -54,15 +55,11 @@ export function Settings() {
           marginEnd={isMobile ? 0 : tabsSideSpace}
           marginBottom={isMobile ? tabsSideSpace : 0}
         >
-          {({ textId }: SettingsItem) => (
-            <Item>
-              <FormattedMessage id={textId} />
-            </Item>
-          )}
+          {({ label }: TabItem) => <Item>{label}</Item>}
         </TabList>
       </View>
       <View flexGrow={1}>
-        <TabPanels>{({ content }: SettingsItem) => <Item>{content}</Item>}</TabPanels>
+        <TabPanels>{({ content }: TabItem) => <Item>{content}</Item>}</TabPanels>
       </View>
     </Tabs>
   );

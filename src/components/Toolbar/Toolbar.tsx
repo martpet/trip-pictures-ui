@@ -8,7 +8,7 @@ import { sideSpace } from '~/consts';
 import { useIsTopToolbar } from '~/hooks';
 
 const UploadDialog = lazy(() => import('~/components/Upload'));
-const SettingsDialogTrigger = lazy(() => import('~/components/Settings'));
+const SettingsDialog = lazy(() => import('~/components/Settings'));
 
 export function Toolbar() {
   const isTopBar = useIsTopToolbar();
@@ -28,7 +28,7 @@ export function Toolbar() {
         <Flex direction={direction} gap="size-85">
           <Suspense fallback={null}>
             <UploadDialog trigger={<UploadIcon />} />
-            <SettingsDialogTrigger trigger={<SettingsIcon />} />
+            <SettingsDialog trigger={<SettingsIcon />} />
           </Suspense>
           <UserButton />
         </Flex>
