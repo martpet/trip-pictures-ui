@@ -24,7 +24,13 @@
   "upload.button.addPhotos": "Add {photosCount, plural, =0 {} other {more}} photos",
   "upload.button.cancel": "Cancel",
   "upload.button.start": "Start upload",
-  "upload.heading": "Upload photos",
+  "upload.confirmCancel.cancelLabel": "No, stay",
+  "upload.confirmCancel.content": "Do you want to cancel all unfinished uploads?",
+  "upload.confirmCancel.primaryActionLabel": "Yes, cancel upload",
+  "upload.confirmCancel.title": "Are you sure?",
   "upload.dragAndDrop.heading": "Drag your files here",
-  "upload.dragAndDrop.subHeading": "or select from your device"
+  "upload.dragAndDrop.subHeading": "or select from your device",
+  "upload.heading": "Upload photos",
+  "upload.preview.remove": "Remove",
+  "upload.preview.rotate": "Rotate"
 }

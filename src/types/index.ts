@@ -10,4 +10,5 @@ export * from './Settings';
 export * from './SettingsMenuKey';
 export * from './ToolbarPosition';
 export * from './Translations';
+export * from './Upload';
 export * from './User';

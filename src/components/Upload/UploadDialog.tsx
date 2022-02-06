@@ -15,9 +15,9 @@ import {
   ButtonAddPhotos,
   ButtonCancel,
   ButtonUpload,
-  ConfirmCloseUploadDialog,
+  DialogConfirmCloseUpload,
   DropZone,
-  PhotosPreview,
+  Preview,
   UploadContext,
   UploadProvider,
 } from '~/components/Upload';
@@ -28,11 +28,11 @@ type Props = {
 
 function UploadDialog({ trigger }: Props) {
   const { formatMessage } = useIntl();
-  const { files, openDialog, closeDialog, isDialogOpen } = useContext(UploadContext);
+  const { uploads, openDialog, closeDialog, isDialogOpen } = useContext(UploadContext);
 
   useEffect(() => {
     const listener = ({ key }: KeyboardEvent) => {
-      if (key === 'Escape' && !files.length) closeDialog();
+      if (key === 'Escape') closeDialog();
     };
     document.addEventListener('keydown', listener);
     return () => document.removeEventListener('keydown', listener);
@@ -52,11 +52,11 @@ function UploadDialog({ trigger }: Props) {
           <Heading>
             <FormattedMessage id="upload.heading" />
           </Heading>
-          <Header>{!!files.length && <ButtonAddPhotos />}</Header>
+          <Header>{!!uploads.length && <ButtonAddPhotos />}</Header>
           <Divider />
           <Content>
             <DropZone>
-              <PhotosPreview />
+              <Preview />
             </DropZone>
           </Content>
           <ButtonGroup>
@@ -65,7 +65,7 @@ function UploadDialog({ trigger }: Props) {
           </ButtonGroup>
         </Dialog>
       </DialogTrigger>
-      <ConfirmCloseUploadDialog />
+      <DialogConfirmCloseUpload />
     </>
   );
 }

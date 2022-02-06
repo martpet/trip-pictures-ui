@@ -12,13 +12,13 @@ type Props = {
 };
 
 export function ButtonAddPhotos({ isQuiet = true, variant = 'primary' }: Props) {
-  const { files, addFiles } = useContext(UploadContext);
+  const { uploads, addUploads } = useContext(UploadContext);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleClickAdd = () => inputRef.current?.click();
 
   const handleFilesAdded: ChangeEventHandler<HTMLInputElement> = ({ currentTarget }) => {
-    addFiles(currentTarget.files!);
+    addUploads(currentTarget.files!);
     if (inputRef.current) inputRef.current.value = '';
   };
 
@@ -29,7 +29,7 @@ export function ButtonAddPhotos({ isQuiet = true, variant = 'primary' }: Props) 
         <Text>
           <FormattedMessage
             id="upload.button.addPhotos"
-            values={{ photosCount: files.length }}
+            values={{ photosCount: uploads.length }}
           />
         </Text>
       </Button>

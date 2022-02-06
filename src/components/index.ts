@@ -5,7 +5,6 @@ export * from './App/Layout/Loader';
 export * from './App/Routes/MapView';
 export * from './App/Routes/NotFound';
 export * from './App/Routes/Router';
-export * from './App/Routes/Upload';
 export * from './App/Spectrum';
 export * from './Avatar';
 export * from './LoadingOverlay';
