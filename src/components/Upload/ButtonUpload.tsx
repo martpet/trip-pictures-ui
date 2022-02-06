@@ -5,9 +5,9 @@ import { FormattedMessage } from 'react-intl';
 import { UploadContext } from '~/components/Upload';
 
 export function ButtonUpload() {
-  const { files } = useContext(UploadContext);
+  const { uploads } = useContext(UploadContext);
 
-  if (!files.length) return null;
+  if (!uploads.length) return null;
 
   return (
     <Button variant="cta" autoFocus>

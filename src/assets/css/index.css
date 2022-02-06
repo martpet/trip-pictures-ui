@@ -46,6 +46,7 @@ body {
 
 button[class^="_spectrum-Button"]:not(:disabled),
 button[class^="_spectrum-ActionButton"]:not([aria-checked="true"]),
-[class^="_spectrum-Tabs-item"]:not([aria-selected="true"]) {
+[class^="_spectrum-Tabs-item"]:not([aria-selected="true"]),
+[class^="_spectrum-Menu-item"] {
   cursor: pointer !important;
 }

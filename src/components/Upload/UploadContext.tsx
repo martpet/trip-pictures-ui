@@ -7,11 +7,18 @@ import {
   useState,
 } from 'react';
 
-import { useAddFiles, useCloseDialog } from '~/components/Upload';
+import {
+  useAddRemoveUploads,
+  useOpenCloseDialog,
+  useRotateImage,
+} from '~/components/Upload';
+import { Upload } from '~/types';
 
 type Context = {
-  files: File[];
-  addFiles(files: FileList): void;
+  uploads: Upload[];
+  addUploads(files: FileList): void;
+  removeUpload(i: number): void;
+  rotateImage(i: number): Promise<void>;
   openDialog(): void;
   closeDialog(forceClose?: boolean): void;
   isDialogOpen: boolean;
@@ -26,28 +33,32 @@ type ProviderProps = {
 };
 
 export function UploadProvider({ children }: ProviderProps) {
-  const [files, setFiles] = useState<File[]>([]);
+  const [uploads, setUploads] = useState<Upload[]>([]);
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [showConfirmClose, setShowConfirmClose] = useState(false);
-  const addFiles = useAddFiles({ files, setFiles });
-  const openDialog = () => setDialogOpen(true);
-  const closeDialog = useCloseDialog({
-    files,
-    setFiles,
+
+  const { addUploads, removeUpload } = useAddRemoveUploads({ uploads, setUploads });
+  const { openDialog, closeDialog } = useOpenCloseDialog({
+    uploads,
+    setUploads,
     setDialogOpen,
     setShowConfirmClose,
   });
+  const rotateImage = useRotateImage({ uploads, setUploads });
+
   const contextValue = useMemo(
     () => ({
-      files,
-      addFiles,
+      uploads,
+      addUploads,
+      removeUpload,
+      rotateImage,
       openDialog,
       closeDialog,
       isDialogOpen,
       showConfirmClose,
       setShowConfirmClose,
     }),
-    [files, isDialogOpen, showConfirmClose]
+    [uploads, isDialogOpen, showConfirmClose]
   );
 
   return <UploadContext.Provider value={contextValue}>{children}</UploadContext.Provider>;

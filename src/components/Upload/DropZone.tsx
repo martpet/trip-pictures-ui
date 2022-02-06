@@ -11,7 +11,7 @@ type Props = {
 };
 
 export function DropZone({ children }: Props) {
-  const { files, addFiles } = useContext(UploadContext);
+  const { uploads, addUploads } = useContext(UploadContext);
   const [isOnTarget, setOnTarget] = useState(false);
 
   const stopEvent: DragEventHandler<HTMLDivElement> = (event) => {
@@ -20,7 +20,7 @@ export function DropZone({ children }: Props) {
   };
 
   const handleDrop: DragEventHandler<HTMLDivElement> = (event) => {
-    addFiles(event.dataTransfer.files);
+    addUploads(event.dataTransfer.files);
     stopEvent(event);
   };
 
@@ -47,7 +47,7 @@ export function DropZone({ children }: Props) {
         }`,
       }}
     >
-      {files.length ? children : <Illustration />}
+      {uploads.length ? children : <Illustration />}
     </div>
   );
 }

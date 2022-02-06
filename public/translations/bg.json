@@ -24,7 +24,13 @@
   "upload.button.addPhotos": "{photosCount, plural, =0 {Изберете} other {Добавете още}} снимки",
   "upload.button.cancel": "Отказ",
   "upload.button.start": "Публикувайте",
-  "upload.heading": "Качете снимки",
+  "upload.confirmCancel.cancelLabel": "Не, продължи",
+  "upload.confirmCancel.content": "Искате ли да спрете всички незавършени качвания?",
+  "upload.confirmCancel.primaryActionLabel": "Да, спрете качването",
+  "upload.confirmCancel.title": "Сигурни ли сте?",
   "upload.dragAndDrop.heading": "Преместете файлове тук",
-  "upload.dragAndDrop.subHeading": "или изберете от устройството ви"
+  "upload.dragAndDrop.subHeading": "или изберете от устройството ви",
+  "upload.heading": "Качете снимки",
+  "upload.preview.remove": "Премахнете",
+  "upload.preview.rotate": "Завъртете"
 }
