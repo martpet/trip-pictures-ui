@@ -11,7 +11,7 @@ type Props = {
   fileIndex: number;
 };
 
-export function ImageActions({ fileIndex }: Props) {
+export function PreviewImageActions({ fileIndex }: Props) {
   const { removeUpload, rotateImage } = useContext(UploadContext);
   const { formatMessage } = useIntl();
 
