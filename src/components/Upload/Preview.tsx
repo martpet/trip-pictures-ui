@@ -1,7 +1,7 @@
 import { Grid, minmax, repeat, View } from '@adobe/react-spectrum';
 import { DragEventHandler, ReactEventHandler, useContext } from 'react';
 
-import { ImageActions, UploadContext } from '~/components/Upload';
+import { PreviewImageActions, UploadContext } from '~/components/Upload';
 
 export function Preview() {
   const { uploads } = useContext(UploadContext);
@@ -27,7 +27,7 @@ export function Preview() {
             style={{ gridColumn: '1 / -1', gridRow: '1', width: '100%' }}
           />
           <View gridColumn="2" gridRow="1" padding="size-100">
-            <ImageActions fileIndex={i} />
+            <PreviewImageActions fileIndex={i} />
           </View>
         </Grid>
       ))}
