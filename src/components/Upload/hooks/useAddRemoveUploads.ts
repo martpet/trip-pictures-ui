@@ -1,7 +1,6 @@
-import * as ExifReader from 'exifreader';
 import { Dispatch, SetStateAction } from 'react';
 
-import { getNonDuplicateFiles } from '~/components/Upload';
+import { getExifData, getNonDuplicateFiles } from '~/components/Upload';
 import { Upload } from '~/types';
 
 type Arg = {
@@ -11,17 +10,23 @@ type Arg = {
 
 export const useAddRemoveUploads = ({ uploads, setUploads }: Arg) => {
   const addUploads = async (selectedFiles: FileList) => {
-    const newFiles = getNonDuplicateFiles({
+    const filesToAdd = getNonDuplicateFiles({
       currentFiles: uploads.map(({ file }) => file),
-      newFiles: Array.from(selectedFiles),
+      addedFiles: Array.from(selectedFiles),
     });
 
-    const buffer = await newFiles[0].arrayBuffer();
-    const tags = ExifReader.load(buffer);
-    console.log(tags);
+    const newUploads = await Promise.all(
+      filesToAdd.map(async (file) => {
+        const { gps } = await getExifData(file);
+        return {
+          file,
+          gps,
+          canUpload: Boolean(gps),
+        };
+      })
+    );
 
-    if (newFiles.length) {
-      const newUploads = newFiles.map((file) => ({ file }));
+    if (newUploads.length) {
       setUploads([...uploads, ...newUploads]);
     }
   };

@@ -8,7 +8,7 @@ import {
   Header,
   Heading,
 } from '@adobe/react-spectrum';
-import { ReactNode, useContext, useEffect } from 'react';
+import { ReactNode, useContext } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import {
@@ -20,6 +20,7 @@ import {
   Preview,
   UploadContext,
   UploadProvider,
+  useEscKeyCloseDialog,
 } from '~/components/Upload';
 
 type Props = {
@@ -28,15 +29,9 @@ type Props = {
 
 function UploadDialog({ trigger }: Props) {
   const { formatMessage } = useIntl();
-  const { uploads, openDialog, closeDialog, isDialogOpen } = useContext(UploadContext);
+  const { uploads, openDialog, isDialogOpen } = useContext(UploadContext);
 
-  useEffect(() => {
-    const listener = ({ key }: KeyboardEvent) => {
-      if (key === 'Escape') closeDialog();
-    };
-    document.addEventListener('keydown', listener);
-    return () => document.removeEventListener('keydown', listener);
-  }, [closeDialog]);
+  useEscKeyCloseDialog();
 
   return (
     <>
@@ -52,7 +47,7 @@ function UploadDialog({ trigger }: Props) {
           <Heading>
             <FormattedMessage id="upload.heading" />
           </Heading>
-          <Header>{!!uploads.length && <ButtonAddPhotos />}</Header>
+          <Header>{uploads.length > 0 && <ButtonAddPhotos />}</Header>
           <Divider />
           <Content>
             <DropZone>

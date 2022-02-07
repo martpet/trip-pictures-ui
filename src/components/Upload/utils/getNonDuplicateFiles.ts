@@ -1,12 +1,12 @@
 type Arg = {
   currentFiles: File[];
-  newFiles: File[];
+  addedFiles: File[];
 };
 
-export const getNonDuplicateFiles = ({ currentFiles, newFiles }: Arg) => {
+export const getNonDuplicateFiles = ({ currentFiles, addedFiles }: Arg) => {
   const nonDuplicateFiles: File[] = [];
 
-  newFiles.forEach((newFile) => {
+  addedFiles.forEach((newFile) => {
     const isDuplicate = currentFiles.some(
       // TODO: check some exif properties instead
       (currentFile) => currentFile.size === newFile.size

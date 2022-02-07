@@ -15,6 +15,8 @@ export function Preview() {
     event.preventDefault();
   };
 
+  console.log(uploads);
+
   return (
     <Grid columns={{ S: repeat('auto-fill', minmax('size-5000', '1fr')) }} gap="size-200">
       {uploads.map(({ file }, i) => (
