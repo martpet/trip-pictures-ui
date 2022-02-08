@@ -1,6 +1,6 @@
 import { DragEventHandler, ReactNode, useContext, useState } from 'react';
 
-import { DragZoneIllustration, UploadContext } from '~/components/Upload';
+import { DropZoneIllustration, UploadContext } from '~/components/Upload';
 
 type Props = {
   children: ReactNode;
@@ -9,6 +9,9 @@ type Props = {
 export function DropZone({ children }: Props) {
   const { uploads, addUploads } = useContext(UploadContext);
   const [isOnTarget, setOnTarget] = useState(false);
+  const borderColor = isOnTarget
+    ? 'var(--spectrum-global-color-gray-400)'
+    : 'transparent';
 
   const stopEvent: DragEventHandler<HTMLDivElement> = (event) => {
     event.stopPropagation();
@@ -17,6 +20,7 @@ export function DropZone({ children }: Props) {
 
   const handleDrop: DragEventHandler<HTMLDivElement> = (event) => {
     addUploads(event.dataTransfer.files);
+    setOnTarget(false);
     stopEvent(event);
   };
 
@@ -38,12 +42,10 @@ export function DropZone({ children }: Props) {
       onDragLeave={handleDragLeave}
       style={{
         height: '100%',
-        border: `2px dashed ${
-          isOnTarget ? 'var(--spectrum-global-color-gray-400)' : 'transparent'
-        }`,
+        border: `2px dashed ${borderColor}`,
       }}
     >
-      {uploads.length ? children : <DragZoneIllustration />}
+      {uploads.length ? children : <DropZoneIllustration />}
     </div>
   );
 }

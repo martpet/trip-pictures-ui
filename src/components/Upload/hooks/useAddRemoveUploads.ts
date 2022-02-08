@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { addExifData, getNonDuplicateFiles } from '~/components/Upload';
+import { addImageData, getNonDuplicateFiles } from '~/components/Upload';
 import { Upload } from '~/types';
 
 type Arg = {
@@ -17,9 +17,17 @@ export const useAddRemoveUploads = ({ uploads, setUploads }: Arg) => {
 
     const newUploads = await Promise.all(
       filesToAdd.map(async (file) => {
-        let upload: Upload = { file, data: {}, missingData: [], canUpload: true };
-        upload = await addExifData(upload);
-        upload.canUpload = upload.missingData.length === 0;
+        let upload: Upload = { file, data: {}, errors: [] };
+        upload = await addImageData(upload);
+        const { latitude, longitude, altitude } = upload.data;
+
+        if (!latitude || !longitude || !altitude) {
+          upload.errors.push('missingCoords');
+        }
+        if (file.type !== 'image/jpeg') {
+          upload.errors.push('fileType');
+        }
+
         return upload;
       })
     );

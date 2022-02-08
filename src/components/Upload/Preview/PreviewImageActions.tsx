@@ -12,43 +12,39 @@ type Props = {
 };
 
 export function PreviewImageActions({ fileIndex }: Props) {
-  const { removeUpload, rotateImage, uploads } = useContext(UploadContext);
+  const { removeUpload, rotateImage } = useContext(UploadContext);
   const { formatMessage } = useIntl();
-  const { canUpload } = uploads[fileIndex];
 
   const handleAction = (key: Key) => {
     if (key === 'delete') removeUpload(fileIndex);
     if (key === 'rotate') rotateImage(fileIndex);
   };
 
-  type ActionItem = {
+  type Entry = {
     key: Key;
     text: string;
     icon: ReactElement;
   };
 
-  const items: ActionItem[] = [
+  const items: Entry[] = [
     {
       key: 'delete',
       text: formatMessage({ id: 'upload.preview.remove' }),
       icon: <IconClose />,
     },
-  ];
-
-  if (canUpload) {
-    items.push({
+    {
       key: 'rotate',
       text: formatMessage({ id: 'upload.preview.rotate' }),
       icon: <RotateLeftIcon />,
-    });
-  }
+    },
+  ];
 
   return (
     <ActionMenu items={items} onAction={handleAction}>
       {(item) => (
-        <Item textValue={(item as ActionItem).text}>
-          {(item as ActionItem).icon}
-          <Text>{(item as ActionItem).text}</Text>
+        <Item textValue={(item as Entry).text}>
+          {(item as Entry).icon}
+          <Text>{(item as Entry).text}</Text>
         </Item>
       )}
     </ActionMenu>
