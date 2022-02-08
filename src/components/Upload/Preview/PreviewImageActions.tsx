@@ -1,23 +1,26 @@
 import { Item, Text } from '@adobe/react-spectrum';
 import { ActionMenu } from '@react-spectrum/menu';
 import IconClose from '@spectrum-icons/workflow/CloseCircle';
-import RotateLeftIcon from '@spectrum-icons/workflow/RotateLeft';
+import RotateIcon from '@spectrum-icons/workflow/RotateRight';
 import { Key, ReactElement, useContext } from 'react';
 import { useIntl } from 'react-intl';
 
 import { UploadContext } from '~/components/Upload';
+import { Upload } from '~/types';
 
 type Props = {
-  fileIndex: number;
+  upload: Upload;
 };
 
-export function PreviewImageActions({ fileIndex }: Props) {
-  const { removeUpload, rotateImage } = useContext(UploadContext);
+export function PreviewImageActions({ upload }: Props) {
+  const { removeUpload, rotateImage, uploads } = useContext(UploadContext);
   const { formatMessage } = useIntl();
+  const { errors } = upload;
+  const uploadIndex = uploads.indexOf(upload);
 
   const handleAction = (key: Key) => {
-    if (key === 'delete') removeUpload(fileIndex);
-    if (key === 'rotate') rotateImage(fileIndex);
+    if (key === 'delete') removeUpload(uploadIndex);
+    if (key === 'rotate') rotateImage(uploadIndex);
   };
 
   type Entry = {
@@ -35,9 +38,11 @@ export function PreviewImageActions({ fileIndex }: Props) {
     {
       key: 'rotate',
       text: formatMessage({ id: 'upload.preview.rotate' }),
-      icon: <RotateLeftIcon />,
+      icon: <RotateIcon />,
     },
   ];
+
+  if (errors.length) return null;
 
   return (
     <ActionMenu items={items} onAction={handleAction}>

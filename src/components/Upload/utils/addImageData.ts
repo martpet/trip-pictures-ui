@@ -48,11 +48,11 @@ export const addImageData = async (upload: Upload) => {
 
   entries.forEach(({ key, value, decimalPlaces }) => {
     if (value) {
-      let modifiedValue;
-      if (decimalPlaces) {
-        modifiedValue = Number(value.toFixed(decimalPlaces));
+      let formattedValue;
+      if (decimalPlaces !== undefined) {
+        formattedValue = Number(value.toFixed(decimalPlaces));
       }
-      newUpload.data[key] = modifiedValue;
+      newUpload.data[key] = formattedValue;
     }
   });
 

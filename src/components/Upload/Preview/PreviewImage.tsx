@@ -1,15 +1,19 @@
 import { DragEventHandler, ReactEventHandler } from 'react';
 
+import { Upload } from '~/types';
+
 type Props = {
-  file: File;
+  upload: Upload;
 };
 
-export function PreviewImage({ file }: Props) {
+export function PreviewImage({ upload }: Props) {
+  const { file } = upload;
+
   const handleImageLoad: ReactEventHandler<HTMLImageElement> = (event) => {
     URL.revokeObjectURL(event.currentTarget.src);
   };
 
-  const handleImageDragStart: DragEventHandler<HTMLImageElement> = (event) => {
+  const preventDrag: DragEventHandler<HTMLImageElement> = (event) => {
     event.stopPropagation();
     event.preventDefault();
   };
@@ -18,8 +22,8 @@ export function PreviewImage({ file }: Props) {
       alt={file.name}
       src={URL.createObjectURL(file)}
       onLoad={handleImageLoad}
-      onDragStart={handleImageDragStart}
-      style={{ width: '100%' }}
+      onDragStart={preventDrag}
+      style={{ width: '100%', display: 'block' }}
     />
   );
 }

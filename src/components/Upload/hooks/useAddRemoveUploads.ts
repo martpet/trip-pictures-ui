@@ -20,7 +20,6 @@ export const useAddRemoveUploads = ({ uploads, setUploads }: Arg) => {
         let upload: Upload = { file, data: {}, errors: [] };
         upload = await addImageData(upload);
         const { latitude, longitude, altitude } = upload.data;
-
         if (!latitude || !longitude || !altitude) {
           upload.errors.push('missingCoords');
         }
