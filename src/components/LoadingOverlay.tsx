@@ -4,12 +4,12 @@ import { ReactNode } from 'react';
 import { Spinner } from '~/components';
 
 export function LoadingOverlay() {
-  const background = 'var(--spectrum-alias-background-color-modal-overlay)';
+  const backgroundColor = 'var(--spectrum-alias-background-color-modal-overlay)';
 
   return (
     <>
       <Overlay>
-        <View height="100%" UNSAFE_style={{ background }} />
+        <View height="100%" UNSAFE_style={{ backgroundColor }} />
       </Overlay>
       <Overlay>
         <Flex height="100%" alignItems="center" justifyContent="center">

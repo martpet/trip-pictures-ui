@@ -12,6 +12,7 @@ export * from './hooks/useRotateImage';
 export * from './Preview/Preview';
 export * from './Preview/PreviewImage';
 export * from './Preview/PreviewImageActions';
+export * from './Preview/PreviewImageError';
 export * from './UploadContext';
 export * from './utils/addImageData';
 export * from './utils/getNonDuplicateFiles';
