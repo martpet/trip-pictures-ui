@@ -3,9 +3,9 @@ import { FormattedMessage } from 'react-intl';
 
 import { ButtonAddPhotos } from '~/components/Upload';
 
-import { ReactComponent as UploadIcon } from './images/illustrationUpload.svg';
+import { ReactComponent as UploadIcon } from './illustrationUpload.svg';
 
-export function DragZoneIllustration() {
+export function DropZoneIllustration() {
   return (
     <IllustratedMessage>
       <UploadIcon />

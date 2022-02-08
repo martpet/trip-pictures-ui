@@ -1,8 +1,7 @@
 export type Upload = {
   file: File;
   data: UploadExifData;
-  missingData: Array<keyof Upload['data']>;
-  canUpload: boolean;
+  errors: UploadError[];
 };
 
 export type UploadExifData = {
@@ -11,3 +10,5 @@ export type UploadExifData = {
   altitude?: number;
   bearing?: number;
 };
+
+type UploadError = 'missingCoords' | 'fileType' | 'exifReader';
