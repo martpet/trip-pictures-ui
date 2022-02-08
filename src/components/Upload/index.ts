@@ -12,5 +12,5 @@ export * from './Preview';
 export * from './PreviewImageActions';
 export * from './UploadContext';
 export { UploadDialog as default } from './UploadDialog';
-export * from './utils/getExifData';
+export * from './utils/addExifData';
 export * from './utils/getNonDuplicateFiles';
