@@ -2,8 +2,7 @@ import { ActionButton, Content, Dialog, DialogTrigger } from '@adobe/react-spect
 import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 
-import { Avatar } from '~/components';
-import { Profile } from '~/components/Profile';
+import { Avatar, ProfileMenu } from '~/components';
 import { selectCurrentUser } from '~/slices';
 
 export function ProfileButton() {
@@ -17,7 +16,7 @@ export function ProfileButton() {
       </ActionButton>
       <Dialog>
         <Content>
-          <Profile />
+          <ProfileMenu />
         </Content>
       </Dialog>
     </DialogTrigger>

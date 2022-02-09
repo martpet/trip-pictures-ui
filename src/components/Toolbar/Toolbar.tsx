@@ -7,8 +7,8 @@ import { Logo, UserButton } from '~/components';
 import { sideSpace } from '~/consts';
 import { useIsTopToolbar } from '~/hooks';
 
-const UploadDialog = lazy(() => import('~/components/Upload'));
-const SettingsDialog = lazy(() => import('~/components/Settings'));
+const UploadDialog = lazy(() => import('~/lazy/upload'));
+const SettingsDialog = lazy(() => import('~/lazy/settings'));
 
 export function Toolbar() {
   const isTopBar = useIsTopToolbar();
