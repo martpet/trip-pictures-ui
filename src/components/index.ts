@@ -19,5 +19,6 @@ export * from './Spinner';
 export * from './Toolbar/LoginButton';
 export * from './Toolbar/Logo';
 export * from './Toolbar/ProfileButton';
+export * from './Toolbar/ProfileMenu';
 export * from './Toolbar/Toolbar';
 export * from './Toolbar/UserButton';
