@@ -36,7 +36,6 @@ export function UploadProvider({ children }: ProviderProps) {
   const [uploads, setUploads] = useState<Upload[]>([]);
   const [isDialogOpen, setDialogOpen] = useState(false);
   const [showConfirmClose, setShowConfirmClose] = useState(false);
-
   const { addUploads, removeUpload } = useAddRemoveUploads({ uploads, setUploads });
   const { openDialog, closeDialog } = useOpenCloseDialog({
     uploads,

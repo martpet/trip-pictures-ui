@@ -11,4 +11,4 @@ export type UploadExifData = {
   bearing?: number;
 };
 
-type UploadError = 'missingCoords' | 'fileType' | 'exifReader';
+type UploadError = 'coords' | 'fileType' | 'exif';

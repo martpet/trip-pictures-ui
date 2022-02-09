@@ -10,7 +10,7 @@ export const addImageData = async (upload: Upload) => {
   try {
     tags = ExifReader.load(arrayBuffer, { expanded: true });
   } catch (e) {
-    upload.errors.push('exifReader');
+    upload.errors.push('exif');
     return upload;
   }
 
@@ -55,6 +55,11 @@ export const addImageData = async (upload: Upload) => {
       newUpload.data[key] = formattedValue;
     }
   });
+
+  const { latitude, longitude, altitude } = newUpload.data;
+  if (!latitude || !longitude || !altitude) {
+    newUpload.errors.push('coords');
+  }
 
   return newUpload;
 };
