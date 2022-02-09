@@ -14,7 +14,6 @@ type Props = {
 export function PreviewImageActions({ upload }: Props) {
   const { removeUpload, rotateImage, uploads } = useContext(UploadContext);
   const { formatMessage } = useIntl();
-  const { errors } = upload;
   const uploadIndex = uploads.indexOf(upload);
 
   const handleAction = (key: Key) => {
@@ -41,10 +40,8 @@ export function PreviewImageActions({ upload }: Props) {
     },
   ];
 
-  if (errors.length) return null;
-
   return (
-    <ActionMenu items={items} onAction={handleAction}>
+    <ActionMenu items={items} onAction={handleAction} isQuiet>
       {(item) => (
         <Item textValue={(item as Entry).text}>
           {(item as Entry).icon}

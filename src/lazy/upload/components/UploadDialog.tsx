@@ -11,6 +11,7 @@ import {
 import { ReactNode, useContext } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 
+import { useIsMobile } from '~/hooks';
 import {
   ButtonAddPhotos,
   ButtonCloseDialog,
@@ -30,12 +31,16 @@ type Props = {
 function UploadDialog({ trigger }: Props) {
   const { formatMessage } = useIntl();
   const { uploads, openDialog, isDialogOpen } = useContext(UploadContext);
+  const isMobile = useIsMobile();
 
   useEscKeyCloseDialog();
 
   return (
     <>
-      <DialogTrigger type="fullscreen" isOpen={isDialogOpen}>
+      <DialogTrigger
+        type={isMobile ? 'fullscreenTakeover' : 'fullscreen'}
+        isOpen={isDialogOpen}
+      >
         <ActionButton
           onPress={openDialog}
           isQuiet
@@ -47,7 +52,7 @@ function UploadDialog({ trigger }: Props) {
           <Heading>
             <FormattedMessage id="upload.heading" />
           </Heading>
-          <Header>{uploads.length > 0 && <ButtonAddPhotos />}</Header>
+          <Header>{!isMobile && !!uploads.length && <ButtonAddPhotos />}</Header>
           <Divider />
           <Content>
             <DropZone>

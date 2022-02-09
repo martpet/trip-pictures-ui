@@ -34,5 +34,8 @@
   "upload.preview.remove": "Remove",
   "upload.preview.rotate": "Rotate",
   "upload.errorsOverview.allInvalid": "The {count, plural, =1 {photo} other {photos}} cannot be published.",
-  "upload.errorsOverview.someInvalid": "{invalidCount} of {totalCount} photos cannot be published."
+  "upload.errorsOverview.someInvalid": "{invalidCount} of {totalCount} photos cannot be published.",
+  "upload.error.fileTypeWrong": "The file type is not {fileTypesList}",
+  "upload.error.exifUnreadable": "Meta data cannot be extracted",
+  "upload.error.missingCoords": "GPS coordinates are missing"
 }

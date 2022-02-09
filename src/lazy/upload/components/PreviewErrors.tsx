@@ -5,14 +5,14 @@ import { FormattedMessage } from 'react-intl';
 
 import { UploadContext } from '~/lazy/upload';
 
-export function PreviewErrorsOverview() {
+export function PreviewErrors() {
   const { uploads, invalidUploads } = useContext(UploadContext);
 
   if (!invalidUploads.length) return null;
 
   return (
     <Flex alignItems="center" marginTop="size-75" marginBottom="size-400">
-      <AlertIcon color="negative" size="S" marginEnd="size-125" />
+      <AlertIcon color="negative" marginEnd="size-125" />
       {invalidUploads.length === uploads.length ? (
         <FormattedMessage
           id="upload.errorsOverview.allInvalid"
