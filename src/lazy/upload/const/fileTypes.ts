@@ -1,1 +1,1 @@
-export const acceptedFileTypes = ['image/jpeg'];
+export const acceptedMimeTypes = ['image/jpeg'];

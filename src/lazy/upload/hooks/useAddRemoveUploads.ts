@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 
 import {
-  acceptedFileTypes,
+  acceptedMimeTypes,
   addImageData,
   getNonDuplicateFiles,
   Upload,
@@ -22,7 +22,7 @@ export const useAddRemoveUploads = ({ uploads, setUploads }: Arg) => {
     const newUploads = await Promise.all(
       newFiles.map(async (file) => {
         let upload: Upload = { file, data: {}, errors: [] };
-        if (acceptedFileTypes.includes(file.type)) {
+        if (acceptedMimeTypes.includes(file.type)) {
           upload = await addImageData(upload);
         } else {
           upload.errors.push('fileTypeWrong');
@@ -32,7 +32,7 @@ export const useAddRemoveUploads = ({ uploads, setUploads }: Arg) => {
     );
 
     if (newUploads.length) {
-      setUploads([...uploads, ...newUploads]);
+      setUploads([...newUploads, ...uploads]);
     }
   };
 

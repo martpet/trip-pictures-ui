@@ -16,50 +16,31 @@ export const addImageData = async (upload: Upload) => {
 
   const { exif, gps } = tags;
 
-  type Entry = {
-    key: keyof Upload['data'];
-    value?: number;
-    decimalPlaces?: number;
-    isRequired?: boolean;
-  };
+  if (gps?.Latitude) {
+    newUpload.data.latitude = Number(gps.Latitude.toFixed(4));
+  }
 
-  const entries: Entry[] = [
-    {
-      key: 'latitude',
-      value: gps?.Latitude,
-      decimalPlaces: 4,
-    },
-    {
-      key: 'longitude',
-      value: gps?.Longitude,
-      decimalPlaces: 4,
-    },
-    {
-      key: 'altitude',
-      value: gps?.Altitude,
-      decimalPlaces: 0,
-    },
-    {
-      key: 'bearing',
-      value: Number(exif?.GPSDestBearing?.description),
-      decimalPlaces: 0,
-    },
-  ];
+  if (gps?.Longitude) {
+    newUpload.data.longitude = Number(gps.Longitude.toFixed(4));
+  }
 
-  entries.forEach(({ key, value, decimalPlaces }) => {
-    if (value) {
-      let formattedValue;
-      if (decimalPlaces !== undefined) {
-        formattedValue = Number(value.toFixed(decimalPlaces));
-      }
-      newUpload.data[key] = formattedValue;
-    }
-  });
+  if (gps?.Altitude) {
+    newUpload.data.altitude = Number(gps.Altitude.toFixed(0));
+  }
+
+  if (exif?.GPSDestBearing?.description) {
+    newUpload.data.bearing = Number(Number(exif.GPSDestBearing.description).toFixed(0));
+  }
+
+  if (exif?.DateTimeOriginal?.description) {
+    const [date, time] = exif.DateTimeOriginal.description.split(' ');
+    newUpload.data.created = `${date.replace(':', '-')}T${time}`;
+  }
 
   const { latitude, longitude, altitude } = newUpload.data;
 
   if (!latitude || !longitude || !altitude) {
-    newUpload.errors.push('coordsMissing');
+    newUpload.errors.push('missingCoords');
   }
 
   return newUpload;

@@ -1,17 +1,18 @@
 import { Button, Text } from '@adobe/react-spectrum';
 import { SpectrumButtonProps } from '@react-types/button';
-import AddPhotosIcon from '@spectrum-icons/workflow/AddToSelection';
+import IconAdd from '@spectrum-icons/workflow/AddToSelection';
 import { ChangeEventHandler, useContext, useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { acceptedFileTypes, UploadContext } from '~/lazy/upload';
+import { acceptedMimeTypes, UploadContext } from '~/lazy/upload';
 
-type Props = {
-  isQuiet?: boolean;
-  variant?: SpectrumButtonProps['variant'];
-};
+type Props = Partial<SpectrumButtonProps>;
 
-export function ButtonAddPhotos({ isQuiet = true, variant = 'primary' }: Props) {
+export function ButtonAddPhotos({
+  isQuiet = true,
+  variant = 'primary',
+  ...butonProps
+}: Props) {
   const { uploads, addUploads } = useContext(UploadContext);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -24,8 +25,13 @@ export function ButtonAddPhotos({ isQuiet = true, variant = 'primary' }: Props) 
 
   return (
     <>
-      <Button variant={variant} onPress={handleClickAdd} isQuiet={isQuiet}>
-        <AddPhotosIcon />
+      <Button
+        variant={variant}
+        onPress={handleClickAdd}
+        isQuiet={isQuiet}
+        {...butonProps}
+      >
+        <IconAdd />
         <Text>
           <FormattedMessage
             id="upload.button.addPhotos"
@@ -38,7 +44,7 @@ export function ButtonAddPhotos({ isQuiet = true, variant = 'primary' }: Props) 
         ref={inputRef}
         type="file"
         multiple
-        accept={acceptedFileTypes.join(',')}
+        accept={acceptedMimeTypes.join(',')}
         onChange={handleFilesAdded}
         style={{ display: 'none' }}
       />

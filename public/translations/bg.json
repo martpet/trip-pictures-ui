@@ -34,5 +34,8 @@
   "upload.preview.remove": "Премахни",
   "upload.preview.rotate": "Завърти",
   "upload.errorsOverview.allInvalid": "{count, plural, =1 {Снимката не може да бъде публикувана} other {Снимките не могат да бъдат публикувани}}.",
-  "upload.errorsOverview.someInvalid": "{invalidCount} {invalidCount, plural, =1 {снимка не може да бъде публикувана} other {не могат да бъдат публикувани}}."
+  "upload.errorsOverview.someInvalid": "{invalidCount} {invalidCount, plural, =1 {снимка не може да бъде публикувана} other {не могат да бъдат публикувани}}.",
+  "upload.error.fileTypeWrong": "Файлът не е {fileTypesList}",
+  "upload.error.exifUnreadable": "Мета данните са повредени",
+  "upload.error.missingCoords": "Липсват GPS координатите"
 }
