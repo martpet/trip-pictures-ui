@@ -1,3 +1,4 @@
+export * from './const/fileTypes';
 export * from './Dialog/ButtonAddPhotos';
 export * from './Dialog/ButtonCancel';
 export * from './Dialog/ButtonUpload';

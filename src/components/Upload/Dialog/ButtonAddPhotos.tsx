@@ -4,7 +4,7 @@ import AddPhotosIcon from '@spectrum-icons/workflow/AddToSelection';
 import { ChangeEventHandler, useContext, useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { UploadContext } from '~/components/Upload';
+import { allowedFileTypes, UploadContext } from '~/components/Upload';
 
 type Props = {
   isQuiet?: boolean;
@@ -38,7 +38,7 @@ export function ButtonAddPhotos({ isQuiet = true, variant = 'primary' }: Props) 
         ref={inputRef}
         type="file"
         multiple
-        accept="image/jpeg"
+        accept={allowedFileTypes.join(',')}
         onChange={handleFilesAdded}
         style={{ display: 'none' }}
       />
