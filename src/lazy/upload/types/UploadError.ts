@@ -1,1 +1,5 @@
-export type UploadError = 'fileTypeWrong' | 'exifUnreadable' | 'missingCoords';
+export type UploadError =
+  | 'fileTypeWrong'
+  | 'exifUnreadable'
+  | 'missingCoords'
+  | 'missingCreationDate';

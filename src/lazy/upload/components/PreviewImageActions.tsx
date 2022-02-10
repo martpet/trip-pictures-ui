@@ -30,15 +30,18 @@ export function PreviewImageActions({ upload }: Props) {
   const items: Entry[] = [
     {
       key: 'delete',
-      text: formatMessage({ id: 'upload.preview.remove' }),
+      text: formatMessage({ id: 'upload.previewAction.remove' }),
       icon: <IconClose />,
     },
-    {
-      key: 'rotate',
-      text: formatMessage({ id: 'upload.preview.rotate' }),
-      icon: <RotateIcon />,
-    },
   ];
+
+  if (!upload.errors.length) {
+    items.push({
+      key: 'rotate',
+      text: formatMessage({ id: 'upload.previewAction.rotate' }),
+      icon: <RotateIcon />,
+    });
+  }
 
   return (
     <ActionMenu items={items} onAction={handleAction} isQuiet>

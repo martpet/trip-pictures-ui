@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 
 import {
   acceptedMimeTypes,
-  addImageData,
+  addExifData,
   getNonDuplicateFiles,
   Upload,
 } from '~/lazy/upload';
@@ -23,7 +23,7 @@ export const useAddRemoveUploads = ({ uploads, setUploads }: Arg) => {
       newFiles.map(async (file) => {
         let upload: Upload = { file, data: {}, errors: [] };
         if (acceptedMimeTypes.includes(file.type)) {
-          upload = await addImageData(upload);
+          upload = await addExifData(upload);
         } else {
           upload.errors.push('fileTypeWrong');
         }

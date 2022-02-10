@@ -4,8 +4,8 @@ import { useContext } from 'react';
 import { useIsMobile } from '~/hooks';
 import {
   ButtonAddPhotos,
-  PreviewErrors,
   PreviewImage,
+  PreviewStatus,
   UploadContext,
 } from '~/lazy/upload';
 
@@ -16,7 +16,7 @@ export function Preview() {
   return (
     <>
       {isMobile && <ButtonAddPhotos isQuiet={false} marginBottom="size-350" />}
-      <PreviewErrors />
+      <PreviewStatus />
       <Grid
         columns={{ S: repeat('auto-fill', minmax('size-5000', '1fr')) }}
         gap="size-200"

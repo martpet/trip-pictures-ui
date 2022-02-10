@@ -8,7 +8,7 @@ export const getNonDuplicateFiles = ({ currentFiles, addedFiles }: Arg) => {
 
   addedFiles.forEach((newFile) => {
     const isDuplicate = currentFiles.some(
-      // TODO: check some exif properties instead
+      // TODO: check some other property as weel
       (currentFile) => currentFile.size === newFile.size
     );
     if (!isDuplicate) {
