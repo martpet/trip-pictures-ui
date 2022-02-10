@@ -2,7 +2,7 @@ import ExifReader from 'exifreader';
 
 import { Upload } from '~/lazy/upload';
 
-export const addImageData = async (upload: Upload) => {
+export const addExifData = async (upload: Upload) => {
   const newUpload = { ...upload };
   const arrayBuffer = await newUpload.file.arrayBuffer();
   let tags;
@@ -37,10 +37,14 @@ export const addImageData = async (upload: Upload) => {
     newUpload.data.created = `${date.replace(':', '-')}T${time}`;
   }
 
-  const { latitude, longitude, altitude } = newUpload.data;
+  const { latitude, longitude, altitude, created } = newUpload.data;
 
   if (!latitude || !longitude || !altitude) {
     newUpload.errors.push('missingCoords');
+  }
+
+  if (!created) {
+    newUpload.errors.push('missingCreationDate');
   }
 
   return newUpload;

@@ -9,10 +9,10 @@ export function DropZoneIllustration() {
     <IllustratedMessage>
       <Illustration />
       <Heading>
-        <FormattedMessage id="upload.dragAndDrop.heading" />
+        <FormattedMessage id="upload.dropZone.heading" />
       </Heading>
       <Content>
-        <FormattedMessage id="upload.dragAndDrop.subHeading" />
+        <FormattedMessage id="upload.dropZone.subHeading" />
         <View marginTop="size-600">
           <ButtonAddPhotos variant="cta" isQuiet={false} />
         </View>
