@@ -43,6 +43,7 @@ export function DropZone({ children }: Props) {
       style={{
         height: '100%',
         border: `2px dashed ${borderColor}`,
+        boxSizing: 'border-box',
       }}
     >
       {uploads.length ? children : <DropZoneIllustration />}

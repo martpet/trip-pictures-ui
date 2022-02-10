@@ -14,10 +14,10 @@ type Arg = {
 
 export const useAddRemoveUploads = ({ uploads, setUploads }: Arg) => {
   const addUploads = async (selectedFiles: FileList) => {
-    const newFiles = Array.from(selectedFiles);
+    const files = Array.from(selectedFiles);
 
     let newUploads = await Promise.all(
-      newFiles.map(async (file) => {
+      files.map(async (file) => {
         let upload: Upload = { file, exif: {}, errors: [] };
         if (acceptedMimeTypes.includes(file.type)) {
           upload = await addExifData(upload);
@@ -31,7 +31,7 @@ export const useAddRemoveUploads = ({ uploads, setUploads }: Arg) => {
     newUploads = getNonDuplicateNewUploads({ uploads, newUploads });
 
     if (newUploads.length) {
-      setUploads([...uploads, ...newUploads]);
+      setUploads([...newUploads, ...uploads]);
     }
   };
 
