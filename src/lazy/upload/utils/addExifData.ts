@@ -17,34 +17,34 @@ export const addExifData = async (upload: Upload) => {
   const { exif, gps } = tags;
 
   if (gps?.Latitude) {
-    newUpload.data.latitude = Number(gps.Latitude.toFixed(4));
+    newUpload.exif.latitude = Number(gps.Latitude.toFixed(4));
   }
 
   if (gps?.Longitude) {
-    newUpload.data.longitude = Number(gps.Longitude.toFixed(4));
+    newUpload.exif.longitude = Number(gps.Longitude.toFixed(4));
   }
 
   if (gps?.Altitude) {
-    newUpload.data.altitude = Number(gps.Altitude.toFixed(0));
+    newUpload.exif.altitude = Number(gps.Altitude.toFixed(0));
   }
 
   if (exif?.GPSDestBearing?.description) {
-    newUpload.data.bearing = Number(Number(exif.GPSDestBearing.description).toFixed(0));
+    newUpload.exif.bearing = Number(Number(exif.GPSDestBearing.description).toFixed(0));
   }
 
   if (exif?.DateTimeOriginal?.description) {
     const [date, time] = exif.DateTimeOriginal.description.split(' ');
-    newUpload.data.created = `${date.replace(':', '-')}T${time}`;
+    newUpload.exif.dateOriginal = `${date.replace(':', '-')}T${time}`;
   }
 
-  const { latitude, longitude, altitude, created } = newUpload.data;
+  const { latitude, longitude, altitude, dateOriginal } = newUpload.exif;
 
   if (!latitude || !longitude || !altitude) {
     newUpload.errors.push('missingCoords');
   }
 
-  if (!created) {
-    newUpload.errors.push('missingCreationDate');
+  if (!dateOriginal) {
+    newUpload.errors.push('missingDate');
   }
 
   return newUpload;

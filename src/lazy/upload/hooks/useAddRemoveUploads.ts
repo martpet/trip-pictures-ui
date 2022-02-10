@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from 'react';
 import {
   acceptedMimeTypes,
   addExifData,
-  getNonDuplicateFiles,
+  getNonDuplicateNewUploads,
   Upload,
 } from '~/lazy/upload';
 
@@ -14,14 +14,11 @@ type Arg = {
 
 export const useAddRemoveUploads = ({ uploads, setUploads }: Arg) => {
   const addUploads = async (selectedFiles: FileList) => {
-    const newFiles = getNonDuplicateFiles({
-      currentFiles: uploads.map(({ file }) => file),
-      addedFiles: Array.from(selectedFiles),
-    });
+    const newFiles = Array.from(selectedFiles);
 
-    const newUploads = await Promise.all(
+    let newUploads = await Promise.all(
       newFiles.map(async (file) => {
-        let upload: Upload = { file, data: {}, errors: [] };
+        let upload: Upload = { file, exif: {}, errors: [] };
         if (acceptedMimeTypes.includes(file.type)) {
           upload = await addExifData(upload);
         } else {
@@ -31,8 +28,10 @@ export const useAddRemoveUploads = ({ uploads, setUploads }: Arg) => {
       })
     );
 
+    newUploads = getNonDuplicateNewUploads({ uploads, newUploads });
+
     if (newUploads.length) {
-      setUploads([...newUploads, ...uploads]);
+      setUploads([...uploads, ...newUploads]);
     }
   };
 

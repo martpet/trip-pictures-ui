@@ -12,23 +12,26 @@ type Props = {
 
 export function PreviewImageError({ upload }: Props) {
   const lang = useSelector(selectLang);
-  const fileTypes = acceptedMimeTypes.map((mime) => mime.split('/')[1].toUpperCase());
 
-  const formattedFileTypesList = new Intl.ListFormat(lang, {
+  const acceptedFileTypes = acceptedMimeTypes.map((type) =>
+    type.split('/')[1].toUpperCase()
+  );
+
+  const formattedAcceptedFilesList = new Intl.ListFormat(lang, {
     style: 'long',
     type: 'disjunction',
-  }).format(fileTypes);
+  }).format(acceptedFileTypes);
 
-  const errorsOrder: UploadError[] = [
+  const errorsPriority: UploadError[] = [
     'fileTypeWrong',
     'exifUnreadable',
     'missingCoords',
-    'missingCreationDate',
+    'missingDate',
   ];
 
   const error = upload.errors
     .slice()
-    .sort((a, b) => errorsOrder.indexOf(a) - errorsOrder.indexOf(b))[0];
+    .sort((a, b) => errorsPriority.indexOf(a) - errorsPriority.indexOf(b))[0];
 
   if (!error) return null;
 
@@ -37,7 +40,7 @@ export function PreviewImageError({ upload }: Props) {
       <AlertIcon color="negative" size="S" marginEnd="size-150" />
       <FormattedMessage
         id={`upload.error.${error}`}
-        values={{ formattedFileTypesList }}
+        values={{ formattedAcceptedFilesList }}
       />
       <HelpIcon size="S" marginStart="size-75" />
     </>
