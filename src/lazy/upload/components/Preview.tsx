@@ -22,7 +22,10 @@ export function Preview() {
         gap="size-200"
       >
         {uploads.map((upload) => (
-          <PreviewImage key={upload.file.lastModified} upload={upload} />
+          <PreviewImage
+            key={upload.file.size + upload.file.lastModified}
+            upload={upload}
+          />
         ))}
       </Grid>
     </>

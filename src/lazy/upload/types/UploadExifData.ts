@@ -3,5 +3,5 @@ export type UploadExifData = {
   longitude?: number;
   altitude?: number;
   bearing?: number;
-  created?: string;
+  dateOriginal?: string;
 };
