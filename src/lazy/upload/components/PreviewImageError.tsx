@@ -1,3 +1,4 @@
+import { ActionButton, Content, Dialog, DialogTrigger } from '@adobe/react-spectrum';
 import AlertIcon from '@spectrum-icons/workflow/Alert';
 import HelpIcon from '@spectrum-icons/workflow/HelpOutline';
 import { FormattedMessage } from 'react-intl';
@@ -17,12 +18,12 @@ export function PreviewImageError({ upload }: Props) {
     type.split('/')[1].toUpperCase()
   );
 
-  const formattedAcceptedFilesList = new Intl.ListFormat(lang, {
+  const formattedAcceptedFileTypes = new Intl.ListFormat(lang, {
     style: 'long',
     type: 'disjunction',
   }).format(acceptedFileTypes);
 
-  const errorsPriority: UploadError[] = [
+  const errorsOrder: UploadError[] = [
     'fileTypeWrong',
     'exifUnreadable',
     'missingCoords',
@@ -31,7 +32,7 @@ export function PreviewImageError({ upload }: Props) {
 
   const error = upload.errors
     .slice()
-    .sort((a, b) => errorsPriority.indexOf(a) - errorsPriority.indexOf(b))[0];
+    .sort((a, b) => errorsOrder.indexOf(a) - errorsOrder.indexOf(b))[0];
 
   if (!error) return null;
 
@@ -40,9 +41,18 @@ export function PreviewImageError({ upload }: Props) {
       <AlertIcon color="negative" size="S" marginEnd="size-175" />
       <FormattedMessage
         id={`upload.error.${error}`}
-        values={{ formattedAcceptedFilesList }}
+        values={{ formattedAcceptedFileTypes }}
       />
-      <HelpIcon size="S" marginStart="size-75" />
+      <DialogTrigger type="popover">
+        <ActionButton marginStart="size-100" isQuiet>
+          <HelpIcon size="S" />
+        </ActionButton>
+        <Dialog>
+          <Content>
+            <FormattedMessage id={`upload.error.${error}.description`} />
+          </Content>
+        </Dialog>
+      </DialogTrigger>
     </>
   );
 }

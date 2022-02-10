@@ -13,10 +13,13 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { useLoginWithProvider } from '~/hooks';
 import { OAuthProvider } from '~/types';
 
-export function LoginButton() {
+export function LoginMenu() {
   const { formatMessage } = useIntl();
   const loginWithProvider = useLoginWithProvider();
-  const handleLogin = (key: Key) => loginWithProvider(key as OAuthProvider);
+
+  const handleAction = (key: Key) => {
+    if (key === 'facebook') loginWithProvider(key as OAuthProvider);
+  };
 
   return (
     <MenuTrigger>
@@ -28,7 +31,7 @@ export function LoginButton() {
           </Tooltip>
         </TooltipTrigger>
       </ActionButton>
-      <Menu onAction={handleLogin}>
+      <Menu onAction={handleAction}>
         <Item key="facebook">{formatMessage({ id: 'button.login.facebook' })}</Item>
       </Menu>
     </MenuTrigger>
