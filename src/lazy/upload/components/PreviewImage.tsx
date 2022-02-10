@@ -21,13 +21,27 @@ export function PreviewImage({ upload }: Props) {
   return (
     <View>
       <PreviewImageHeader upload={upload} />
-      <img
-        alt={file.name}
-        src={URL.createObjectURL(file)}
-        onLoad={handleImageLoad}
-        onDragStart={preventDrag}
-        style={{ width: '100%', display: 'block' }}
-      />
+      <View position="relative">
+        {!!upload.errors.length && (
+          <View
+            position="absolute"
+            left="0"
+            top="0"
+            width="100%"
+            height="100%"
+            UNSAFE_style={{
+              background: 'var(--spectrum-alias-background-color-modal-overlay)',
+            }}
+          />
+        )}
+        <img
+          alt={file.name}
+          src={URL.createObjectURL(file)}
+          onLoad={handleImageLoad}
+          onDragStart={preventDrag}
+          style={{ width: '100%', display: 'block' }}
+        />
+      </View>
     </View>
   );
 }

@@ -34,7 +34,7 @@ export const addExifData = async (upload: Upload) => {
 
   if (exif?.DateTimeOriginal?.description) {
     const [date, time] = exif.DateTimeOriginal.description.split(' ');
-    newUpload.exif.dateOriginal = `${date.replace(':', '-')}T${time}`;
+    newUpload.exif.dateOriginal = `${date.replace(/:/g, '-')}T${time}`;
   }
 
   const { latitude, longitude, altitude, dateOriginal } = newUpload.exif;

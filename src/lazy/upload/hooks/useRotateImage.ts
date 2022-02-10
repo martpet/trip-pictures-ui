@@ -35,7 +35,6 @@ function getNextOrientation(currentOrientation: OrientationCode) {
     OrientationCode.deg90,
     OrientationCode.deg180,
     OrientationCode.deg270,
-    OrientationCode.flipped,
     OrientationCode.original,
   ];
   const currentIndex = orientations.indexOf(currentOrientation);
