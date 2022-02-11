@@ -9,41 +9,36 @@ type Props = {
 export function DropZone({ children }: Props) {
   const { uploads, addUploads } = useContext(UploadContext);
   const [isOnTarget, setOnTarget] = useState(false);
-  const borderColor = isOnTarget
-    ? 'var(--spectrum-global-color-gray-400)'
-    : 'transparent';
 
-  const stopEvent: DragEventHandler<HTMLDivElement> = (event) => {
+  const handleDragOver: DragEventHandler<HTMLDivElement> = (event) => {
+    if (!isOnTarget) {
+      setOnTarget(true);
+      document.documentElement.style.cursor = '';
+    }
     event.stopPropagation();
     event.preventDefault();
   };
 
-  const handleDrop: DragEventHandler<HTMLDivElement> = (event) => {
-    addUploads(event.dataTransfer.files);
+  const handleDragLeave: DragEventHandler<HTMLDivElement> = () => {
     setOnTarget(false);
-    stopEvent(event);
   };
 
-  const handleDragEnter: DragEventHandler<HTMLDivElement> = (event) => {
-    setOnTarget(true);
-    stopEvent(event);
-  };
-
-  const handleDragLeave: DragEventHandler<HTMLDivElement> = (event) => {
+  const handleDrop: DragEventHandler<HTMLDivElement> = ({ dataTransfer }) => {
+    addUploads(dataTransfer.files);
     setOnTarget(false);
-    stopEvent(event);
   };
 
   return (
     <div
-      onDrop={handleDrop}
-      onDragOver={stopEvent}
-      onDragEnter={handleDragEnter}
+      onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
       style={{
         height: '100%',
-        border: `2px dashed ${borderColor}`,
         boxSizing: 'border-box',
+        border: `2px dashed ${
+          isOnTarget ? 'var(--spectrum-global-color-gray-500)' : 'transparent'
+        }`,
       }}
     >
       {uploads.length ? children : <DropZoneIllustration />}

@@ -2,6 +2,7 @@ import { siteTitle } from '~/consts';
 import {
   useDeviceColorMode,
   usePageTitle,
+  usePreventDragDrop,
   useSyncSettings,
   useWillFetchUser,
 } from '~/hooks';
@@ -14,4 +15,5 @@ export const useAppHooks = () => {
   useSyncSettings();
   useDeviceColorMode();
   usePageTitle(siteTitle);
+  usePreventDragDrop();
 };

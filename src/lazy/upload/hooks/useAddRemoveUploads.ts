@@ -13,11 +13,11 @@ type Arg = {
 };
 
 export const useAddRemoveUploads = ({ uploads, setUploads }: Arg) => {
-  const addUploads = async (selectedFiles: FileList) => {
-    const files = Array.from(selectedFiles);
+  const addUploads = async (fileList: FileList) => {
+    const newFiles = Array.from(fileList);
 
     let newUploads = await Promise.all(
-      files.map(async (file) => {
+      newFiles.map(async (file) => {
         let upload: Upload = { file, exif: {}, errors: [] };
         if (acceptedMimeTypes.includes(file.type)) {
           upload = await addExifData(upload);
