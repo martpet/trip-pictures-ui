@@ -18,7 +18,7 @@ export function PreviewImageError({ upload }: Props) {
     type.split('/')[1].toUpperCase()
   );
 
-  const formattedAcceptedFileTypes = new Intl.ListFormat(lang, {
+  const acceptedFileTypesFormattedList = new Intl.ListFormat(lang, {
     style: 'long',
     type: 'disjunction',
   }).format(acceptedFileTypes);
@@ -41,15 +41,18 @@ export function PreviewImageError({ upload }: Props) {
       <AlertIcon color="negative" size="S" marginEnd="size-175" />
       <FormattedMessage
         id={`upload.error.${error}`}
-        values={{ formattedAcceptedFileTypes }}
+        values={{ acceptedFileTypesFormattedList }}
       />
       <DialogTrigger type="popover">
-        <ActionButton marginStart="size-100" isQuiet>
+        <ActionButton isQuiet>
           <HelpIcon size="S" />
         </ActionButton>
         <Dialog>
           <Content>
-            <FormattedMessage id={`upload.error.${error}.description`} />
+            <FormattedMessage
+              id={`upload.error.${error}.description`}
+              values={{ acceptedFileTypesFormattedList }}
+            />
           </Content>
         </Dialog>
       </DialogTrigger>

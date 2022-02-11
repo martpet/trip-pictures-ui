@@ -8,5 +8,6 @@ export * from './useIsTopToolbar';
 export * from './useLoginWithProvider';
 export * from './useMatchScreenWidth';
 export * from './usePageTitle';
+export * from './usePreventDragDrop';
 export * from './useSyncSettings';
 export * from './useWillFetchUser';
