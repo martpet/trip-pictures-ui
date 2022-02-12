@@ -30,7 +30,7 @@ const positionButtons: PositionButton[] = [
   },
 ];
 
-export function ToolbarPosition() {
+export function ToolbarSettings() {
   const dispatch = useDispatch();
   const selectedPosition = useSelector(selectToolbarPosition);
   const toolbarSettingsDisabled = useIsToolbarInMobileMode();

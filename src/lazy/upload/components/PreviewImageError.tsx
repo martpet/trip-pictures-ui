@@ -1,27 +1,25 @@
 import { ActionButton, Content, Dialog, DialogTrigger } from '@adobe/react-spectrum';
 import AlertIcon from '@spectrum-icons/workflow/Alert';
 import HelpIcon from '@spectrum-icons/workflow/HelpOutline';
-import { FormattedMessage } from 'react-intl';
-import { useSelector } from 'react-redux';
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import { acceptedMimeTypes, Upload, UploadError } from '~/lazy/upload';
-import { selectLang } from '~/slices';
 
 type Props = {
   upload: Upload;
 };
 
 export function PreviewImageError({ upload }: Props) {
-  const lang = useSelector(selectLang);
+  const { formatList } = useIntl();
 
   const acceptedFileTypes = acceptedMimeTypes.map((type) =>
     type.split('/')[1].toUpperCase()
   );
 
-  const acceptedFileTypesFormattedList = new Intl.ListFormat(lang, {
-    style: 'long',
+  const acceptedFileTypesFormattedList = formatList(acceptedFileTypes, {
     type: 'disjunction',
-  }).format(acceptedFileTypes);
+    style: 'long',
+  });
 
   const errorsOrder: UploadError[] = [
     'fileTypeWrong',

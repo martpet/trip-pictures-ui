@@ -1,16 +1,19 @@
 import { Divider, Flex } from '@adobe/react-spectrum';
-import SettingsIcon from '@spectrum-icons/workflow/Settings';
-import UploadIcon from '@spectrum-icons/workflow/UploadToCloudOutline';
-import { lazy, Suspense } from 'react';
+import { useSelector } from 'react-redux';
 
-import { Logo, UserButton } from '~/components';
+import {
+  LoginMenu,
+  Logo,
+  ProfileMenu,
+  SettingsDialogTrigger,
+  UploadDialogTrigger,
+} from '~/components';
 import { sideSpace } from '~/consts';
 import { useIsTopToolbar } from '~/hooks';
-
-const UploadDialog = lazy(() => import('~/lazy/upload'));
-const SettingsDialog = lazy(() => import('~/lazy/settings'));
+import { selectCurrentUser } from '~/slices';
 
 export function Toolbar() {
+  const user = useSelector(selectCurrentUser);
   const isTopBar = useIsTopToolbar();
   const direction = isTopBar ? 'row' : 'column';
 
@@ -26,11 +29,9 @@ export function Toolbar() {
       >
         <Logo />
         <Flex direction={direction} gap="size-85">
-          <Suspense fallback={null}>
-            <UploadDialog trigger={<UploadIcon />} />
-            <SettingsDialog trigger={<SettingsIcon />} />
-          </Suspense>
-          <UserButton />
+          <UploadDialogTrigger />
+          <SettingsDialogTrigger />
+          {user ? <ProfileMenu /> : <LoginMenu />}
         </Flex>
       </Flex>
       <Divider size="M" orientation={isTopBar ? 'horizontal' : 'vertical'} />

@@ -4,7 +4,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useIsMobile } from '~/hooks';
-import { ChooseLanguage, ToolbarPosition } from '~/lazy/settings';
+import { LanguageSettings, ToolbarSettings } from '~/lazy/settings';
 import { selectActiveSettingsMenu, settingsMenuSelected } from '~/slices';
 import { SettingsMenuKey } from '~/types';
 
@@ -30,12 +30,12 @@ export function Settings() {
     {
       id: 'language',
       label: formatMessage({ id: 'settings.tab.language' }),
-      content: <ChooseLanguage />,
+      content: <LanguageSettings />,
     },
     {
       id: 'toolbar',
       label: formatMessage({ id: 'settings.tab.toolbar' }),
-      content: <ToolbarPosition />,
+      content: <ToolbarSettings />,
     },
   ];
 

@@ -10,11 +10,11 @@ import { translationsEndpoints } from '~/services';
 import { languageSelected, selectLang } from '~/slices';
 import { Lang } from '~/types';
 
-export function ChooseLanguage() {
+export function LanguageSettings() {
   const currentLang = useSelector(selectLang);
   const { isFetching } = translationsEndpoints.getTranslations.useQueryState(currentLang);
   const dispatch = useDispatch();
-  const { formatMessage } = useIntl();
+  const { formatDisplayName } = useIntl();
   const headingId = 'settings.language.chooseLanguage';
 
   const handleChange = (lang: Key) => {
@@ -23,7 +23,7 @@ export function ChooseLanguage() {
 
   const pickerItems = langs.map((lang) => ({
     key: lang,
-    label: formatMessage({ id: `lang.${lang}` }),
+    label: formatDisplayName(lang, { type: 'language', style: 'long' }) as string,
   }));
 
   pickerItems.sort((a, b) => a.label.localeCompare(b.label, currentLang));

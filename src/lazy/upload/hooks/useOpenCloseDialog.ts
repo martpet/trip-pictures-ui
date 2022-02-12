@@ -15,7 +15,6 @@ export const useOpenCloseDialog = ({
   setDialogOpen,
   setShowConfirmClose,
 }: Arg) => {
-  const openDialog = () => setDialogOpen(true);
   const canStartUpload = useCanStartUpload({ uploads });
 
   const closeDialog = (forceClose?: boolean) => {
@@ -28,5 +27,8 @@ export const useOpenCloseDialog = ({
     }
   };
 
-  return { openDialog, closeDialog };
+  return {
+    openDialog: () => setDialogOpen(true),
+    closeDialog,
+  };
 };

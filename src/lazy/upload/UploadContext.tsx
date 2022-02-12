@@ -35,11 +35,12 @@ export const UploadContext = createContext({} as TUploadContext);
 
 type ProviderProps = {
   children: ReactNode;
+  isDialogOpen: boolean;
+  setDialogOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-export function UploadProvider({ children }: ProviderProps) {
+export function UploadProvider({ children, isDialogOpen, setDialogOpen }: ProviderProps) {
   const [uploads, setUploads] = useState<Upload[]>([]);
-  const [isDialogOpen, setDialogOpen] = useState(false);
   const [showConfirmClose, setShowConfirmClose] = useState(false);
   const { validUploads, invalidUploads } = useValidUploads({ uploads });
   const { addUploads, removeUpload } = useAddRemoveUploads({ uploads, setUploads });

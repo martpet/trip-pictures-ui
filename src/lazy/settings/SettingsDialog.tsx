@@ -1,6 +1,5 @@
-import { ActionButton, Content, Dialog, DialogTrigger } from '@adobe/react-spectrum';
-import { ReactNode, useEffect, useState } from 'react';
-import { useIntl } from 'react-intl';
+import { Content, Dialog, DialogTrigger } from '@adobe/react-spectrum';
+import { Dispatch, ReactNode, SetStateAction, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Settings } from '~/lazy/settings';
@@ -8,22 +7,20 @@ import { selectToolbarPosition } from '~/slices';
 
 type Props = {
   trigger: ReactNode;
+  isOpen: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-export function SettingsDialog({ trigger }: Props) {
-  const [open, setOpen] = useState(false);
+export function SettingsDialog({ trigger, isOpen, setOpen }: Props) {
   const toolbarPosition = useSelector(selectToolbarPosition);
-  const { formatMessage } = useIntl();
 
   useEffect(() => {
     setOpen(false);
   }, [toolbarPosition]);
 
   return (
-    <DialogTrigger type="popover" isOpen={open} onOpenChange={setOpen}>
-      <ActionButton isQuiet aria-label={formatMessage({ id: 'toolbar.button.settings' })}>
-        {trigger}
-      </ActionButton>
+    <DialogTrigger type="popover" isOpen={isOpen} onOpenChange={setOpen}>
+      <div>{trigger}</div>
       <Dialog size="L">
         <Content>
           <Settings />
