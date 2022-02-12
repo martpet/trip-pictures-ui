@@ -36,7 +36,7 @@ export function PreviewImageError({ upload }: Props) {
 
   return (
     <>
-      <AlertIcon color="negative" size="S" marginEnd="size-175" />
+      <AlertIcon color="notice" size="S" marginEnd="size-125" />
       <FormattedMessage
         id={`upload.error.${error}`}
         values={{ acceptedFileTypesFormattedList }}

@@ -1,7 +1,11 @@
 import { Flex, View } from '@adobe/react-spectrum';
-import { FormattedDate } from 'react-intl';
 
-import { PreviewImageActions, PreviewImageError, Upload } from '~/lazy/upload';
+import {
+  PreviewImageActions,
+  PreviewImageError,
+  PreviewImageInfo,
+  Upload,
+} from '~/lazy/upload';
 
 type Props = {
   upload: Upload;
@@ -18,15 +22,8 @@ export function PreviewImageHeader({ upload }: Props) {
       UNSAFE_style={{ color }}
     >
       <Flex height="100%" alignItems="center">
+        <PreviewImageInfo upload={upload} />
         <PreviewImageError upload={upload} />
-        {!upload.errors.length && upload.exif.dateOriginal && (
-          <FormattedDate
-            value={new Date(upload.exif.dateOriginal)}
-            year="numeric"
-            month="long"
-            day="2-digit"
-          />
-        )}
         <View marginStart="auto">
           <PreviewImageActions upload={upload} />
         </View>
