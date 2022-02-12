@@ -1,27 +1,15 @@
-import {
-  ActionButton,
-  ButtonGroup,
-  Content,
-  Dialog,
-  DialogTrigger,
-  Divider,
-  Header,
-  Heading,
-} from '@adobe/react-spectrum';
-import { ReactNode, useContext } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { Dialog, DialogTrigger, Divider } from '@adobe/react-spectrum';
+import { Dispatch, ReactNode, SetStateAction, useContext } from 'react';
 
 import { useIsMobile } from '~/hooks';
 import {
-  ButtonAddPhotos,
-  ButtonCloseDialog,
-  ButtonStartUpload,
-  DialogConfirmCloseUpload,
-  DropZone,
-  Preview,
+  ConfirmCloseDialog,
+  DialogButtons,
+  DialogContent,
+  DialogHeader,
   UploadContext,
   UploadProvider,
-  useEscKeyCloseDialog,
+  useCloseOnEscapeKey,
 } from '~/lazy/upload';
 
 type Props = {
@@ -29,53 +17,39 @@ type Props = {
 };
 
 function UploadDialog({ trigger }: Props) {
-  const { formatMessage } = useIntl();
-  const { uploads, openDialog, isDialogOpen } = useContext(UploadContext);
+  const { isDialogOpen } = useContext(UploadContext);
   const isMobile = useIsMobile();
+  const dialogType = isMobile ? 'fullscreenTakeover' : 'fullscreen';
 
-  useEscKeyCloseDialog();
+  useCloseOnEscapeKey();
 
   return (
     <>
-      <DialogTrigger
-        type={isMobile ? 'fullscreenTakeover' : 'fullscreen'}
-        isOpen={isDialogOpen}
-      >
-        <ActionButton
-          onPress={openDialog}
-          isQuiet
-          aria-label={formatMessage({ id: 'toolbar.button.upload' })}
-        >
-          {trigger}
-        </ActionButton>
+      <DialogTrigger type={dialogType} isOpen={isDialogOpen}>
+        <div>{trigger}</div>
         <Dialog>
-          <Heading>
-            <FormattedMessage id="upload.heading" />
-          </Heading>
-          <Header>{!isMobile && !!uploads.length && <ButtonAddPhotos />}</Header>
+          <DialogHeader />
           <Divider />
-          <Content>
-            <DropZone>
-              <Preview />
-            </DropZone>
-          </Content>
-          <ButtonGroup>
-            <ButtonCloseDialog />
-            <ButtonStartUpload />
-          </ButtonGroup>
+          <DialogContent />
+          <DialogButtons />
         </Dialog>
       </DialogTrigger>
-      <DialogConfirmCloseUpload />
+      <ConfirmCloseDialog />
     </>
   );
 }
 
-function WithContext({ trigger }: Props) {
+type WithProviderProps = Props & {
+  isOpen: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+};
+
+function WithProvider({ isOpen, setOpen, ...props }: WithProviderProps) {
   return (
-    <UploadProvider>
-      <UploadDialog trigger={trigger} />
+    <UploadProvider isDialogOpen={isOpen} setDialogOpen={setOpen}>
+      <UploadDialog {...props} />
     </UploadProvider>
   );
 }
 
-export { WithContext as UploadDialog };
+export { WithProvider as UploadDialog };
