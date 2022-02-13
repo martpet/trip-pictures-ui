@@ -23,8 +23,13 @@ export function PreviewImageOverlay({ upload }: Props) {
         background: 'rgba(0,0,0,0.7)',
       }}
     >
-      <Flex height="100%" justifyContent="center" alignItems="center">
-        <AlertIcon size="XXL" color="notice" />
+      <Flex
+        height="100%"
+        justifyContent="center"
+        alignItems="center"
+        UNSAFE_style={{ opacity: 0.2, color: 'white' }}
+      >
+        <AlertIcon size="XXL" />
       </Flex>
     </View>
   );

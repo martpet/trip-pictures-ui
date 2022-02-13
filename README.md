@@ -1,4 +1,6 @@
-# Trip Pictures frontend
+# Trip Pictures
+
+A photo sharing app. Work in progress.
 
 ## How to run
 
