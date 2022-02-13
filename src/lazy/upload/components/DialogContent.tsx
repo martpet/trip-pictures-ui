@@ -1,4 +1,4 @@
-import { Content, View } from '@adobe/react-spectrum';
+import { Content, Flex } from '@adobe/react-spectrum';
 import { useSelector } from 'react-redux';
 
 import { LoginButton } from '~/components';
@@ -11,9 +11,9 @@ export function DialogContent() {
   return (
     <Content>
       {!user && (
-        <View marginTop="size-200">
+        <Flex height="100%" justifyContent="center" alignItems="center">
           <LoginButton />
-        </View>
+        </Flex>
       )}
 
       {user && (
