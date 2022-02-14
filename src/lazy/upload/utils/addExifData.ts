@@ -2,7 +2,11 @@ import ExifReader from 'exifreader';
 
 import { Upload } from '~/lazy/upload';
 
-export const addExifData = async (upload: Upload) => {
+type Arg = {
+  upload: Upload;
+};
+
+export const addExifData = async ({ upload }: Arg) => {
   const newUpload = { ...upload };
   const arrayBuffer = await newUpload.file.arrayBuffer();
   let tags;

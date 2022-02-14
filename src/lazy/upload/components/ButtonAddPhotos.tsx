@@ -4,7 +4,7 @@ import IconAdd from '@spectrum-icons/workflow/AddToSelection';
 import { ChangeEventHandler, useContext, useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { acceptedMimeTypes, UploadContext } from '~/lazy/upload';
+import { acceptedFileTypes, UploadContext } from '~/lazy/upload';
 
 type Props = Partial<SpectrumButtonProps>;
 
@@ -44,7 +44,7 @@ export function ButtonAddPhotos({
         ref={inputRef}
         type="file"
         multiple
-        accept={acceptedMimeTypes.join(',')}
+        accept={acceptedFileTypes.join(',')}
         onChange={handleFilesAdded}
         style={{ display: 'none' }}
       />

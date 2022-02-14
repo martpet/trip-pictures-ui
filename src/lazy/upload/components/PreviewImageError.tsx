@@ -3,7 +3,7 @@ import AlertIcon from '@spectrum-icons/workflow/Alert';
 import HelpIcon from '@spectrum-icons/workflow/HelpOutline';
 import { FormattedMessage, useIntl } from 'react-intl';
 
-import { acceptedMimeTypes, Upload, UploadError } from '~/lazy/upload';
+import { acceptedFileTypes, Upload, UploadError } from '~/lazy/upload';
 
 type Props = {
   upload: Upload;
@@ -12,11 +12,11 @@ type Props = {
 export function PreviewImageError({ upload }: Props) {
   const { formatList } = useIntl();
 
-  const acceptedFileTypes = acceptedMimeTypes.map((type) =>
+  const acceptedFileExtensions = acceptedFileTypes.map((type) =>
     type.split('/')[1].toUpperCase()
   );
 
-  const acceptedFileTypesFormattedList = formatList(acceptedFileTypes, {
+  const acceptedFileTypesFormattedList = formatList(acceptedFileExtensions, {
     type: 'disjunction',
     style: 'long',
   });

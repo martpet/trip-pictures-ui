@@ -1,17 +1,19 @@
 import { useLayoutEffect, useState } from 'react';
 
+import { isMobileSafari } from '~/consts';
+
 export const useIOSAddressbarHeight = () => {
   const [height, setHeight] = useState(0);
 
   useLayoutEffect(() => {
-    if (!navigator.userAgent.match(/iPhone|iPod|iPad/)) return undefined;
+    if (!isMobileSafari) return undefined;
 
-    const applyHeight = () => setHeight(document.body.offsetHeight - window.innerHeight);
-    applyHeight();
-    window.addEventListener('resize', applyHeight);
+    const apply = () => setHeight(document.body.offsetHeight - window.innerHeight);
+    apply();
+    window.addEventListener('resize', apply);
 
     return () => {
-      window.removeEventListener('resize', applyHeight);
+      window.removeEventListener('resize', apply);
     };
   }, []);
 

@@ -9,9 +9,10 @@ import {
 
 import {
   Upload,
-  useAddRemoveUploads,
+  useAddUploads,
   useCanStartUpload,
   useOpenCloseDialog,
+  useRemoveUpload,
   useRotateImage,
   useValidUploads,
 } from '~/lazy/upload';
@@ -29,6 +30,7 @@ type TUploadContext = {
   isDialogOpen: boolean;
   showConfirmClose: boolean;
   setShowConfirmClose: Dispatch<SetStateAction<boolean>>;
+  showLoadingOverlay: boolean;
 };
 
 export const UploadContext = createContext({} as TUploadContext);
@@ -43,15 +45,18 @@ export function UploadProvider({ children, isDialogOpen, setDialogOpen }: Provid
   const [uploads, setUploads] = useState<Upload[]>([]);
   const [showConfirmClose, setShowConfirmClose] = useState(false);
   const { validUploads, invalidUploads } = useValidUploads({ uploads });
-  const { addUploads, removeUpload } = useAddRemoveUploads({ uploads, setUploads });
+  const [showLoadingOverlay, setShowLoadingOverlay] = useState(false);
+  const addUploads = useAddUploads({ uploads, setUploads, setShowLoadingOverlay });
+  const removeUpload = useRemoveUpload({ uploads, setUploads });
   const canStartUpload = useCanStartUpload({ uploads });
+  const rotateImage = useRotateImage({ uploads, setUploads });
   const { openDialog, closeDialog } = useOpenCloseDialog({
     uploads,
     setUploads,
     setDialogOpen,
     setShowConfirmClose,
   });
-  const rotateImage = useRotateImage({ uploads, setUploads });
+
   const contextValue = useMemo(
     () => ({
       uploads,
@@ -66,8 +71,9 @@ export function UploadProvider({ children, isDialogOpen, setDialogOpen }: Provid
       closeDialog,
       showConfirmClose,
       setShowConfirmClose,
+      showLoadingOverlay,
     }),
-    [uploads, isDialogOpen, showConfirmClose]
+    [uploads, isDialogOpen, showConfirmClose, showLoadingOverlay]
   );
 
   return <UploadContext.Provider value={contextValue}>{children}</UploadContext.Provider>;
