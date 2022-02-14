@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction } from 'react';
 
 import {
-  acceptedMimeTypes,
+  acceptedFileTypes,
   addExifData,
+  convertHeicToJpeg,
   getNonDuplicateNewUploads,
   Upload,
 } from '~/lazy/upload';
@@ -10,20 +11,29 @@ import {
 type Arg = {
   uploads: Upload[];
   setUploads: Dispatch<SetStateAction<Upload[]>>;
+  setShowLoadingOverlay: Dispatch<SetStateAction<boolean>>;
 };
 
-export const useAddRemoveUploads = ({ uploads, setUploads }: Arg) => {
-  const addUploads = async (fileList: FileList) => {
-    const newFiles = Array.from(fileList);
+export const useAddUploads = ({ uploads, setUploads, setShowLoadingOverlay }: Arg) => {
+  return async (fileList: FileList) => {
+    const files = Array.from(fileList);
 
     let newUploads = await Promise.all(
-      newFiles.map(async (file) => {
+      files.map(async (file) => {
         let upload: Upload = { file, exif: {}, errors: [] };
-        if (acceptedMimeTypes.includes(file.type)) {
-          upload = await addExifData(upload);
+
+        if (acceptedFileTypes.includes(file.type)) {
+          upload = await addExifData({ upload });
         } else {
           upload.errors.push('fileTypeWrong');
         }
+
+        if (file.type === 'image/heic') {
+          setShowLoadingOverlay(true);
+          upload = await convertHeicToJpeg({ upload });
+          setShowLoadingOverlay(false);
+        }
+
         return upload;
       })
     );
@@ -34,12 +44,4 @@ export const useAddRemoveUploads = ({ uploads, setUploads }: Arg) => {
       setUploads([...newUploads, ...uploads]);
     }
   };
-
-  const removeUpload = (i: number) => {
-    const newUploads = [...uploads];
-    newUploads.splice(i, 1);
-    setUploads(newUploads);
-  };
-
-  return { addUploads, removeUpload };
 };

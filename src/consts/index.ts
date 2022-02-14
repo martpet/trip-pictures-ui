@@ -1,5 +1,6 @@
 export * from './authProviders';
 export * from './breakpoints';
+export * from './browser';
 export * from './langs';
 export * from './layout';
 export * from './mapboxToken';
