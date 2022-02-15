@@ -20,12 +20,13 @@ export const useRotateImage = ({ uploads, setUploads }: Arg) => {
     const orientation = await readOrientationCode(buffer);
     const newOrientation = getNextOrientation(orientation);
     await updateOrientationCode(buffer, newOrientation);
-    const updatedFile = new File([buffer], file.name, {
+    const newFile = new File([buffer], file.name, {
       type: file.type,
       lastModified: file.lastModified,
     });
+    const newUpload = { ...upload, file: newFile };
     const updatedUploads = [...uploads];
-    updatedUploads.splice(index, 1, { ...upload, file: updatedFile });
+    updatedUploads.splice(index, 1, newUpload);
     setUploads(updatedUploads);
   };
 };
