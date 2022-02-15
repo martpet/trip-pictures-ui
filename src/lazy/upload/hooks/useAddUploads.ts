@@ -29,9 +29,7 @@ export const useAddUploads = ({ uploads, setUploads, setShowLoadingOverlay }: Ar
         }
 
         if (file.type === 'image/heic') {
-          setShowLoadingOverlay(true);
-          upload = await convertHeicToJpeg({ upload });
-          setShowLoadingOverlay(false);
+          upload = await convertHeicToJpeg({ upload, setShowLoadingOverlay });
         }
 
         return upload;
