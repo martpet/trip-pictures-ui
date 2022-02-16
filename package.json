@@ -1,6 +1,9 @@
 {
   "name": "trip-pictures-ui",
   "version": "0.0.0",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "vite",
     "build": "vite build",
