@@ -2,7 +2,6 @@ export * from './authProviders';
 export * from './breakpoints';
 export * from './langs';
 export * from './layout';
-export * from './mapboxToken';
 export * from './paths';
 export * from './servicesUrls';
 export * from './siteTitle';
