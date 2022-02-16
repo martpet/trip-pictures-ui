@@ -29,5 +29,4 @@ export * from './types/UploadError';
 export * from './types/UploadExifData';
 export * from './UploadContext';
 export * from './utils/addExifData';
-export * from './utils/convertHeicToJpeg';
 export * from './utils/getNonDuplicateNewUploads';
