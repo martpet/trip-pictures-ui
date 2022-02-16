@@ -4,7 +4,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import ReactMapGL, { MapEvent } from 'react-map-gl';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { mapboxTokenProd, mapInnerContainerId } from '~/consts';
+import { mapInnerContainerId } from '~/consts';
 import { useDebounce } from '~/hooks';
 import { mapViewportChanged, selectDeviceColorMode, selectMapViewport } from '~/slices';
 
@@ -17,10 +17,7 @@ export function MapGL({ children }: Props) {
   const storedViewport = useSelector(selectMapViewport);
   const [viewport, setViewport] = useState(storedViewport);
   const debouncedViewport = useDebounce(viewport);
-  const colorMode = useSelector(selectDeviceColorMode);
-  const mapStyle = `mapbox://styles/mapbox/${colorMode}-v10`;
-  const devToken = import.meta.env.VITE_MAPBOX_TOKEN;
-  const accessToken = import.meta.env.PROD ? mapboxTokenProd : devToken;
+  const deviceColorMode = useSelector(selectDeviceColorMode);
 
   const handleDoubleClick = (e: MapEvent) => {
     if (e.target.id !== mapInnerContainerId) e.stopImmediatePropagation();
@@ -43,8 +40,8 @@ export function MapGL({ children }: Props) {
       {...viewport}
       onViewportChange={setViewport}
       onDblClick={handleDoubleClick}
-      mapboxApiAccessToken={accessToken}
-      mapStyle={mapStyle}
+      mapboxApiAccessToken={import.meta.env.VITE_MAPBOX_TOKEN}
+      mapStyle={`mapbox://styles/mapbox/${deviceColorMode}-v10`}
       attributionControl={false}
       width="100%"
       height="100%"
