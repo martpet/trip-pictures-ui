@@ -29,10 +29,8 @@ function UploadDialog({ trigger }: Props) {
       <DialogTrigger type={dialogType} isOpen={isDialogOpen}>
         <div>{trigger}</div>
         <Dialog>
-          {/* TODO: Remove LoadingOverlay and use App/Loader (render outside #root with Portal to overcome Dialog z-index)
-              when bug fixed: https://github.com/adobe/react-spectrum/issues/1697 */}
+          {/* TODO: Use AppLoader. See issues.txt  */}
           {showLoadingOverlay && <LoadingOverlay />}
-
           <DialogHeader />
           <Divider />
           <DialogContent />

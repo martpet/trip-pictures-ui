@@ -1,29 +1,23 @@
 import heic2any from 'heic2any';
-import { Dispatch, SetStateAction } from 'react';
 
 import { Upload } from '~/lazy/upload';
 
 type Arg = {
   upload: Upload;
-  setShowLoadingOverlay: Dispatch<SetStateAction<boolean>>;
 };
 
-export const convertHeicToJpeg = async ({ upload, setShowLoadingOverlay }: Arg) => {
-  setShowLoadingOverlay(true);
+export const convertHeicToJpeg = async ({ upload }: Arg) => {
+  const newUpload = { ...upload };
 
   const newBlob = (await heic2any({
     blob: upload.file,
     toType: 'image/jpeg',
-    quality: 1,
+    quality: 0.8,
   })) as Blob;
 
-  const newFile = new File([newBlob], upload.file.name, {
+  newUpload.file = new File([newBlob], upload.file.name, {
     lastModified: upload.file.lastModified,
   });
-
-  const newUpload = { ...upload, file: newFile };
-
-  setShowLoadingOverlay(false);
 
   return newUpload;
 };

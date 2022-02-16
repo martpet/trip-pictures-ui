@@ -25,6 +25,7 @@ export function PreviewImageActions({ upload }: Props) {
     key: Key;
     text: string;
     icon: ReactElement;
+    skip?: boolean;
   };
 
   const items: Entry[] = [
@@ -33,18 +34,16 @@ export function PreviewImageActions({ upload }: Props) {
       text: formatMessage({ id: 'upload.previewAction.remove' }),
       icon: <IconClose />,
     },
-  ];
-
-  if (!upload.errors.length) {
-    items.push({
+    {
       key: 'rotate',
       text: formatMessage({ id: 'upload.previewAction.rotate' }),
       icon: <RotateIcon />,
-    });
-  }
+      skip: !upload.canRotate,
+    },
+  ];
 
   return (
-    <ActionMenu items={items} onAction={handleAction} isQuiet>
+    <ActionMenu items={items.filter(({ skip }) => !skip)} onAction={handleAction} isQuiet>
       {(item) => (
         <Item textValue={(item as Entry).text}>
           {(item as Entry).icon}

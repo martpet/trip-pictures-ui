@@ -3,7 +3,6 @@ import { Dispatch, SetStateAction } from 'react';
 import {
   acceptedFileTypes,
   addExifData,
-  convertHeicToJpeg,
   getNonDuplicateNewUploads,
   Upload,
 } from '~/lazy/upload';
@@ -20,7 +19,12 @@ export const useAddUploads = ({ uploads, setUploads, setShowLoadingOverlay }: Ar
 
     let newUploads = await Promise.all(
       files.map(async (file) => {
-        let upload: Upload = { file, exif: {}, errors: [] };
+        let upload: Upload = {
+          file,
+          exif: {},
+          errors: [],
+          canRotate: true,
+        };
 
         if (acceptedFileTypes.includes(file.type)) {
           upload = await addExifData({ upload });
@@ -29,7 +33,15 @@ export const useAddUploads = ({ uploads, setUploads, setShowLoadingOverlay }: Ar
         }
 
         if (file.type === 'image/heic') {
-          upload = await convertHeicToJpeg({ upload, setShowLoadingOverlay });
+          setShowLoadingOverlay(true);
+          const { convertHeicToJpeg } = await import('../utils/convertHeicToJpeg');
+          upload = await convertHeicToJpeg({ upload });
+          upload.canRotate = false;
+          setShowLoadingOverlay(false);
+        }
+
+        if (upload.errors.length) {
+          upload.canRotate = false;
         }
 
         return upload;

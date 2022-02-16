@@ -1,6 +1,5 @@
 export * from './authProviders';
 export * from './breakpoints';
-export * from './browser';
 export * from './langs';
 export * from './layout';
 export * from './mapboxToken';
@@ -9,3 +8,4 @@ export * from './servicesUrls';
 export * from './siteTitle';
 export * from './staticApiPaths';
 export * from './strapiApiPaths';
+export * from './userAgent';

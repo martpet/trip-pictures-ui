@@ -4,4 +4,5 @@ export type Upload = {
   file: File;
   exif: UploadExifData;
   errors: UploadError[];
+  canRotate: boolean;
 };
