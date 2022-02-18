@@ -3,17 +3,23 @@ import { ReactNode } from 'react';
 import { useSelector } from 'react-redux';
 
 import { breakpoints } from '~/consts';
-import { selectLang } from '~/slices';
+import { selectColorScheme, selectLang } from '~/slices';
 
 type Props = {
   children: ReactNode;
 };
 
-export function Spectrum({ children }: Props) {
+export function Theme({ children }: Props) {
   const lang = useSelector(selectLang);
+  const colorScheme = useSelector(selectColorScheme);
 
   return (
-    <Provider theme={defaultTheme} locale={lang} breakpoints={breakpoints}>
+    <Provider
+      colorScheme={colorScheme}
+      theme={defaultTheme}
+      locale={lang}
+      breakpoints={breakpoints}
+    >
       {children}
     </Provider>
   );

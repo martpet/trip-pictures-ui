@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { mapInnerContainerId } from '~/consts';
 import { useDebounce } from '~/hooks';
-import { mapViewportChanged, selectDeviceColorMode, selectMapViewport } from '~/slices';
+import { mapViewportChanged, selectColorScheme, selectMapViewport } from '~/slices';
 
 type Props = {
   children: ReactNode;
@@ -17,7 +17,7 @@ export function MapGL({ children }: Props) {
   const storedViewport = useSelector(selectMapViewport);
   const [viewport, setViewport] = useState(storedViewport);
   const debouncedViewport = useDebounce(viewport);
-  const deviceColorMode = useSelector(selectDeviceColorMode);
+  const colorScheme = useSelector(selectColorScheme);
 
   const handleDoubleClick = (e: MapEvent) => {
     if (e.target.id !== mapInnerContainerId) e.stopImmediatePropagation();
@@ -41,7 +41,7 @@ export function MapGL({ children }: Props) {
       onViewportChange={setViewport}
       onDblClick={handleDoubleClick}
       mapboxApiAccessToken={import.meta.env.VITE_MAPBOX_TOKEN}
-      mapStyle={`mapbox://styles/mapbox/${deviceColorMode}-v10`}
+      mapStyle={`mapbox://styles/mapbox/${colorScheme}-v10`}
       attributionControl={false}
       width="100%"
       height="100%"

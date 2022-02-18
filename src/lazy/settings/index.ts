@@ -1,3 +1,4 @@
+export * from './ColorSettings';
 export * from './LanguageSettings';
 export * from './Settings';
 export { SettingsDialog as default } from './SettingsDialog';

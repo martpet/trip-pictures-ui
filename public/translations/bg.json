@@ -7,8 +7,13 @@
   "map.control.navigation.zoomOutLabel": "Намали",
   "page.notFound.content": "Такава страница не съществува. Провери адреса или посети друга страница.",
   "page.notFound.heading": "Грешка 404: Страницата не е открита",
+  "settings.color.scheme.auto": "автоматична",
+  "settings.color.scheme.dark": "тъмна",
+  "settings.color.scheme.heading": "Цветова схема",
+  "settings.color.scheme.light": "светла",
   "settings.heading": "Настройки",
   "settings.language.chooseLanguage": "Избор на език",
+  "settings.tab.color": "Цветове",
   "settings.tab.language": "Език",
   "settings.tab.toolbar": "Лента с инструменти",
   "settings.toolbar.disabled": "Настройките на лентата с инструменти не се прилагат на малки екрани.",
@@ -36,9 +41,9 @@
   "upload.error.missingCoords.description": "GPS координатите се въвеждат автоматично от смартфонa или апаратa, с който е направена снимката. Възможно е да липсват, ако това не е оригиналният файл.",
   "upload.error.missingDate": "Липсва дата на заснемане",
   "upload.error.missingDate.description": "Датата на заснемане се добавя автоматично от смартфонa или апаратa, с който е направена снимката. Възможно е да липсва, ако това не е оригиналният файл.",
-  "upload.previewStatus.allInvalid": "{count, plural, =1 {Снимката не може да бъде публикувана} other {Снимките не могат да бъдат публикувани}}.",
-  "upload.previewStatus.someInvalid": "{invalidCount} от общо {totalCount} снимки {invalidCount, plural, =1 {не може бъде публикувана} other {не могат да бъдат публикувани}}.",
   "upload.heading": "Качи снимки",
   "upload.previewAction.remove": "Премахни",
-  "upload.previewAction.rotate": "Завърти"
+  "upload.previewAction.rotate": "Завърти",
+  "upload.previewStatus.allInvalid": "{count, plural, =1 {Снимката не може да бъде публикувана} other {Снимките не могат да бъдат публикувани}}.",
+  "upload.previewStatus.someInvalid": "{invalidCount} от общо {totalCount} снимки {invalidCount, plural, =1 {не може бъде публикувана} other {не могат да бъдат публикувани}}."
 }

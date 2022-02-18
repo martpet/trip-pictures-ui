@@ -5,7 +5,7 @@ export * from './App/Layout/Layout';
 export * from './App/Routes/MapView';
 export * from './App/Routes/NotFound';
 export * from './App/Routes/Router';
-export * from './App/Spectrum';
+export * from './App/Theme';
 export * from './Avatar';
 export * from './LoadingOverlay';
 export * from './LoginButton';

@@ -4,9 +4,9 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useIsMobile } from '~/hooks';
-import { LanguageSettings, ToolbarSettings } from '~/lazy/settings';
+import { ColorSettings, LanguageSettings, ToolbarSettings } from '~/lazy/settings';
 import { selectActiveSettingsMenu, settingsMenuSelected } from '~/slices';
-import { SettingsMenuKey } from '~/types';
+import { SettingsMenu } from '~/types';
 
 export function Settings() {
   const activeTab = useSelector(selectActiveSettingsMenu);
@@ -17,20 +17,25 @@ export function Settings() {
   const headingId = 'settings-heading';
 
   const handleTabSelect = (key: Key) => {
-    dispatch(settingsMenuSelected(key as SettingsMenuKey));
+    dispatch(settingsMenuSelected(key as SettingsMenu));
   };
 
-  type TabItem = {
-    id: SettingsMenuKey;
+  type MenuItem = {
+    id: SettingsMenu;
     label: string;
     content: ReactElement;
   };
 
-  const tabItems: TabItem[] = [
+  const items: MenuItem[] = [
     {
       id: 'language',
       label: formatMessage({ id: 'settings.tab.language' }),
       content: <LanguageSettings />,
+    },
+    {
+      id: 'color',
+      label: formatMessage({ id: 'settings.tab.color' }),
+      content: <ColorSettings />,
     },
     {
       id: 'toolbar',
@@ -43,7 +48,7 @@ export function Settings() {
     <Tabs
       selectedKey={activeTab}
       onSelectionChange={handleTabSelect}
-      items={tabItems}
+      items={items}
       orientation={isMobile ? 'horizontal' : 'vertical'}
       aria-labelledby={headingId}
     >
@@ -55,11 +60,11 @@ export function Settings() {
           marginEnd={isMobile ? 0 : tabsSideSpace}
           marginBottom={isMobile ? tabsSideSpace : 0}
         >
-          {({ label }: TabItem) => <Item>{label}</Item>}
+          {({ label }: MenuItem) => <Item>{label}</Item>}
         </TabList>
       </View>
       <View flexGrow={1}>
-        <TabPanels>{({ content }: TabItem) => <Item>{content}</Item>}</TabPanels>
+        <TabPanels>{({ content }: MenuItem) => <Item>{content}</Item>}</TabPanels>
       </View>
     </Tabs>
   );

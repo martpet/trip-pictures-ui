@@ -12,6 +12,7 @@ const initialState: SettingsSliceState = {
   data: {
     lang: defaultLang,
     toolbarPosition: 'top',
+    colorScheme: 'auto',
   },
   changedSettings: {},
 };
@@ -40,19 +41,30 @@ export const settingsSlice = createSlice({
       state.data.toolbarPosition = payload;
       state.changedSettings.toolbarPosition = true;
     },
+    colorSchemeSelected: (state, { payload }: PayloadAction<Settings['colorScheme']>) => {
+      state.data.colorScheme = payload;
+      state.changedSettings.colorScheme = true;
+    },
   },
 });
 
 export const selectSettings = (state: RootState) => state.settings.data;
+
 export const selectKeysOfChangedSettings = (state: RootState) =>
   state.settings.changedSettings;
-export const selectLang = (state: RootState) => state.settings.data.lang;
-export const selectToolbarPosition = (state: RootState) =>
-  state.settings.data.toolbarPosition;
+
+export const selectLang = ({ settings }: RootState) => settings.data.lang;
+
+export const selectToolbarPosition = ({ settings }: RootState) =>
+  settings.data.toolbarPosition;
+
+export const selectColorSchemeSetting = ({ settings }: RootState) =>
+  settings.data.colorScheme;
 
 export const {
   freshRemoteSettingsFetched,
   settingsSynced,
   languageSelected,
   toolbarPositionSelected,
+  colorSchemeSelected,
 } = settingsSlice.actions;
