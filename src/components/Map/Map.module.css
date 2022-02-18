@@ -1,0 +1,4 @@
+/* TODO: try this when iOS Safari 15.4 released (instead of 'useIOSAddressbarHeight') */
+.container {
+  /* height: calc(100% - (100vh - 100dvh)); */
+}
