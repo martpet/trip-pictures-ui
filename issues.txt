@@ -1,3 +1,5 @@
+- Translations api requests are cached - old data served after deploy - check static.json headers
+
 - Chrome, Firefox don't convert heic to jpeg when input file accept is "image/jpeg"
 
 - converting heic with heic2any is slow
