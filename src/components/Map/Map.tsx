@@ -4,12 +4,14 @@ import { MapControls, MapGL } from '~/components';
 import { mapInnerContainerId, sideSpace } from '~/consts';
 import { useIOSAddressbarHeight } from '~/hooks';
 
+import styles from './Map.module.css';
+
 export function Map() {
   const contentHeight = `calc(100% - ${useIOSAddressbarHeight()}px)`;
 
   return (
     <MapGL>
-      <Flex height={contentHeight}>
+      <Flex height={contentHeight} UNSAFE_className={styles.container}>
         <Flex
           id={mapInnerContainerId}
           alignItems="end"
