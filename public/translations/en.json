@@ -7,8 +7,13 @@
   "map.control.navigation.zoomOutLabel": "Zoom Out",
   "page.notFound.content": "This page isn't available. Try checking the URL or visit a different page.",
   "page.notFound.heading": "Error 404: Page not found",
+  "settings.color.scheme.auto": "auto",
+  "settings.color.scheme.dark": "dark",
+  "settings.color.scheme.heading": "Color scheme",
+  "settings.color.scheme.light": "light",
   "settings.heading": "Settings",
   "settings.language.chooseLanguage": "Choose language",
+  "settings.tab.color": "Color",
   "settings.tab.language": "Language",
   "settings.tab.toolbar": "Toolbar",
   "settings.toolbar.disabled": "Toolbar settings are disabled on small screens.",
@@ -36,9 +41,9 @@
   "upload.error.missingCoords.description": "The GPS coordinates are automatically added by the device which took the photo. They could be missing if the file is not original.",
   "upload.error.missingDate": "Date is missing",
   "upload.error.missingDate.description": "The date is automatically added by the device which took the photo. It could be missing if the file is not original",
-  "upload.previewStatus.allInvalid": "{count, plural, =1 {The photo} other {The photos}} cannot be published.",
-  "upload.previewStatus.someInvalid": "{invalidCount} of {totalCount} pictures cannot be published.",
   "upload.heading": "Upload photos",
   "upload.previewAction.remove": "Remove",
-  "upload.previewAction.rotate": "Rotate"
+  "upload.previewAction.rotate": "Rotate",
+  "upload.previewStatus.allInvalid": "{count, plural, =1 {The photo} other {The photos}} cannot be published.",
+  "upload.previewStatus.someInvalid": "{invalidCount} of {totalCount} pictures cannot be published."
 }

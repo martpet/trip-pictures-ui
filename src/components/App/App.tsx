@@ -1,18 +1,26 @@
-import '~/assets/css/index.css';
-
-import { Intl, Layout, Router, Spectrum } from '~/components';
-import { useAppHooks } from '~/hooks';
+import { Layout, Router } from '~/components';
+import { siteTitle } from '~/consts';
+import {
+  useDeviceColorMode,
+  usePageTitle,
+  usePreventDragDrop,
+  useSyncSettings,
+  useWillFetchUser,
+} from '~/hooks';
+import { useGetMeQuery } from '~/services';
 
 export function App() {
-  useAppHooks();
+  const fetchUserPending = useWillFetchUser();
+
+  useGetMeQuery(undefined, { skip: !fetchUserPending });
+  useSyncSettings();
+  useDeviceColorMode();
+  usePreventDragDrop();
+  usePageTitle(siteTitle);
 
   return (
-    <Spectrum>
-      <Intl>
-        <Layout>
-          <Router />
-        </Layout>
-      </Intl>
-    </Spectrum>
+    <Layout>
+      <Router />
+    </Layout>
   );
 }

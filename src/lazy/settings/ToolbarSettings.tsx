@@ -11,13 +11,13 @@ import { SettingsSection } from '~/lazy/settings';
 import { selectToolbarPosition, toolbarPositionSelected } from '~/slices';
 import { ToolbarPosition as ToolbarPos } from '~/types';
 
-type PositionButton = {
+type ButtonItem = {
   id: string;
   textId: string;
   Icon: (props: IconPropsWithoutChildren) => JSX.Element;
 };
 
-const positionButtons: PositionButton[] = [
+const items: ButtonItem[] = [
   {
     id: 'left',
     textId: 'settings.toolbar.position.left',
@@ -32,7 +32,7 @@ const positionButtons: PositionButton[] = [
 
 export function ToolbarSettings() {
   const dispatch = useDispatch();
-  const selectedPosition = useSelector(selectToolbarPosition);
+  const toolbarPosition = useSelector(selectToolbarPosition);
   const toolbarSettingsDisabled = useIsToolbarInMobileMode();
 
   const handleAction = (key: Key) => {
@@ -51,12 +51,12 @@ export function ToolbarSettings() {
     <SettingsSection headingKey="settings.toolbar.position.heading">
       <ActionGroup
         selectionMode="single"
-        items={positionButtons}
-        selectedKeys={[selectedPosition]}
+        items={items}
+        selectedKeys={[toolbarPosition]}
         onAction={handleAction}
         density="compact"
       >
-        {({ Icon, textId }: PositionButton) => (
+        {({ Icon, textId }: ButtonItem) => (
           <Item>
             <Icon />
             <Text>

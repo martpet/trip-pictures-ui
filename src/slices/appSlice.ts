@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ViewportProps } from 'react-map-gl';
 
-import { DeviceColorMode, RootState, SettingsMenuKey } from '~/types';
+import { ColorScheme, RootState, SettingsMenu } from '~/types';
 
 export type AppSliceState = {
   loadersCount: number;
   mapViewport?: ViewportProps;
-  deviceColorMode?: DeviceColorMode;
-  activeSettingsTab: SettingsMenuKey;
+  deviceColorMode?: ColorScheme;
+  activeSettingsTab: SettingsMenu;
 };
 
 export const appSliceInitialState: AppSliceState = {
@@ -28,18 +28,24 @@ export const appSlice = createSlice({
     mapViewportChanged: (state, { payload }: PayloadAction<ViewportProps>) => {
       state.mapViewport = payload;
     },
-    deviceColorModeChanged: (state, { payload }: PayloadAction<DeviceColorMode>) => {
+    deviceColorModeChanged: (state, { payload }: PayloadAction<ColorScheme>) => {
       state.deviceColorMode = payload;
     },
-    settingsMenuSelected: (state, { payload }: PayloadAction<SettingsMenuKey>) => {
+    settingsMenuSelected: (state, { payload }: PayloadAction<SettingsMenu>) => {
       state.activeSettingsTab = payload;
     },
   },
 });
 
 export const selectIsAppLoading = ({ app }: RootState) => app.loadersCount > 0;
+
 export const selectMapViewport = ({ app }: RootState) => app.mapViewport;
-export const selectDeviceColorMode = ({ app }: RootState) => app.deviceColorMode;
+
+export const selectColorScheme = (state: RootState) =>
+  state.settings.data.colorScheme === 'auto'
+    ? state.app.deviceColorMode
+    : state.settings.data.colorScheme;
+
 export const selectActiveSettingsMenu = ({ app }: RootState) => app.activeSettingsTab;
 
 export const {
