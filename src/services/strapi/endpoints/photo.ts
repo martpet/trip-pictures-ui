@@ -2,10 +2,14 @@ import { strapiApiPaths } from '~/consts';
 import { strapiApi } from '~/services';
 import { Photo } from '~/types';
 
-type GenerateUploadUrlRes = {
+type GeneratePhotoUploadUrlsReq = {
+  uploadsSize: number;
+};
+
+type GeneratePhotoUploadUrlsRes = Array<{
   url: string;
   fields: { [key: string]: string };
-};
+}>;
 
 const photosApiSlice = strapiApi.injectEndpoints({
   endpoints: (build) => ({
@@ -16,13 +20,18 @@ const photosApiSlice = strapiApi.injectEndpoints({
         body: { s3key },
       }),
     }),
-    generateUploadUrl: build.mutation<GenerateUploadUrlRes, void>({
-      query: () => ({
-        url: strapiApiPaths.generatePhotoUploadUrl,
+    generatePhotoUploadUrls: build.mutation<
+      GeneratePhotoUploadUrlsRes,
+      GeneratePhotoUploadUrlsReq
+    >({
+      query: (body) => ({
+        url: strapiApiPaths.generatePhotoUploadUrls,
         method: 'POST',
+        body,
       }),
     }),
   }),
 });
 
-export const { useCreatePhotoMutation, useGenerateUploadUrlMutation } = photosApiSlice;
+export const { useCreatePhotoMutation, useGeneratePhotoUploadUrlsMutation } =
+  photosApiSlice;
