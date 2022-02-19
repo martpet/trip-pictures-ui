@@ -15,7 +15,7 @@ export const useSyncSettings = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
   const localSettings = useSelector(selectSettings);
-  const remoteSettings = (currentUser?.settings || {}) as Settings;
+  const remoteSettings = currentUser?.settings;
   const changedLocalSettings = useSelector(selectKeysOfChangedSettings);
   const [updateRemoteSettings, { isLoading: remoteMutationInProgress }] =
     useUpdateMySettingsMutation();
@@ -23,16 +23,15 @@ export const useSyncSettings = () => {
   const sync = () => {
     const localPatch: Partial<Settings> = {};
     const remotePatch: Partial<Settings> = {};
-    const settingsKeys = Object.keys(localSettings) as Array<keyof Settings>;
+    const keys = Object.keys(localSettings) as Array<keyof Settings>;
 
-    settingsKeys.forEach((key) => {
-      const localValue = localSettings[key];
-      const remoteValue = remoteSettings[key];
-      if (localValue !== remoteValue) {
-        const isSettingChanged = changedLocalSettings[key];
-        const isRemoteOutdated = isSettingChanged || !remoteValue;
+    keys.forEach((key) => {
+      const localVal = localSettings[key];
+      const remoteVal = remoteSettings?.[key];
+      if (localVal !== remoteVal) {
+        const isRemoteOutdated = changedLocalSettings[key] || !remoteVal;
         const patch = isRemoteOutdated ? remotePatch : localPatch;
-        const newValue = isRemoteOutdated ? localValue : remoteValue;
+        const newValue = isRemoteOutdated ? localVal : remoteVal;
         Object.assign(patch, { [key]: newValue });
       }
     });

@@ -1,5 +1,4 @@
 import { isRejectedWithValue, Middleware } from '@reduxjs/toolkit';
-import console from 'console';
 import toast from 'react-hot-toast';
 
 export const errorLogger: Middleware = () => (next) => (action) => {
