@@ -1,18 +1,17 @@
 import { isRejectedWithValue, Middleware } from '@reduxjs/toolkit';
-
-import { toastDev } from '~/utils';
+import console from 'console';
+import toast from 'react-hot-toast';
 
 export const errorLogger: Middleware = () => (next) => (action) => {
-  if (isRejectedWithValue(action)) {
-    const errorMessage =
+  if (isRejectedWithValue(action) && import.meta.env.DEV) {
+    const errorMsg =
       action.payload?.data?.message?.error?.message ||
       action.payload?.data?.data?.message ||
       action.payload?.data?.message ||
       action.error.data?.message ||
       action.error.message;
 
-    toastDev(errorMessage);
-    // eslint-disable-next-line no-console
+    toast.error(errorMsg);
     console.warn('We got a rejected action!', action);
   }
 

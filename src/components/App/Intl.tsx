@@ -1,11 +1,11 @@
 import { ReactNode, useEffect } from 'react';
+import toast from 'react-hot-toast';
 import { IntlProvider } from 'react-intl';
 import { useSelector } from 'react-redux';
 
 import { LoadingOverlay } from '~/components';
 import { useGetTranslationsQuery } from '~/services';
 import { selectLang } from '~/slices';
-import { toastDev } from '~/utils';
 
 type Props = {
   children: ReactNode;
@@ -17,7 +17,9 @@ export function Intl({ children }: Props) {
   const hasData = data && Object.keys(data).length;
 
   const handleError = ({ message }: Error) => {
-    toastDev(message, { id: message });
+    if (import.meta.env.DEV) {
+      toast.error(message, { id: message });
+    }
   };
 
   useEffect(() => {
