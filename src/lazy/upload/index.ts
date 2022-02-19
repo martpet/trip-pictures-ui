@@ -1,4 +1,4 @@
-export * from './components/ButtonAddPhotos';
+export * from './components/ButtonAddFiles';
 export * from './components/ButtonCloseDialog';
 export * from './components/ButtonStartUpload';
 export * from './components/ConfirmCloseDialog';
