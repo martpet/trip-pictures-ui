@@ -3,6 +3,6 @@ export const strapiApiPaths = {
   oauthCallback: 'auth/:provider/callback',
   me: 'users/me',
   mySettings: 'users/me/settings',
-  generatePhotoUploadUrl: 'photos/generate-upload-url',
+  generatePhotoUploadUrls: 'photos/generate-photo-upload-urls',
   photos: 'photos',
 } as const;
