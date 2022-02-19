@@ -1,7 +1,7 @@
 import { Content, Heading, IllustratedMessage, View } from '@adobe/react-spectrum';
 import { FormattedMessage } from 'react-intl';
 
-import { ButtonAddPhotos } from '~/lazy/upload';
+import { ButtonAddFiles } from '~/lazy/upload';
 import { ReactComponent as Illustration } from '~/lazy/upload/images/illustrationUpload.svg';
 
 export function DropZoneIllustration() {
@@ -14,7 +14,7 @@ export function DropZoneIllustration() {
       <Content>
         <FormattedMessage id="upload.dropZone.subHeading" />
         <View marginTop="size-600">
-          <ButtonAddPhotos variant="cta" isQuiet={false} />
+          <ButtonAddFiles variant="cta" isQuiet={false} />
         </View>
       </Content>
     </IllustratedMessage>

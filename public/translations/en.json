@@ -24,7 +24,7 @@
   "toolbar.button.profile": "Profile",
   "toolbar.button.settings": "Settings",
   "toolbar.button.upload": "Upload photos",
-  "upload.button.addPhotos": "Add {count, plural, =0 {} other {more}} photos",
+  "upload.button.addFiles": " {count, plural, =0 {Choose} other {Add more}} files",
   "upload.button.cancel": "Cancel",
   "upload.button.start": "Upload {count} {count, plural, =1 {photo} other {photos}}",
   "upload.confirmCancel.cancelLabel": "No, stay",

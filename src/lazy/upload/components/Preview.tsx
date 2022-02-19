@@ -3,7 +3,7 @@ import { useContext } from 'react';
 
 import { useIsMobile } from '~/hooks';
 import {
-  ButtonAddPhotos,
+  ButtonAddFiles,
   PreviewErrors,
   PreviewImage,
   UploadContext,
@@ -15,7 +15,7 @@ export function Preview() {
 
   return (
     <>
-      {isMobile && <ButtonAddPhotos isQuiet={false} marginBottom="size-350" />}
+      {isMobile && <ButtonAddFiles isQuiet={false} marginBottom="size-350" />}
 
       <PreviewErrors />
 
