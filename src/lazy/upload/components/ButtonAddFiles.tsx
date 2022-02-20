@@ -18,7 +18,7 @@ export function ButtonAddFiles({
 
   const handleClickAdd = () => inputRef.current?.click();
 
-  const handleFilesAdded: ChangeEventHandler<HTMLInputElement> = ({ currentTarget }) => {
+  const handleAddedFiles: ChangeEventHandler<HTMLInputElement> = ({ currentTarget }) => {
     addUploads(currentTarget.files!);
     if (inputRef.current) inputRef.current.value = '';
   };
@@ -45,7 +45,7 @@ export function ButtonAddFiles({
         type="file"
         multiple
         accept={acceptedFileTypes.join(',')}
-        onChange={handleFilesAdded}
+        onChange={handleAddedFiles}
         style={{ display: 'none' }}
       />
     </>

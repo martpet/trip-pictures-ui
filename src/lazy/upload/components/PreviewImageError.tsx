@@ -1,6 +1,5 @@
-import { ActionButton, Content, Dialog, DialogTrigger } from '@adobe/react-spectrum';
+import { Content, ContextualHelp, Text } from '@adobe/react-spectrum';
 import AlertIcon from '@spectrum-icons/workflow/Alert';
-import HelpIcon from '@spectrum-icons/workflow/HelpOutline';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { acceptedFileTypes, Upload, UploadError } from '~/lazy/upload';
@@ -41,19 +40,16 @@ export function PreviewImageError({ upload }: Props) {
         id={`upload.error.${error}`}
         values={{ acceptedFileTypesFormattedList }}
       />
-      <DialogTrigger type="popover">
-        <ActionButton isQuiet>
-          <HelpIcon size="S" />
-        </ActionButton>
-        <Dialog>
-          <Content>
+      <ContextualHelp variant="info">
+        <Content>
+          <Text>
             <FormattedMessage
               id={`upload.error.${error}.description`}
               values={{ acceptedFileTypesFormattedList }}
             />
-          </Content>
-        </Dialog>
-      </DialogTrigger>
+          </Text>
+        </Content>
+      </ContextualHelp>
     </>
   );
 }

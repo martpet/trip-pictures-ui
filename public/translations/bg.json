@@ -38,7 +38,7 @@
   "upload.error.fileTypeWrong": "Файлът не е {acceptedFileTypesFormattedList}",
   "upload.error.fileTypeWrong.description": "Сайтът работи само с {acceptedFileTypesFormattedList} файлове, в които се съдържат GPS координатите на снимката.",
   "upload.error.missingCoords": "Липсват GPS координати",
-  "upload.error.missingCoords.description": "GPS координатите се добавят автоматично от смартфонa или апаратa, с който е направена снимката. Възможно е да липсват, ако това не е оригиналният файл.",
+  "upload.error.missingCoords.description": "GPS координатите обикновено се записват във файла от телефона или апарата, с който е снимано. Възможно е това да не е оригиналният файл’",
   "upload.error.missingDate": "Липсва дата на заснемане",
   "upload.error.missingDate.description": "Датата на заснемане се добавя автоматично от смартфонa или апаратa, с който е направена снимката. Възможно е да липсва, ако това не е оригиналният файл.",
   "upload.heading": "Качи снимки",

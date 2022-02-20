@@ -38,12 +38,12 @@
   "upload.error.fileTypeWrong": "The file type is not {acceptedFileTypesFormattedList}",
   "upload.error.fileTypeWrong.description": "This website works only with {acceptedFileTypesFormattedList} files that contain GPS coordinates",
   "upload.error.missingCoords": "GPS coordinates are missing",
-  "upload.error.missingCoords.description": "The GPS coordinates are automatically added by the device which took the photo. They could be missing if the file is not original.",
+  "upload.error.missingCoords.description": "The geolocation data is usually written to the file by the device that took the photo. The data could be missing if this isn't the original file.",
   "upload.error.missingDate": "Date is missing",
   "upload.error.missingDate.description": "The date is automatically added by the device which took the photo. It could be missing if the file is not original",
   "upload.heading": "Upload photos",
   "upload.previewAction.remove": "Remove",
   "upload.previewAction.rotate": "Rotate",
-  "upload.previewStatus.allInvalid": "{count, plural, =1 {The photo} other {The photos}} cannot be published.",
-  "upload.previewStatus.someInvalid": "{invalidCount} of {totalCount} pictures cannot be published."
+  "upload.previewStatus.allInvalid": "{count, plural, =1 {The photo} other {The photos}} cannot be uploaded.",
+  "upload.previewStatus.someInvalid": "{invalidCount} of {totalCount} photos will not be uploaded."
 }

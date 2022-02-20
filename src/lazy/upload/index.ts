@@ -8,7 +8,7 @@ export * from './components/DialogHeader';
 export * from './components/DropZone';
 export * from './components/DropZoneIllustration';
 export * from './components/Preview';
-export * from './components/PreviewErrors';
+export * from './components/PreviewErrorsSummary';
 export * from './components/PreviewImage';
 export * from './components/PreviewImageActions';
 export * from './components/PreviewImageError';

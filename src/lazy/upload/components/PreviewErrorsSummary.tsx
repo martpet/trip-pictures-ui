@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { UploadContext } from '~/lazy/upload';
 
-export function PreviewErrors() {
+export function PreviewErrorsSummary() {
   const { uploads, invalidUploads } = useContext(UploadContext);
 
   if (!invalidUploads.length) return null;

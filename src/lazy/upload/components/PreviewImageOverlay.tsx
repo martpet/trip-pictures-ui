@@ -7,7 +7,7 @@ type Props = {
   upload: Upload;
 };
 
-export function PreviewImageOverlay({ upload }: Props) {
+export function PreviewImageErrorOverlay({ upload }: Props) {
   const hasError = Boolean(upload.errors.length);
 
   if (!hasError) return null;
@@ -20,7 +20,7 @@ export function PreviewImageOverlay({ upload }: Props) {
       width="100%"
       height="100%"
       UNSAFE_style={{
-        background: 'rgba(0,0,0,0.7)',
+        background: 'rgba(0,0,0,0.75)',
       }}
     >
       <Flex

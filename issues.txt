@@ -19,3 +19,5 @@
 - upload preview action "Rotate" should not close menu on click (closeOnSelect has no effect)
 
 - can't use ContextualHelp in PreviewImageError instead of Popover (https://react-spectrum.adobe.com/react-spectrum/ContextualHelp.html)
+
+- toast message over Dialog zIndex
