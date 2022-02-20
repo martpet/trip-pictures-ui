@@ -3,14 +3,14 @@ import { useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { UploadContext } from '~/lazy/upload';
-import { useGeneratePhotoUploadUrlsMutation } from '~/services';
+import { useCreatePresignedPhotoUploadUrlsMutation } from '~/services';
 
 export function ButtonStartUpload() {
   const { canStartUpload, validUploads } = useContext(UploadContext);
-  const [generateUploadUrls] = useGeneratePhotoUploadUrlsMutation();
+  const [createPresignedUploadUrls] = useCreatePresignedPhotoUploadUrlsMutation();
 
   const handlePress = () => {
-    generateUploadUrls({ uploadsLength: validUploads.length });
+    createPresignedUploadUrls({ uploadsLength: validUploads.length });
   };
 
   if (!canStartUpload) return null;

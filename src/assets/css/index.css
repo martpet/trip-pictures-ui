@@ -44,9 +44,9 @@ body {
   margin: 0;
 }
 
-button[class^="_spectrum-Button"]:not(:disabled),
-button[class^="_spectrum-ActionButton"]:not([aria-checked="true"]),
-[class^="_spectrum-Tabs-item"]:not([aria-selected="true"]),
-[class^="_spectrum-Menu-item"] {
+button[class^="spectrum-Button"]:not(:disabled),
+button[class^="spectrum-ActionButton"]:not([aria-checked="true"]),
+[class^="spectrum-Tabs-item"]:not([aria-selected="true"]),
+[class^="spectrum-Menu-item"] {
   cursor: pointer !important;
 }

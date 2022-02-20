@@ -1,7 +1,7 @@
 import { View } from '@adobe/react-spectrum';
 import { DragEventHandler, ReactEventHandler } from 'react';
 
-import { PreviewImageHeader, PreviewImageOverlay, Upload } from '~/lazy/upload';
+import { PreviewImageErrorOverlay, PreviewImageHeader, Upload } from '~/lazy/upload';
 
 type Props = {
   upload: Upload;
@@ -22,7 +22,7 @@ export function PreviewImage({ upload }: Props) {
     <View>
       <PreviewImageHeader upload={upload} />
       <View position="relative">
-        <PreviewImageOverlay upload={upload} />
+        <PreviewImageErrorOverlay upload={upload} />
         <img
           alt={file.name}
           src={URL.createObjectURL(file)}
