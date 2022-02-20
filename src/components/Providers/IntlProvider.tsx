@@ -11,7 +11,7 @@ type Props = {
   children: ReactNode;
 };
 
-export function Intl({ children }: Props) {
+function Intl({ children }: Props) {
   const lang = useSelector(selectLang);
   const { data } = useGetTranslationsQuery(lang);
   const hasData = data && Object.keys(data).length;
@@ -32,3 +32,5 @@ export function Intl({ children }: Props) {
     </IntlProvider>
   );
 }
+
+export { Intl as IntlProvider };

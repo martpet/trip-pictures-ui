@@ -10,15 +10,17 @@ import {
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Avatar } from '~/components';
+import { Avatar, LoginMenu } from '~/components';
 import { logout, selectCurrentUser } from '~/slices';
 
-export function ProfileMenu() {
+export function ProfileDialogTrigger() {
   const user = useSelector(selectCurrentUser)!;
   const { formatMessage } = useIntl();
   const dispatch = useDispatch();
 
   const handleLogoutClick = () => dispatch(logout());
+
+  if (!user) return <LoginMenu />;
 
   return (
     <DialogTrigger type="popover">

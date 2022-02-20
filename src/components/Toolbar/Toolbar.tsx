@@ -1,37 +1,34 @@
 import { Divider, Flex } from '@adobe/react-spectrum';
-import { useSelector } from 'react-redux';
 
 import {
-  LoginMenu,
   Logo,
-  ProfileMenu,
+  ProfileDialogTrigger,
   SettingsDialogTrigger,
   UploadDialogTrigger,
 } from '~/components';
 import { sideSpace } from '~/consts';
 import { useIsTopToolbar } from '~/hooks';
-import { selectCurrentUser } from '~/slices';
 
 export function Toolbar() {
-  const user = useSelector(selectCurrentUser);
   const isTopBar = useIsTopToolbar();
-  const direction = isTopBar ? 'row' : 'column';
+  const containerDirection = isTopBar ? 'column' : 'row';
+  const contentDirection = isTopBar ? 'row' : 'column';
 
   return (
-    <Flex direction={isTopBar ? 'column' : 'row'} height="100%">
+    <Flex direction={containerDirection} height="100%">
       <Flex
         flexGrow={1}
-        direction={direction}
+        direction={contentDirection}
         alignItems="center"
         justifyContent="space-between"
         marginX={isTopBar ? sideSpace : 0}
         marginY={isTopBar ? 0 : sideSpace}
       >
         <Logo />
-        <Flex direction={direction} gap="size-85">
+        <Flex direction={contentDirection} gap="size-85">
           <UploadDialogTrigger />
           <SettingsDialogTrigger />
-          {user ? <ProfileMenu /> : <LoginMenu />}
+          <ProfileDialogTrigger />
         </Flex>
       </Flex>
       <Divider size="M" orientation={isTopBar ? 'horizontal' : 'vertical'} />

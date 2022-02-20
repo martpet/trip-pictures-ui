@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import { App, Intl, Theme } from '~/components';
+import { App, IntlProvider, ThemeProvider } from '~/components';
 import { persistor, store } from '~/store';
 
 const tree = (
@@ -14,11 +14,11 @@ const tree = (
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
         <BrowserRouter>
-          <Theme>
-            <Intl>
+          <ThemeProvider>
+            <IntlProvider>
               <App />
-            </Intl>
-          </Theme>
+            </IntlProvider>
+          </ThemeProvider>
         </BrowserRouter>
       </PersistGate>
     </Provider>

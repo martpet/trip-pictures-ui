@@ -9,7 +9,7 @@ export function SettingsDialogTrigger() {
   const [isOpen, setOpen] = useState(false);
   const { formatMessage } = useIntl();
 
-  const trigger = (
+  const button = (
     <ActionButton isQuiet aria-label={formatMessage({ id: 'toolbar.button.settings' })}>
       <SettingsIcon />
     </ActionButton>
@@ -17,7 +17,7 @@ export function SettingsDialogTrigger() {
 
   return (
     <Suspense fallback={null}>
-      <SettingsDialog trigger={trigger} isOpen={isOpen} setOpen={setOpen} />
+      <SettingsDialog button={button} isOpen={isOpen} setOpen={setOpen} />
     </Suspense>
   );
 }
