@@ -17,7 +17,7 @@ import {
   useValidUploads,
 } from '~/lazy/upload';
 
-type TUploadContext = {
+type UploadContextType = {
   uploads: Upload[];
   validUploads: Upload[];
   invalidUploads: Upload[];
@@ -30,10 +30,9 @@ type TUploadContext = {
   isDialogOpen: boolean;
   showConfirmClose: boolean;
   setShowConfirmClose: Dispatch<SetStateAction<boolean>>;
-  showLoadingOverlay: boolean;
 };
 
-export const UploadContext = createContext({} as TUploadContext);
+export const UploadContext = createContext({} as UploadContextType);
 
 type ProviderProps = {
   children: ReactNode;
@@ -45,8 +44,7 @@ export function UploadProvider({ children, isDialogOpen, setDialogOpen }: Provid
   const [uploads, setUploads] = useState<Upload[]>([]);
   const [showConfirmClose, setShowConfirmClose] = useState(false);
   const { validUploads, invalidUploads } = useValidUploads({ uploads });
-  const [showLoadingOverlay, setShowLoadingOverlay] = useState(false);
-  const addUploads = useAddUploads({ uploads, setUploads, setShowLoadingOverlay });
+  const addUploads = useAddUploads({ uploads, setUploads });
   const removeUpload = useRemoveUpload({ uploads, setUploads });
   const canStartUpload = useCanStartUpload({ uploads });
   const rotateImage = useRotateImage({ uploads, setUploads });
@@ -71,9 +69,8 @@ export function UploadProvider({ children, isDialogOpen, setDialogOpen }: Provid
       closeDialog,
       showConfirmClose,
       setShowConfirmClose,
-      showLoadingOverlay,
     }),
-    [uploads, isDialogOpen, showConfirmClose, showLoadingOverlay]
+    [uploads, isDialogOpen, showConfirmClose]
   );
 
   return <UploadContext.Provider value={contextValue}>{children}</UploadContext.Provider>;

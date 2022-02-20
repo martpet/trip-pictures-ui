@@ -12,8 +12,6 @@
 
 - unused css from adobe spectrum in bundle
 
-- cannot render via portal outside of Spectrum provider (needed for AppLoder zIndex over Dialog) (https://github.com/adobe/react-spectrum/issues/1697)
-
 - mapbox freezes sometimes on dragging in Safari (https://github.com/mapbox/mapbox-gl-js/issues/11095)
 
 - upload preview action "Rotate" should not close menu on click (closeOnSelect has no effect)

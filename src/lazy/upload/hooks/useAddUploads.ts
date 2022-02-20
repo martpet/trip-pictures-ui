@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
+import { useDispatch } from 'react-redux';
 
 import {
   acceptedFileTypes,
@@ -6,14 +7,16 @@ import {
   getNonDuplicateNewUploads,
   Upload,
 } from '~/lazy/upload';
+import { loadingFinished, loadingStarted } from '~/slices';
 
 type Arg = {
   uploads: Upload[];
   setUploads: Dispatch<SetStateAction<Upload[]>>;
-  setShowLoadingOverlay: Dispatch<SetStateAction<boolean>>;
 };
 
-export const useAddUploads = ({ uploads, setUploads, setShowLoadingOverlay }: Arg) => {
+export const useAddUploads = ({ uploads, setUploads }: Arg) => {
+  const dispatch = useDispatch();
+
   return async (fileList: FileList) => {
     const files = Array.from(fileList);
 
@@ -33,11 +36,11 @@ export const useAddUploads = ({ uploads, setUploads, setShowLoadingOverlay }: Ar
         }
 
         if (file.type === 'image/heic') {
-          setShowLoadingOverlay(true);
+          dispatch(loadingStarted());
           const { convertHeicToJpeg } = await import('../utils/convertHeicToJpeg');
           upload = await convertHeicToJpeg({ upload });
           upload.canRotate = false;
-          setShowLoadingOverlay(false);
+          dispatch(loadingFinished());
         }
 
         if (upload.errors.length) {

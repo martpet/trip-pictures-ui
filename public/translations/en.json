@@ -32,7 +32,7 @@
   "upload.confirmCancel.primaryActionLabel": "Yes, cancel upload",
   "upload.confirmCancel.title": "Are you sure?",
   "upload.dropZone.heading": "Drag your files here",
-  "upload.dropZone.subHeading": "or select from your device",
+  "upload.dropZone.subHeading": "or choose from your device",
   "upload.error.exifUnreadable": "Meta data cannot be extracted",
   "upload.error.exifUnreadable.description": "The file is corrupted and does not contain the required GPS coordinates.",
   "upload.error.fileTypeWrong": "The file type is not {acceptedFileTypesFormattedList}",

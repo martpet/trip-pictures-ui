@@ -1,7 +1,6 @@
 import { Dialog, DialogTrigger, Divider } from '@adobe/react-spectrum';
 import { Dispatch, ReactNode, SetStateAction, useContext } from 'react';
 
-import { LoadingOverlay } from '~/components';
 import { useIsMobile } from '~/hooks';
 import {
   ConfirmCloseDialog,
@@ -18,7 +17,7 @@ type Props = {
 };
 
 function UploadDialog({ trigger }: Props) {
-  const { isDialogOpen, showLoadingOverlay } = useContext(UploadContext);
+  const { isDialogOpen } = useContext(UploadContext);
   const isMobile = useIsMobile();
   const dialogType = isMobile ? 'fullscreenTakeover' : 'fullscreen';
 
@@ -29,8 +28,6 @@ function UploadDialog({ trigger }: Props) {
       <DialogTrigger type={dialogType} isOpen={isDialogOpen}>
         <div>{trigger}</div>
         <Dialog>
-          {/* TODO: Use AppLoader. See issues.txt  */}
-          {showLoadingOverlay && <LoadingOverlay />}
           <DialogHeader />
           <Divider />
           <DialogContent />
