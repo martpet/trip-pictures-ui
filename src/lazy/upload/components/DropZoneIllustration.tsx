@@ -1,13 +1,13 @@
 import { Content, Heading, IllustratedMessage, View } from '@adobe/react-spectrum';
+import UploadIllustration from '@spectrum-icons/illustrations/Upload';
 import { FormattedMessage } from 'react-intl';
 
 import { ButtonAddFiles } from '~/lazy/upload';
-import { ReactComponent as Illustration } from '~/lazy/upload/images/illustrationUpload.svg';
 
 export function DropZoneIllustration() {
   return (
     <IllustratedMessage>
-      <Illustration />
+      <UploadIllustration />
       <Heading>
         <FormattedMessage id="upload.dropZone.heading" />
       </Heading>
