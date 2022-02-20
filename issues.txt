@@ -17,3 +17,5 @@
 - mapbox freezes sometimes on dragging in Safari (https://github.com/mapbox/mapbox-gl-js/issues/11095)
 
 - upload preview action "Rotate" should not close menu on click (closeOnSelect has no effect)
+
+- can't use ContextualHelp in PreviewImageError instead of Popover (https://react-spectrum.adobe.com/react-spectrum/ContextualHelp.html)

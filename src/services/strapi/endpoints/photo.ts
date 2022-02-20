@@ -3,7 +3,7 @@ import { strapiApi } from '~/services';
 import { Photo } from '~/types';
 
 type GeneratePhotoUploadUrlsReq = {
-  uploadsSize: number;
+  uploadsLength: number;
 };
 
 type GeneratePhotoUploadUrlsRes = Array<{
