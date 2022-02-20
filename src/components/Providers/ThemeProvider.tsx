@@ -9,7 +9,7 @@ type Props = {
   children: ReactNode;
 };
 
-export function Theme({ children }: Props) {
+export function ThemeProvider({ children }: Props) {
   const lang = useSelector(selectLang);
   const colorScheme = useSelector(selectColorScheme);
 

@@ -2,7 +2,7 @@ import { View } from '@adobe/react-spectrum';
 import { createPortal } from 'react-dom';
 import { useSelector } from 'react-redux';
 
-import { LoadingOverlay, Theme } from '~/components';
+import { LoadingOverlay, ThemeProvider } from '~/components';
 import { selectIsAppLoading } from '~/slices';
 
 export function AppLoader() {
@@ -24,5 +24,5 @@ export function AppLoader() {
     </View>
   );
 
-  return createPortal(<Theme>{element}</Theme>, containerNode);
+  return createPortal(<ThemeProvider>{element}</ThemeProvider>, containerNode);
 }

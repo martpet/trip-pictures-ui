@@ -1,4 +1,4 @@
-import { ActionGroup, Item, Text } from '@adobe/react-spectrum';
+import { ActionGroup, Item, Text, useDialogContainer } from '@adobe/react-spectrum';
 import { IconPropsWithoutChildren } from '@react-spectrum/icon';
 import ArrowLeft from '@spectrum-icons/workflow/ArrowLeft';
 import ArrowUp from '@spectrum-icons/workflow/ArrowUp';
@@ -34,9 +34,11 @@ export function ToolbarSettings() {
   const dispatch = useDispatch();
   const toolbarPosition = useSelector(selectToolbarPosition);
   const toolbarSettingsDisabled = useIsToolbarInMobileMode();
+  const dialog = useDialogContainer();
 
   const handleAction = (key: Key) => {
     dispatch(toolbarPositionSelected(key as ToolbarPos));
+    dialog.dismiss();
   };
 
   if (toolbarSettingsDisabled) {
