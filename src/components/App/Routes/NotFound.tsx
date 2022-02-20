@@ -1,14 +1,14 @@
 import { Content, Heading, IllustratedMessage } from '@adobe/react-spectrum';
+import NotFoundllustration from '@spectrum-icons/illustrations/NotFound';
 import { FormattedMessage } from 'react-intl';
 
-import { ReactComponent as NotFoundIcon } from '~/assets/images/illustrationNotFound.svg';
 import { PageContainer } from '~/components';
 
 export function NotFound() {
   return (
     <PageContainer>
       <IllustratedMessage>
-        <NotFoundIcon />
+        <NotFoundllustration />
         <Heading>
           <FormattedMessage id="page.notFound.heading" />
         </Heading>
