@@ -10,7 +10,7 @@ export function Upload() {
     const file = event.currentTarget.upload.files[0];
 
     const body = new FormData();
-    const [{ fields, url }] = await generateUploadUrls({ uploadsSize: 5 }).unwrap();
+    const [{ fields, url }] = await generateUploadUrls({ uploadsLength: 5 }).unwrap();
 
     Object.entries(fields).forEach(([key, val]) => body.append(key, val));
     body.append('file', file);

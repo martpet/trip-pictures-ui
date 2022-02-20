@@ -10,7 +10,7 @@ export function ButtonStartUpload() {
   const [generateUploadUrls] = useGeneratePhotoUploadUrlsMutation();
 
   const handlePress = () => {
-    generateUploadUrls({ uploadsSize: 5 });
+    generateUploadUrls({ uploadsLength: validUploads.length });
   };
 
   if (!canStartUpload) return null;
