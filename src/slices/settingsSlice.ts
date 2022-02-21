@@ -53,7 +53,13 @@ export const selectSettings = (state: RootState) => state.settings.data;
 export const selectKeysOfChangedSettings = (state: RootState) =>
   state.settings.changedSettings;
 
-export const selectLang = ({ settings }: RootState) => settings.data.lang;
+export const selectLang = ({ settings }: RootState) => {
+  const navigatorLangTag = navigator.language;
+  const navigatorLang = navigatorLangTag.split('-')[0];
+  const { lang } = settings.data;
+  const langTag = lang === navigatorLang ? navigatorLangTag : lang;
+  return { lang, langTag };
+};
 
 export const selectToolbarPosition = ({ settings }: RootState) =>
   settings.data.toolbarPosition;

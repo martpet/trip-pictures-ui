@@ -12,9 +12,9 @@ type Props = {
 };
 
 function Intl({ children }: Props) {
-  const lang = useSelector(selectLang);
-  const { data } = useGetTranslationsQuery(lang);
-  const hasData = data && Object.keys(data).length;
+  const { lang, langTag } = useSelector(selectLang);
+  const { data: messages } = useGetTranslationsQuery(lang);
+  const hasMessages = messages && Object.keys(messages).length;
 
   const handleError = ({ message }: Error) => {
     if (import.meta.env.DEV) {
@@ -27,8 +27,8 @@ function Intl({ children }: Props) {
   }, [lang]);
 
   return (
-    <IntlProvider locale={lang} messages={data} onError={handleError}>
-      {hasData ? children : <LoadingOverlay />}
+    <IntlProvider locale={langTag} messages={messages} onError={handleError}>
+      {hasMessages ? children : <LoadingOverlay />}
     </IntlProvider>
   );
 }

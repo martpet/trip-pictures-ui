@@ -1,6 +1,5 @@
 import { Flex, Item, Picker } from '@adobe/react-spectrum';
 import { Key } from 'react';
-import { useIntl } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Spinner } from '~/components';
@@ -11,10 +10,9 @@ import { languageSelected, selectLang } from '~/slices';
 import { Lang } from '~/types';
 
 export function LanguageSettings() {
-  const currentLang = useSelector(selectLang);
+  const { lang: currentLang } = useSelector(selectLang);
   const { isFetching } = translationsEndpoints.getTranslations.useQueryState(currentLang);
   const dispatch = useDispatch();
-  const { formatDisplayName } = useIntl();
   const headingId = 'settings.language.chooseLanguage';
 
   const handleChange = (lang: Key) => {
@@ -23,10 +21,10 @@ export function LanguageSettings() {
 
   const pickerItems = langs.map((lang) => ({
     key: lang,
-    label: formatDisplayName(lang, { type: 'language', style: 'long' }) as string,
+    label: new Intl.DisplayNames([lang], { type: 'language' }).of(lang),
   }));
 
-  pickerItems.sort((a, b) => a.label.localeCompare(b.label, currentLang));
+  pickerItems.sort();
 
   return (
     <SettingsSection headingKey={headingId}>
