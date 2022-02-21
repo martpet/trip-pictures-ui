@@ -1,6 +1,5 @@
 export * from './ColorSettings';
 export * from './LanguageSettings';
-export * from './Settings';
-export { SettingsDialog as default } from './SettingsDialog';
+export { Settings as default } from './Settings';
 export * from './SettingsSection';
 export * from './ToolbarSettings';

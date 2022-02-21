@@ -3,7 +3,7 @@ import { Divider, Flex } from '@adobe/react-spectrum';
 import {
   Logo,
   ProfileDialogTrigger,
-  SettingsDialogTrigger,
+  SettingsPopover,
   UploadDialogTrigger,
 } from '~/components';
 import { sideSpace } from '~/consts';
@@ -27,7 +27,7 @@ export function Toolbar() {
         <Logo />
         <Flex direction={contentDirection} gap="size-85">
           <UploadDialogTrigger />
-          <SettingsDialogTrigger />
+          <SettingsPopover />
           <ProfileDialogTrigger />
         </Flex>
       </Flex>
