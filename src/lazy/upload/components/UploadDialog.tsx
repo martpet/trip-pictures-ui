@@ -7,7 +7,6 @@ import {
   DialogContent,
   DialogHeader,
   UploadProvider,
-  useCloseOnEscapeKey,
 } from '~/lazy/upload';
 
 type Props = {
@@ -16,8 +15,6 @@ type Props = {
 };
 
 export function UploadDialog({ isOpen, setOpen }: Props) {
-  useCloseOnEscapeKey();
-
   return (
     <UploadProvider isDialogOpen={isOpen} setDialogOpen={setOpen}>
       <Dialog>

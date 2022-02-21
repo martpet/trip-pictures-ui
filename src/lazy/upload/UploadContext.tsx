@@ -54,7 +54,6 @@ export function UploadProvider({ children, isDialogOpen, setDialogOpen }: Provid
     setDialogOpen,
     setShowConfirmClose,
   });
-
   const contextValue = useMemo(
     () => ({
       uploads,
