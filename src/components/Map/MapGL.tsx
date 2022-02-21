@@ -35,6 +35,8 @@ export function MapGL({ children }: Props) {
     storeViewport();
   }, [debouncedViewport]);
 
+  if (!colorScheme) return null;
+
   return (
     <ReactMapGL
       {...viewport}
