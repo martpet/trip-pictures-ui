@@ -1,9 +1,9 @@
 import { FormEventHandler } from 'react';
 
-import { useGeneratePhotoUploadUrlsMutation } from '~/services';
+import { useCreatePresignedPhotoUploadUrlsMutation } from '~/services';
 
 export function Upload() {
-  const [generateUploadUrls] = useGeneratePhotoUploadUrlsMutation();
+  const [generateUploadUrls] = useCreatePresignedPhotoUploadUrlsMutation();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();

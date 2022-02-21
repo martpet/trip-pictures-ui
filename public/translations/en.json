@@ -38,7 +38,7 @@
   "upload.error.fileTypeWrong": "The file type is not {acceptedFileTypesFormattedList}",
   "upload.error.fileTypeWrong.description": "This website works only with {acceptedFileTypesFormattedList} files that contain GPS coordinates",
   "upload.error.missingCoords": "GPS coordinates are missing",
-  "upload.error.missingCoords.description": "The geolocation data is usually written to the file by the device that took the photo. The data could be missing if this isn't the original file.",
+  "upload.error.missingCoords.description": "The GPS data is usually written to the file by the device that took the photo. It could be missing if the file is not original.",
   "upload.error.missingDate": "Date is missing",
   "upload.error.missingDate.description": "The date is automatically added by the device which took the photo. It could be missing if the file is not original",
   "upload.heading": "Upload photos",

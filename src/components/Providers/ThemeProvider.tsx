@@ -10,14 +10,14 @@ type Props = {
 };
 
 export function ThemeProvider({ children }: Props) {
-  const lang = useSelector(selectLang);
+  const { langTag } = useSelector(selectLang);
   const colorScheme = useSelector(selectColorScheme);
 
   return (
     <Provider
       colorScheme={colorScheme}
       theme={defaultTheme}
-      locale={lang}
+      locale={langTag}
       breakpoints={breakpoints}
     >
       {children}

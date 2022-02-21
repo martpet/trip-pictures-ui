@@ -13,7 +13,7 @@ export * from './components/PreviewImage';
 export * from './components/PreviewImageActions';
 export * from './components/PreviewImageError';
 export * from './components/PreviewImageHeader';
-export * from './components/PreviewImageInfo';
+export * from './components/PreviewImageDate';
 export * from './components/PreviewImageOverlay';
 export { UploadDialog as default } from './components/UploadDialog';
 export * from './const/acceptedFileTypes';
