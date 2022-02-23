@@ -9,11 +9,11 @@
   "page.notFound.heading": "Грешка 404: Страницата не е открита",
   "settings.color.scheme.auto": "автоматична",
   "settings.color.scheme.dark": "тъмна",
-  "settings.color.scheme.heading": "Цветова схема",
+  "settings.color.scheme.heading": "Тема",
   "settings.color.scheme.light": "светла",
   "settings.heading": "Настройки",
   "settings.language.chooseLanguage": "Избор на език",
-  "settings.tab.color": "Цвят",
+  "settings.tab.color": "Облик",
   "settings.tab.language": "Език",
   "settings.tab.toolbar": "Лента с инструменти",
   "settings.toolbar.disabled": "Настройките на лентата с инструменти не се прилагат на малки екрани.",
@@ -45,5 +45,5 @@
   "upload.previewAction.remove": "Премахни",
   "upload.previewAction.rotate": "Завърти",
   "upload.previewStatus.allInvalid": "{count, plural, =1 {Снимката не може да бъде публикувана} other {Снимките не могат да бъдат публикувани}}.",
-  "upload.previewStatus.someInvalid": "{invalidCount} от общо {totalCount} снимки {invalidCount, plural, =1 {не може бъде публикувана} other {не могат да бъдат публикувани}}."
+  "upload.previewStatus.someInvalid": "{invalidCount} от общо {totalCount} снимки {invalidCount, plural, =1 {няма да бъде публикувана} other {няма да бъдат публикувани}}."
 }

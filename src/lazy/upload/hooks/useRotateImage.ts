@@ -3,18 +3,17 @@ import {
   readOrientationCode,
   updateOrientationCode,
 } from '@ginpei/exif-orientation';
-import { Dispatch, SetStateAction } from 'react';
 
 import { Upload } from '~/lazy/upload';
 
 type Arg = {
   uploads: Upload[];
-  setUploads: Dispatch<SetStateAction<Upload[]>>;
+  editUpload(id: string, patch: Partial<Upload>): void;
 };
 
-export const useRotateImage = ({ uploads, setUploads }: Arg) => {
-  return async (index: number) => {
-    const upload = uploads[index];
+export const useRotateImage = ({ uploads, editUpload }: Arg) => {
+  return async (uploadId: string) => {
+    const upload = uploads.find(({ id }) => id === uploadId)!;
     const { file } = upload;
     const buffer = await file.arrayBuffer();
     const orientation = await readOrientationCode(buffer);
@@ -24,18 +23,15 @@ export const useRotateImage = ({ uploads, setUploads }: Arg) => {
       type: file.type,
       lastModified: file.lastModified,
     });
-    const newUpload = { ...upload, file: newFile };
-    const updatedUploads = [...uploads];
-    updatedUploads.splice(index, 1, newUpload);
-    setUploads(updatedUploads);
+    editUpload(uploadId, { file: newFile });
   };
 };
 
 function getNextOrientation(currentOrientation: OrientationCode) {
   const orientations = [
-    OrientationCode.deg90,
-    OrientationCode.deg180,
     OrientationCode.deg270,
+    OrientationCode.deg180,
+    OrientationCode.deg90,
     OrientationCode.original,
   ];
   const currentIndex = orientations.indexOf(currentOrientation);
