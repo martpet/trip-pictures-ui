@@ -16,6 +16,7 @@ export const useStartUpload = () => {
       const { url, fields } = uploadUrls[0];
       const formData = new FormData();
       const request = new XMLHttpRequest();
+
       Object.entries(fields).forEach((field) => formData.append(...field));
       formData.append('file', upload.file);
       request.upload.addEventListener('load', () => {
@@ -23,6 +24,7 @@ export const useStartUpload = () => {
       });
       request.open('POST', url);
       request.send(formData);
+      editUpload(upload.id, { isStarted: true });
     });
   };
 };

@@ -25,6 +25,8 @@ type UploadContextType = {
   editUpload(id: string, patch: Partial<Upload>): void;
   rotateImage(uploadId: string): Promise<void>;
   canStartUpload: boolean;
+  isUploading: boolean;
+  isUploadComplete: boolean;
   openDialog(): void;
   closeDialog(forceClose?: boolean): void;
   isDialogOpen: boolean;
@@ -42,17 +44,31 @@ type ProviderProps = {
 
 export function UploadProvider({ children, isDialogOpen, setDialogOpen }: ProviderProps) {
   const [uploads, setUploads] = useState<Upload[]>([]);
-  const [showConfirmClose, setShowConfirmClose] = useState(false);
   const { validUploads, invalidUploads } = useValidUploads({ uploads });
-  const { addUploads, removeUpload, editUpload } = useUploads({ uploads, setUploads });
   const canStartUpload = useCanStartUpload({ uploads });
-  const rotateImage = useRotateImage({ uploads, editUpload });
-  const { openDialog, closeDialog } = useOpenCloseDialog({
+  const [showConfirmClose, setShowConfirmClose] = useState(false);
+
+  const isUploadComplete =
+    Boolean(validUploads.length) && validUploads.every(({ isComplete }) => isComplete);
+
+  const isUploading = !isUploadComplete && uploads.some((upload) => upload.isStarted);
+
+  const { addUploads, removeUpload, editUpload } = useUploads({
     uploads,
     setUploads,
+    isUploading,
+  });
+  const rotateImage = useRotateImage({ uploads, editUpload });
+
+  const { openDialog, closeDialog } = useOpenCloseDialog({
+    setUploads,
+    validUploads,
+    isUploading,
+    isUploadComplete,
     setDialogOpen,
     setShowConfirmClose,
   });
+
   const contextValue = useMemo(
     () => ({
       uploads,
@@ -63,13 +79,15 @@ export function UploadProvider({ children, isDialogOpen, setDialogOpen }: Provid
       editUpload,
       rotateImage,
       canStartUpload,
+      isUploading,
+      isUploadComplete,
       isDialogOpen,
       openDialog,
       closeDialog,
       showConfirmClose,
       setShowConfirmClose,
     }),
-    [uploads, isDialogOpen, showConfirmClose]
+    [uploads, isDialogOpen, isUploading, showConfirmClose]
   );
 
   return <UploadContext.Provider value={contextValue}>{children}</UploadContext.Provider>;

@@ -12,12 +12,14 @@ import { loadingFinished, loadingStarted } from '~/slices';
 type Arg = {
   uploads: Upload[];
   setUploads: Dispatch<SetStateAction<Upload[]>>;
+  isUploading: boolean;
 };
 
-export const useUploads = ({ uploads, setUploads }: Arg) => {
+export const useUploads = ({ uploads, setUploads, isUploading }: Arg) => {
   const dispatch = useDispatch();
 
   const addUploads = async (fileList: FileList) => {
+    if (isUploading) return;
     const files = Array.from(fileList);
 
     let newUploads = await Promise.all(
@@ -28,6 +30,7 @@ export const useUploads = ({ uploads, setUploads }: Arg) => {
           exif: {},
           errors: [],
           canRotate: true,
+          isUploading: false,
           isComplete: false,
         };
         if (acceptedFileTypes.includes(file.type)) {

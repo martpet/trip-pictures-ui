@@ -1,24 +1,28 @@
 import { Dispatch, SetStateAction } from 'react';
 
-import { Upload, useCanStartUpload } from '~/lazy/upload';
+import { Upload } from '~/lazy/upload';
 
 type Arg = {
-  uploads: Upload[];
   setUploads: Dispatch<SetStateAction<Upload[]>>;
+  validUploads: Upload[];
+  isUploading: boolean;
+  isUploadComplete: boolean;
   setDialogOpen: Dispatch<SetStateAction<boolean>>;
   setShowConfirmClose: Dispatch<SetStateAction<boolean>>;
 };
 
 export const useOpenCloseDialog = ({
-  uploads,
   setUploads,
+  isUploading,
+  isUploadComplete,
+  validUploads,
   setDialogOpen,
   setShowConfirmClose,
 }: Arg) => {
-  const canStartUpload = useCanStartUpload({ uploads });
-
   const closeDialog = (forceClose?: boolean) => {
-    if (canStartUpload && !forceClose) {
+    if (isUploading) return;
+
+    if (!isUploadComplete && validUploads.length && !forceClose) {
       setShowConfirmClose(true);
     } else {
       setShowConfirmClose(false);

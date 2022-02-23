@@ -7,10 +7,13 @@ type Props = {
 };
 
 export function DropZone({ children }: Props) {
-  const { uploads, addUploads } = useContext(UploadContext);
+  const { uploads, addUploads, isUploading } = useContext(UploadContext);
   const [isOnTarget, setOnTarget] = useState(false);
 
   const handleDragOver: DragEventHandler<HTMLDivElement> = (event) => {
+    if (isUploading) {
+      return;
+    }
     if (!isOnTarget) {
       setOnTarget(true);
       document.documentElement.style.cursor = '';
@@ -19,12 +22,15 @@ export function DropZone({ children }: Props) {
     event.preventDefault();
   };
 
-  const handleDragLeave: DragEventHandler<HTMLDivElement> = () => {
+  const handleDrop: DragEventHandler<HTMLDivElement> = ({ dataTransfer }) => {
+    if (isUploading) {
+      return;
+    }
+    addUploads(dataTransfer.files);
     setOnTarget(false);
   };
 
-  const handleDrop: DragEventHandler<HTMLDivElement> = ({ dataTransfer }) => {
-    addUploads(dataTransfer.files);
+  const handleDragLeave: DragEventHandler<HTMLDivElement> = () => {
     setOnTarget(false);
   };
 
