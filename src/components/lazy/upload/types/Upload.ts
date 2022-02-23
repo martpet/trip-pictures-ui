@@ -1,11 +1,12 @@
-import { UploadError, UploadExifData } from '~/components/lazy/upload';
+import { UploadExifData, UploadValidityError } from '~/components/lazy/upload';
 
 export type Upload = {
   id: string;
   file: File;
   exif: UploadExifData;
-  errors: UploadError[];
+  validityErrors: UploadValidityError[];
   canRotate: boolean;
   isStarted: boolean;
   isComplete: boolean;
+  isFailed: boolean;
 };

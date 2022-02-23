@@ -28,15 +28,16 @@ export const useUploads = ({ uploads, setUploads, isUploading }: Arg) => {
           id: `${+new Date()}-${index}`,
           file,
           exif: {},
-          errors: [],
+          validityErrors: [],
           canRotate: true,
           isStarted: false,
           isComplete: false,
+          isFailed: false,
         };
         if (acceptedFileTypes.includes(file.type)) {
           upload = await addExifData({ upload });
         } else {
-          upload.errors.push('fileTypeWrong');
+          upload.validityErrors.push('fileTypeWrong');
         }
         if (file.type === 'image/heic') {
           dispatch(loadingStarted());
@@ -45,7 +46,7 @@ export const useUploads = ({ uploads, setUploads, isUploading }: Arg) => {
           upload.canRotate = false;
           dispatch(loadingFinished());
         }
-        if (upload.errors.length) {
+        if (upload.validityErrors.length) {
           upload.canRotate = false;
         }
         return upload;

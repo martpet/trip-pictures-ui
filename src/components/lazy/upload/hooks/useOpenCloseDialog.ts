@@ -6,33 +6,33 @@ type Arg = {
   setUploads: Dispatch<SetStateAction<Upload[]>>;
   validUploads: Upload[];
   isUploading: boolean;
-  isUploadComplete: boolean;
+  isUploadDone: boolean;
   setDialogOpen: Dispatch<SetStateAction<boolean>>;
-  setShowConfirmClose: Dispatch<SetStateAction<boolean>>;
+  setConfirmCloseUploadDialogOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 export const useOpenCloseDialog = ({
   setUploads,
   isUploading,
-  isUploadComplete,
+  isUploadDone,
   validUploads,
   setDialogOpen,
-  setShowConfirmClose,
+  setConfirmCloseUploadDialogOpen,
 }: Arg) => {
-  const closeDialog = (forceClose?: boolean) => {
+  const closeUploadDialog = (forceClose?: boolean) => {
     if (isUploading) return;
 
-    if (!isUploadComplete && validUploads.length && !forceClose) {
-      setShowConfirmClose(true);
+    if (!isUploadDone && validUploads.length && !forceClose) {
+      setConfirmCloseUploadDialogOpen(true);
     } else {
-      setShowConfirmClose(false);
+      setConfirmCloseUploadDialogOpen(false);
       setDialogOpen(false);
       setUploads([]);
     }
   };
 
   return {
-    openDialog: () => setDialogOpen(true),
-    closeDialog,
+    openUploadDialog: () => setDialogOpen(true),
+    closeUploadDialog,
   };
 };

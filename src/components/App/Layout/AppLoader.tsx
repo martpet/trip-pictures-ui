@@ -7,7 +7,7 @@ import { selectIsAppLoading } from '~/slices';
 
 export function AppLoader() {
   const isLoading = useSelector(selectIsAppLoading);
-  const containerNode = document.getElementById('loader')!;
+  const portalNode = document.getElementById('loader')!;
 
   if (!isLoading) return null;
 
@@ -24,5 +24,5 @@ export function AppLoader() {
     </View>
   );
 
-  return createPortal(<ThemeProvider>{element}</ThemeProvider>, containerNode);
+  return createPortal(<ThemeProvider>{element}</ThemeProvider>, portalNode);
 }

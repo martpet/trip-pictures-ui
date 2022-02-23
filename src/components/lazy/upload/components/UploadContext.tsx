@@ -6,32 +6,39 @@ import {
   useMemo,
   useState,
 } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import {
   Upload,
   useCanStartUpload,
+  useFilteredUploads,
   useOpenCloseDialog,
   useRotateImage,
   useUploads,
-  useValidUploads,
 } from '~/components/lazy/upload';
+import { paths } from '~/consts';
 
 type UploadContextType = {
   uploads: Upload[];
   validUploads: Upload[];
   invalidUploads: Upload[];
+  completedUploads: Upload[];
+  failedUploads: Upload[];
   addUploads(files: FileList): void;
   removeUpload(id: string): void;
   editUpload(id: string, patch: Partial<Upload>): void;
   rotateImage(uploadId: string): Promise<void>;
   canStartUpload: boolean;
   isUploading: boolean;
-  isUploadComplete: boolean;
-  openDialog(): void;
-  closeDialog(forceClose?: boolean): void;
+  isUploadDone: boolean;
+  openUploadDialog(): void;
+  closeUploadDialog(forceClose?: boolean): void;
   isDialogOpen: boolean;
-  showConfirmClose: boolean;
-  setShowConfirmClose: Dispatch<SetStateAction<boolean>>;
+  isConfirmCloseUploadDialogOpen: boolean;
+  setConfirmCloseUploadDialogOpen: Dispatch<SetStateAction<boolean>>;
+  isFailedUploadsDialogOpen: boolean;
+  setFailedUploadsDialogOpen: Dispatch<SetStateAction<boolean>>;
+  showPhotosOnMap(): void;
 };
 
 export const UploadContext = createContext({} as UploadContextType);
@@ -43,51 +50,69 @@ type ProviderProps = {
 };
 
 export function UploadProvider({ children, isDialogOpen, setDialogOpen }: ProviderProps) {
+  const navigate = useNavigate();
+
   const [uploads, setUploads] = useState<Upload[]>([]);
-  const { validUploads, invalidUploads } = useValidUploads({ uploads });
-  const canStartUpload = useCanStartUpload({ uploads });
-  const [showConfirmClose, setShowConfirmClose] = useState(false);
-
-  const isUploadComplete =
-    Boolean(validUploads.length) && validUploads.every(({ isComplete }) => isComplete);
-
-  const isUploading = !isUploadComplete && uploads.some((upload) => upload.isStarted);
-
+  const [isConfirmCloseUploadDialogOpen, setConfirmCloseUploadDialogOpen] =
+    useState(false);
+  const [isFailedUploadsDialogOpen, setFailedUploadsDialogOpen] = useState(false);
+  const { validUploads, invalidUploads, completedUploads, failedUploads } =
+    useFilteredUploads({ uploads });
+  const canStartUpload = useCanStartUpload({ validUploads });
+  const isUploadDone =
+    Boolean(validUploads.length) &&
+    validUploads.every(({ isComplete, isFailed }: Upload) => isComplete || isFailed);
+  const isUploading = !isUploadDone && uploads.some((upload) => upload.isStarted);
   const { addUploads, removeUpload, editUpload } = useUploads({
     uploads,
     setUploads,
     isUploading,
   });
   const rotateImage = useRotateImage({ uploads, editUpload });
-
-  const { openDialog, closeDialog } = useOpenCloseDialog({
+  const { openUploadDialog, closeUploadDialog } = useOpenCloseDialog({
     setUploads,
     validUploads,
     isUploading,
-    isUploadComplete,
+    isUploadDone,
     setDialogOpen,
-    setShowConfirmClose,
+    setConfirmCloseUploadDialogOpen,
   });
+
+  const showPhotosOnMap = () => {
+    closeUploadDialog();
+    navigate(paths.home);
+  };
 
   const contextValue = useMemo(
     () => ({
       uploads,
       validUploads,
       invalidUploads,
+      completedUploads,
+      failedUploads,
       addUploads,
       removeUpload,
       editUpload,
       rotateImage,
       canStartUpload,
       isUploading,
-      isUploadComplete,
+      isUploadDone,
       isDialogOpen,
-      openDialog,
-      closeDialog,
-      showConfirmClose,
-      setShowConfirmClose,
+      openUploadDialog,
+      closeUploadDialog,
+      isConfirmCloseUploadDialogOpen,
+      setConfirmCloseUploadDialogOpen,
+      isFailedUploadsDialogOpen,
+      setFailedUploadsDialogOpen,
+      showPhotosOnMap,
     }),
-    [uploads, isDialogOpen, isUploading, showConfirmClose]
+    [
+      uploads,
+      isUploading,
+      isDialogOpen,
+      isConfirmCloseUploadDialogOpen,
+      isFailedUploadsDialogOpen,
+    ]
   );
 
   return <UploadContext.Provider value={contextValue}>{children}</UploadContext.Provider>;

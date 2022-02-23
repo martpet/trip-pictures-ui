@@ -6,11 +6,11 @@ type Props = {
   upload: Upload;
 };
 
-export function PreviewImageDate({ upload }: Props) {
-  const hasError = Boolean(upload.errors.length);
+export function PreviewItemDate({ upload }: Props) {
+  const isValid = upload.validityErrors.length === 0;
   const date = new Date(upload.exif.dateOriginal!);
 
-  if (hasError) return null;
+  if (!isValid) return null;
 
   return (
     <>

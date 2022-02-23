@@ -11,7 +11,7 @@ type Props = {
   upload: Upload;
 };
 
-export function PreviewImageActions({ upload }: Props) {
+export function PreviewItemActions({ upload }: Props) {
   const { removeUpload, rotateImage } = useContext(UploadContext);
   const { formatMessage } = useIntl();
 

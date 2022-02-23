@@ -1,8 +1,7 @@
 import { Grid, View } from '@adobe/react-spectrum';
 import { ReactNode } from 'react';
-import { Toaster } from 'react-hot-toast';
 
-import { AppLoader, Toolbar } from '~/components';
+import { AppLoader, Toaster, Toolbar } from '~/components';
 import { barArea, mainArea } from '~/consts';
 import { useIsTopToolbar } from '~/hooks';
 
@@ -12,9 +11,7 @@ type Props = {
 
 export function Layout({ children }: Props) {
   const topBar = useIsTopToolbar();
-  const barSize = topBar ? '58px' : '52px';
-  const mainAreaSize = '1fr';
-  const contenSizes = [barSize, mainAreaSize];
+  const contentSizes = [topBar ? '58px' : '52px', '1fr'];
 
   return (
     <>
@@ -24,8 +21,8 @@ export function Layout({ children }: Props) {
       <Grid
         height="100vh"
         areas={topBar ? [barArea, mainArea] : [`${barArea} ${mainArea}`]}
-        columns={topBar ? ['1fr'] : contenSizes}
-        rows={topBar ? contenSizes : ['1fr']}
+        columns={topBar ? ['1fr'] : contentSizes}
+        rows={topBar ? contentSizes : ['1fr']}
       >
         <View gridArea={barArea} elementType="header">
           <Toolbar />

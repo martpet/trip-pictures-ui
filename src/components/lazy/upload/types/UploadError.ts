@@ -1,4 +1,4 @@
-export type UploadError =
+export type UploadValidityError =
   | 'fileTypeWrong'
   | 'exifUnreadable'
   | 'missingCoords'

@@ -27,10 +27,10 @@
   "upload.button.addFiles": "Избери {count, plural, =0 {} other {още}} файлове",
   "upload.button.cancel": "Отказ",
   "upload.button.start": "Публикувай {count} {count, plural, =1 {снимка} other {снимки}}",
-  "upload.confirmCancel.cancelLabel": "Не, оставам",
-  "upload.confirmCancel.content": "Файловете не са качени още.",
-  "upload.confirmCancel.primaryActionLabel": "Да, излизам",
-  "upload.confirmCancel.title": "Сигурен ли си?",
+  "upload.confirmCloseUploadDialog.cancelLabel": "Не, оставам",
+  "upload.confirmCloseUploadDialog.content": "Файловете не са качени още.",
+  "upload.confirmCloseUploadDialog.primaryAction": "Да, излизам",
+  "upload.confirmCloseUploadDialog.title": "Сигурен ли си?",
   "upload.dropZone.heading": "Премести файлове тук",
   "upload.dropZone.subHeading": "или избери от устройството ти",
   "upload.error.exifUnreadable": "Метаданните не могат да бъдат разчетени",
@@ -45,5 +45,9 @@
   "upload.previewAction.remove": "Премахни",
   "upload.previewAction.rotate": "Завърти",
   "upload.previewStatus.allInvalid": "{count, plural, =1 {Снимката не може да бъде публикувана} other {Снимките не могат да бъдат публикувани}}.",
-  "upload.previewStatus.someInvalid": "{invalidCount} от общо {totalCount} снимки {invalidCount, plural, =1 {няма да бъде публикувана} other {няма да бъдат публикувани}}."
+  "upload.previewStatus.someInvalid": "{invalidCount} от общо {totalCount} снимки {invalidCount, plural, =1 {няма да бъде публикувана} other {няма да бъдат публикувани}}.",
+  "upload.toast.completed": "{count} {count, plural, one {снимка беше качена} other {снимки бяха качени}}",
+  "upload.failedUploadsDialog.title": "{count} {count, plural, one {снимка не можа да се качи} other {снимки не успяха да се качат}}",
+  "upload.failedUploadsDialog.content": "Имаше някакъв проблем с {count, plural, one {тази снимка} other {тези снимки}}, може да опиташ отново.",
+  "upload.failedUploadsDialog.primaryAction": "Добре"
 }
