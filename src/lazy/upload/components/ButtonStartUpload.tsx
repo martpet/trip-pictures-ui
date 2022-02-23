@@ -5,13 +5,13 @@ import { FormattedMessage } from 'react-intl';
 import { UploadContext, useStartUpload } from '~/lazy/upload';
 
 export function ButtonStartUpload() {
-  const { canStartUpload, validUploads } = useContext(UploadContext);
+  const { canStartUpload, validUploads, isUploading } = useContext(UploadContext);
   const startUpload = useStartUpload();
 
   if (!canStartUpload) return null;
 
   return (
-    <Button variant="cta" autoFocus onPress={startUpload}>
+    <Button variant="cta" autoFocus onPress={startUpload} isDisabled={isUploading}>
       <FormattedMessage
         id="upload.button.start"
         values={{ count: validUploads.length }}

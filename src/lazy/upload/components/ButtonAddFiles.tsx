@@ -13,7 +13,7 @@ export function ButtonAddFiles({
   variant = 'primary',
   ...butonProps
 }: Props) {
-  const { uploads, addUploads } = useContext(UploadContext);
+  const { uploads, addUploads, isUploading } = useContext(UploadContext);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleClickAdd = () => inputRef.current?.click();
@@ -29,6 +29,7 @@ export function ButtonAddFiles({
         variant={variant}
         onPress={handleClickAdd}
         isQuiet={isQuiet}
+        isDisabled={isUploading}
         {...butonProps}
       >
         <IconAdd />

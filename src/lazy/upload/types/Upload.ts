@@ -6,5 +6,6 @@ export type Upload = {
   exif: UploadExifData;
   errors: UploadError[];
   canRotate: boolean;
+  isStarted: boolean;
   isComplete: boolean;
 };

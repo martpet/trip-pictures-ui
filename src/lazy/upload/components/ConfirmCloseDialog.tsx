@@ -16,7 +16,7 @@ export function ConfirmCloseDialog() {
     <DialogContainer onDismiss={handleDismiss}>
       {showConfirmClose && (
         <AlertDialog
-          variant="destructive"
+          variant="confirmation"
           title={formatMessage({ id: 'upload.confirmCancel.title' })}
           primaryActionLabel={formatMessage({
             id: 'upload.confirmCancel.primaryActionLabel',
