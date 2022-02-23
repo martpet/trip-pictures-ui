@@ -6,7 +6,7 @@ import { useIntl } from 'react-intl';
 import { Loader } from '~/components';
 import { useIsMobile } from '~/hooks';
 
-const uploadDialogPromise = import('~/lazy/upload');
+const uploadDialogPromise = import('~/components/lazy/upload');
 const UploadDialog = lazy(() => uploadDialogPromise);
 
 export function UploadDialogTrigger() {
