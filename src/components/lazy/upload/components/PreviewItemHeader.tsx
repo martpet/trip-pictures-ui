@@ -2,9 +2,9 @@ import { Flex, View } from '@adobe/react-spectrum';
 import { useContext } from 'react';
 
 import {
-  PreviewImageActions,
-  PreviewImageDate,
-  PreviewImageError,
+  PreviewItemActions,
+  PreviewItemDate,
+  PreviewItemError,
   Upload,
   UploadContext,
 } from '~/components/lazy/upload';
@@ -13,7 +13,7 @@ type Props = {
   upload: Upload;
 };
 
-export function PreviewImageHeader({ upload }: Props) {
+export function PreviewItemHeader({ upload }: Props) {
   const { isUploading } = useContext(UploadContext);
 
   return (
@@ -26,10 +26,10 @@ export function PreviewImageHeader({ upload }: Props) {
       <Flex height="100%" alignItems="center">
         {!isUploading && (
           <>
-            <PreviewImageDate upload={upload} />
-            <PreviewImageError upload={upload} />
+            <PreviewItemDate upload={upload} />
+            <PreviewItemError upload={upload} />
             <View marginStart="auto">
-              <PreviewImageActions upload={upload} />
+              <PreviewItemActions upload={upload} />
             </View>
           </>
         )}

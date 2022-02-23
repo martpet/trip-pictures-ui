@@ -18,6 +18,7 @@ export * from './PageContainer';
 export * from './Providers/IntlProvider';
 export * from './Providers/ThemeProvider';
 export * from './Spinner';
+export * from './Toaster';
 export * from './Toolbar/LoginMenu';
 export * from './Toolbar/Logo';
 export * from './Toolbar/ProfileDialogTrigger';

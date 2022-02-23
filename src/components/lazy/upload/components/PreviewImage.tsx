@@ -1,11 +1,7 @@
 import { View } from '@adobe/react-spectrum';
 import { DragEventHandler, ReactEventHandler } from 'react';
 
-import {
-  PreviewImageErrorOverlay,
-  PreviewImageHeader,
-  Upload,
-} from '~/components/lazy/upload';
+import { PreviewImageErrorOverlay, Upload } from '~/components/lazy/upload';
 
 type Props = {
   upload: Upload;
@@ -22,19 +18,17 @@ export function PreviewImage({ upload }: Props) {
     event.stopPropagation();
     event.preventDefault();
   };
+
   return (
-    <View>
-      <PreviewImageHeader upload={upload} />
-      <View position="relative">
-        <PreviewImageErrorOverlay upload={upload} />
-        <img
-          alt={file.name}
-          src={URL.createObjectURL(file)}
-          onLoad={handleImageLoad}
-          onDragStart={preventDrag}
-          style={{ width: '100%', display: 'block' }}
-        />
-      </View>
+    <View position="relative">
+      <PreviewImageErrorOverlay upload={upload} />
+      <img
+        alt={file.name}
+        src={URL.createObjectURL(file)}
+        onLoad={handleImageLoad}
+        onDragStart={preventDrag}
+        style={{ width: '100%', display: 'block' }}
+      />
     </View>
   );
 }

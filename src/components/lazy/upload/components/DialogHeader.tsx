@@ -7,14 +7,17 @@ import { useIsMobile } from '~/hooks';
 
 export function DialogHeader() {
   const isMobile = useIsMobile();
-  const { uploads } = useContext(UploadContext);
+  const { uploads, isUploading } = useContext(UploadContext);
 
   return (
     <>
       <Heading>
         <FormattedMessage id="upload.heading" />
       </Heading>
-      <Header>{!isMobile && !!uploads.length && <ButtonAddFiles />}</Header>
+
+      <Header>
+        {!isMobile && !!uploads.length && !isUploading && <ButtonAddFiles />}
+      </Header>
     </>
   );
 }

@@ -14,7 +14,7 @@ export const addExifData = async ({ upload }: Arg) => {
   try {
     tags = ExifReader.load(arrayBuffer, { expanded: true });
   } catch (e) {
-    upload.errors.push('exifUnreadable');
+    upload.validityErrors.push('exifUnreadable');
     return upload;
   }
 
@@ -44,11 +44,11 @@ export const addExifData = async ({ upload }: Arg) => {
   const { latitude, longitude, altitude, dateOriginal } = newUpload.exif;
 
   if (!latitude || !longitude || !altitude) {
-    newUpload.errors.push('missingCoords');
+    newUpload.validityErrors.push('missingCoords');
   }
 
   if (!dateOriginal) {
-    newUpload.errors.push('missingDate');
+    newUpload.validityErrors.push('missingDate');
   }
 
   return newUpload;

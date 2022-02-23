@@ -8,7 +8,7 @@ type Props = {
 };
 
 export function PreviewImageErrorOverlay({ upload }: Props) {
-  const hasError = Boolean(upload.errors.length);
+  const hasError = Boolean(upload.validityErrors.length);
 
   if (!hasError) return null;
 

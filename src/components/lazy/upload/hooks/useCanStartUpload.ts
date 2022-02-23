@@ -1,10 +1,9 @@
-import { Upload, useValidUploads } from '~/components/lazy/upload';
+import { Upload } from '~/components/lazy/upload';
 
 type Arg = {
-  uploads: Upload[];
+  validUploads: Upload[];
 };
 
-export const useCanStartUpload = ({ uploads }: Arg) => {
-  const { validUploads } = useValidUploads({ uploads });
+export const useCanStartUpload = ({ validUploads }: Arg) => {
   return Boolean(validUploads.length);
 };

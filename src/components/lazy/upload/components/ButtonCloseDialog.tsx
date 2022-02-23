@@ -5,9 +5,9 @@ import { FormattedMessage } from 'react-intl';
 import { UploadContext } from '~/components/lazy/upload';
 
 export function ButtonCloseDialog() {
-  const { closeDialog, isUploading } = useContext(UploadContext);
+  const { closeUploadDialog, isUploading } = useContext(UploadContext);
 
-  const handlePress = () => closeDialog();
+  const handlePress = () => closeUploadDialog();
 
   if (isUploading) return null;
 

@@ -22,6 +22,9 @@ export const useStartUpload = () => {
       request.upload.addEventListener('load', () => {
         editUpload(upload.id, { isComplete: true });
       });
+      request.upload.addEventListener('error', () => {
+        editUpload(upload.id, { isFailed: true });
+      });
       request.open('POST', url);
       request.send(formData);
       editUpload(upload.id, { isStarted: true });

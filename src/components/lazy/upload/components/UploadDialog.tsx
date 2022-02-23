@@ -2,18 +2,19 @@ import { Dialog, Divider } from '@adobe/react-spectrum';
 import { Dispatch, memo, SetStateAction } from 'react';
 
 import {
-  ConfirmCloseDialog,
+  ConfirmCloseUploadDialog,
   DialogButtons,
   DialogContent,
   DialogHeader,
+  FailedUploadsDialog,
   UploadProvider,
   useCloseOnEscapeKey,
-  useHandleUploadComplete,
+  useHandleUploadDone,
 } from '~/components/lazy/upload';
 
 function UploadDialog() {
   useCloseOnEscapeKey();
-  useHandleUploadComplete();
+  useHandleUploadDone();
 
   return (
     <>
@@ -23,7 +24,9 @@ function UploadDialog() {
         <DialogContent />
         <DialogButtons />
       </Dialog>
-      <ConfirmCloseDialog />
+
+      <ConfirmCloseUploadDialog />
+      <FailedUploadsDialog />
     </>
   );
 }
@@ -35,7 +38,7 @@ type ProviderProps = {
   setOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-function Provider({ isOpen, setOpen }: ProviderProps) {
+function WithProvider({ isOpen, setOpen }: ProviderProps) {
   return (
     <UploadProvider isDialogOpen={isOpen} setDialogOpen={setOpen}>
       <MemoizedComponent />
@@ -43,4 +46,4 @@ function Provider({ isOpen, setOpen }: ProviderProps) {
   );
 }
 
-export { Provider as UploadDialog };
+export { WithProvider as UploadDialog };

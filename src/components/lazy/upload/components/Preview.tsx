@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import {
   ButtonAddFiles,
   PreviewErrorsSummary,
-  PreviewImage,
+  PreviewItem,
   UploadContext,
 } from '~/components/lazy/upload';
 import { useIsMobile } from '~/hooks';
@@ -24,7 +24,7 @@ export function Preview() {
         gap="size-200"
       >
         {uploads.map((upload) => (
-          <PreviewImage key={upload.id} upload={upload} />
+          <PreviewItem key={upload.id} upload={upload} />
         ))}
       </Grid>
     </>
