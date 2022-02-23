@@ -7,16 +7,16 @@ import {
   DialogContent,
   DialogHeader,
   UploadProvider,
+  useCloseOnEscapeKey,
+  useOnComplete,
 } from '~/lazy/upload';
 
-type Props = {
-  isOpen: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>;
-};
+function UploadDialog() {
+  useCloseOnEscapeKey();
+  useOnComplete();
 
-export function UploadDialog({ isOpen, setOpen }: Props) {
   return (
-    <UploadProvider isDialogOpen={isOpen} setDialogOpen={setOpen}>
+    <>
       <Dialog>
         <DialogHeader />
         <Divider />
@@ -24,6 +24,21 @@ export function UploadDialog({ isOpen, setOpen }: Props) {
         <DialogButtons />
       </Dialog>
       <ConfirmCloseDialog />
+    </>
+  );
+}
+
+type ProviderProps = {
+  isOpen: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+};
+
+function Provider({ isOpen, setOpen }: ProviderProps) {
+  return (
+    <UploadProvider isDialogOpen={isOpen} setDialogOpen={setOpen}>
+      <UploadDialog />
     </UploadProvider>
   );
 }
+
+export { Provider as UploadDialog };

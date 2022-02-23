@@ -9,11 +9,10 @@ import {
 
 import {
   Upload,
-  useAddUploads,
   useCanStartUpload,
   useOpenCloseDialog,
-  useRemoveUpload,
   useRotateImage,
+  useUploads,
   useValidUploads,
 } from '~/lazy/upload';
 
@@ -22,9 +21,10 @@ type UploadContextType = {
   validUploads: Upload[];
   invalidUploads: Upload[];
   addUploads(files: FileList): void;
-  removeUpload(i: number): void;
+  removeUpload(id: string): void;
+  editUpload(id: string, patch: Partial<Upload>): void;
+  rotateImage(uploadId: string): Promise<void>;
   canStartUpload: boolean;
-  rotateImage(i: number): Promise<void>;
   openDialog(): void;
   closeDialog(forceClose?: boolean): void;
   isDialogOpen: boolean;
@@ -44,10 +44,9 @@ export function UploadProvider({ children, isDialogOpen, setDialogOpen }: Provid
   const [uploads, setUploads] = useState<Upload[]>([]);
   const [showConfirmClose, setShowConfirmClose] = useState(false);
   const { validUploads, invalidUploads } = useValidUploads({ uploads });
-  const addUploads = useAddUploads({ uploads, setUploads });
-  const removeUpload = useRemoveUpload({ uploads, setUploads });
+  const { addUploads, removeUpload, editUpload } = useUploads({ uploads, setUploads });
   const canStartUpload = useCanStartUpload({ uploads });
-  const rotateImage = useRotateImage({ uploads, setUploads });
+  const rotateImage = useRotateImage({ uploads, editUpload });
   const { openDialog, closeDialog } = useOpenCloseDialog({
     uploads,
     setUploads,
@@ -61,8 +60,9 @@ export function UploadProvider({ children, isDialogOpen, setDialogOpen }: Provid
       invalidUploads,
       addUploads,
       removeUpload,
-      canStartUpload,
+      editUpload,
       rotateImage,
+      canStartUpload,
       isDialogOpen,
       openDialog,
       closeDialog,

@@ -2,12 +2,10 @@ import { Button } from '@adobe/react-spectrum';
 import { useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { UploadContext, useEscapeKeyCloseDialog } from '~/lazy/upload';
+import { UploadContext } from '~/lazy/upload';
 
 export function ButtonCloseDialog() {
   const { closeDialog } = useContext(UploadContext);
-
-  useEscapeKeyCloseDialog();
 
   const handlePress = () => closeDialog();
 

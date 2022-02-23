@@ -14,27 +14,27 @@ type Arg = {
   setUploads: Dispatch<SetStateAction<Upload[]>>;
 };
 
-export const useAddUploads = ({ uploads, setUploads }: Arg) => {
+export const useUploads = ({ uploads, setUploads }: Arg) => {
   const dispatch = useDispatch();
 
-  return async (fileList: FileList) => {
+  const addUploads = async (fileList: FileList) => {
     const files = Array.from(fileList);
 
     let newUploads = await Promise.all(
-      files.map(async (file) => {
+      files.map(async (file, index) => {
         let upload: Upload = {
+          id: `${+new Date()}-${index}`,
           file,
           exif: {},
           errors: [],
           canRotate: true,
+          isComplete: false,
         };
-
         if (acceptedFileTypes.includes(file.type)) {
           upload = await addExifData({ upload });
         } else {
           upload.errors.push('fileTypeWrong');
         }
-
         if (file.type === 'image/heic') {
           dispatch(loadingStarted());
           const { convertHeicToJpeg } = await import('../utils/convertHeicToJpeg');
@@ -42,19 +42,36 @@ export const useAddUploads = ({ uploads, setUploads }: Arg) => {
           upload.canRotate = false;
           dispatch(loadingFinished());
         }
-
         if (upload.errors.length) {
           upload.canRotate = false;
         }
-
         return upload;
       })
     );
-
     newUploads = getNonDuplicateNewUploads({ uploads, newUploads });
-
     if (newUploads.length) {
       setUploads([...newUploads, ...uploads]);
     }
+  };
+
+  const removeUpload = (id: string) => {
+    setUploads((state) => state.filter((upload) => upload.id !== id));
+  };
+
+  const editUpload = (id: string, patch: Partial<Upload>) => {
+    setUploads((state) => {
+      const upload = state.find((item) => item.id === id)!;
+      const uploadIndex = state.indexOf(upload);
+      const newState = [...state];
+      const newUpload = { ...upload, ...patch };
+      newState.splice(uploadIndex, 1, newUpload);
+      return newState;
+    });
+  };
+
+  return {
+    addUploads,
+    removeUpload,
+    editUpload,
   };
 };

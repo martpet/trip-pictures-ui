@@ -1,7 +1,7 @@
 import { Item, Text } from '@adobe/react-spectrum';
 import { ActionMenu } from '@react-spectrum/menu';
 import IconClose from '@spectrum-icons/workflow/CloseCircle';
-import RotateIcon from '@spectrum-icons/workflow/RotateRight';
+import RotateIcon from '@spectrum-icons/workflow/RotateLeftOutline';
 import { Key, ReactElement, useContext } from 'react';
 import { useIntl } from 'react-intl';
 
@@ -12,18 +12,17 @@ type Props = {
 };
 
 export function PreviewImageActions({ upload }: Props) {
-  const { removeUpload, rotateImage, uploads } = useContext(UploadContext);
+  const { removeUpload, rotateImage } = useContext(UploadContext);
   const { formatMessage } = useIntl();
-  const uploadIndex = uploads.indexOf(upload);
 
   const handleAction = (key: Key) => {
-    if (key === 'delete') removeUpload(uploadIndex);
-    if (key === 'rotate') rotateImage(uploadIndex);
+    if (key === 'delete') removeUpload(upload.id);
+    if (key === 'rotate') rotateImage(upload.id);
   };
 
   type Entry = {
     key: Key;
-    text: string;
+    label: string;
     icon: ReactElement;
     skip?: boolean;
   };
@@ -31,12 +30,12 @@ export function PreviewImageActions({ upload }: Props) {
   const items: Entry[] = [
     {
       key: 'delete',
-      text: formatMessage({ id: 'upload.previewAction.remove' }),
+      label: formatMessage({ id: 'upload.previewAction.remove' }),
       icon: <IconClose />,
     },
     {
       key: 'rotate',
-      text: formatMessage({ id: 'upload.previewAction.rotate' }),
+      label: formatMessage({ id: 'upload.previewAction.rotate' }),
       icon: <RotateIcon />,
       skip: !upload.canRotate,
     },
@@ -45,9 +44,9 @@ export function PreviewImageActions({ upload }: Props) {
   return (
     <ActionMenu items={items.filter(({ skip }) => !skip)} onAction={handleAction} isQuiet>
       {(item) => (
-        <Item textValue={(item as Entry).text}>
+        <Item textValue={(item as Entry).label}>
           {(item as Entry).icon}
-          <Text>{(item as Entry).text}</Text>
+          <Text>{(item as Entry).label}</Text>
         </Item>
       )}
     </ActionMenu>
