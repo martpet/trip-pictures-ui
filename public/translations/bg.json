@@ -41,13 +41,15 @@
   "upload.error.missingCoords.description": "GPS координатите обикновено се записват във файла от телефона или апарата, с който е снимано. Възможно е това да не е оригиналният файл’",
   "upload.error.missingDate": "Липсва дата на заснемане",
   "upload.error.missingDate.description": "Датата на заснемане се добавя автоматично от смартфонa или апаратa, с който е направена снимката. Възможно е да липсва, ако това не е оригиналният файл.",
+  "upload.failedUploadsDialog.content": "Имаше някакъв проблем с {count, plural, one {тази снимка} other {тези снимки}}, може да опиташ отново.",
+  "upload.failedUploadsDialog.primaryAction": "Добре",
+  "upload.failedUploadsDialog.title": "{count} {count, plural, one {снимка не можа да се качи} other {снимки не успяха да се качат}}",
   "upload.heading": "Качи снимки",
+  "upload.heicToast": "{count, plural, one {Снимката се конвертира} other {Снимките се конвертират}} към формат JPEG. Използвай бразуър Сафари, за да прескочиш тази стъпка.",
   "upload.previewAction.remove": "Премахни",
   "upload.previewAction.rotate": "Завърти",
   "upload.previewStatus.allInvalid": "{count, plural, =1 {Снимката не може да бъде публикувана} other {Снимките не могат да бъдат публикувани}}.",
   "upload.previewStatus.someInvalid": "{invalidCount} от общо {totalCount} снимки {invalidCount, plural, =1 {няма да бъде публикувана} other {няма да бъдат публикувани}}.",
-  "upload.toast.completed": "{count} {count, plural, one {снимка беше качена} other {снимки бяха качени}}",
-  "upload.failedUploadsDialog.title": "{count} {count, plural, one {снимка не можа да се качи} other {снимки не успяха да се качат}}",
-  "upload.failedUploadsDialog.content": "Имаше някакъв проблем с {count, plural, one {тази снимка} other {тези снимки}}, може да опиташ отново.",
-  "upload.failedUploadsDialog.primaryAction": "Добре"
+  "upload.progressLabel": "Изпращане…",
+  "upload.toast.completed": "{count} {count, plural, one {снимка беше публикувана} other {снимки бяха публикувани}}"
 }

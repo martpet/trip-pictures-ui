@@ -9,12 +9,16 @@ function ToasterWrapper() {
   const element = (
     <Toaster
       toastOptions={{
-        duration: 4000,
+        duration: 5000,
+        style: {
+          background: 'var(--spectrum-semantic-informative-color-background)',
+          color: 'var(--spectrum-global-color-static-white)',
+          borderRadius: 'var(--spectrum-alias-border-radius-regular)',
+        },
         success: {
           style: {
             background: 'var(--spectrum-semantic-positive-color-background)',
             color: 'var(--spectrum-global-color-static-white)',
-            borderRadius: 'var(--spectrum-alias-border-radius-regular)',
           },
           iconTheme: {
             primary: 'var(--spectrum-semantic-positive-color-icon)',
@@ -25,7 +29,6 @@ function ToasterWrapper() {
           style: {
             background: 'var(--spectrum-semantic-negative-color-background)',
             color: 'var(--spectrum-global-color-static-white)',
-            borderRadius: 'var(--spectrum-alias-border-radius-regular)',
           },
           iconTheme: {
             primary: 'var(--spectrum-semantic-negative-color-icon)',

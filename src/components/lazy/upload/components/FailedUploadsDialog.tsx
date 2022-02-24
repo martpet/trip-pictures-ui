@@ -5,19 +5,11 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { PreviewImage, UploadContext } from '~/components/lazy/upload';
 
 export function FailedUploadsDialog() {
-  const {
-    failedUploads,
-    isFailedUploadsDialogOpen,
-    setFailedUploadsDialogOpen,
-    showPhotosOnMap,
-  } = useContext(UploadContext);
   const { formatMessage } = useIntl();
+  const { failedUploads, isFailedUploadsDialogOpen, closeUploadDialog } =
+    useContext(UploadContext);
 
-  const handleConfirm = () => {
-    setFailedUploadsDialogOpen(false);
-    showPhotosOnMap();
-  };
-
+  const handleConfirm = () => closeUploadDialog();
   const handleDismiss = handleConfirm;
 
   return (

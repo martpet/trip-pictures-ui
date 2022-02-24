@@ -12,7 +12,7 @@ export const convertHeicToJpeg = async ({ upload }: Arg) => {
   const newBlob = (await heic2any({
     blob: upload.file,
     toType: 'image/jpeg',
-    quality: 0.8,
+    quality: 0.9,
   })) as Blob;
 
   newUpload.file = new File([newBlob], upload.file.name, {

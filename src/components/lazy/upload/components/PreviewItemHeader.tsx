@@ -5,6 +5,7 @@ import {
   PreviewItemActions,
   PreviewItemDate,
   PreviewItemError,
+  PreviewItemProgress,
   Upload,
   UploadContext,
 } from '~/components/lazy/upload';
@@ -17,12 +18,7 @@ export function PreviewItemHeader({ upload }: Props) {
   const { isUploading } = useContext(UploadContext);
 
   return (
-    <View
-      height="size-500"
-      paddingX="size-100"
-      backgroundColor="gray-50"
-      UNSAFE_style={{ color: 'var(--spectrum-global-color-gray-800)' }}
-    >
+    <View height="size-500" paddingX="size-100" backgroundColor="gray-50">
       <Flex height="100%" alignItems="center">
         {!isUploading && (
           <>
@@ -33,6 +29,7 @@ export function PreviewItemHeader({ upload }: Props) {
             </View>
           </>
         )}
+        {isUploading && <PreviewItemProgress upload={upload} />}
       </Flex>
     </View>
   );

@@ -9,4 +9,5 @@ export type Upload = {
   isStarted: boolean;
   isComplete: boolean;
   isFailed: boolean;
+  progress: number;
 };

@@ -1,57 +1,22 @@
-import {
-  createContext,
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  useMemo,
-  useState,
-} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Dispatch, ReactNode, SetStateAction, useMemo, useState } from 'react';
 
 import {
   Upload,
+  UploadContext,
   useCanStartUpload,
   useFilteredUploads,
   useOpenCloseDialog,
   useRotateImage,
   useUploads,
 } from '~/components/lazy/upload';
-import { paths } from '~/consts';
 
-type UploadContextType = {
-  uploads: Upload[];
-  validUploads: Upload[];
-  invalidUploads: Upload[];
-  completedUploads: Upload[];
-  failedUploads: Upload[];
-  addUploads(files: FileList): void;
-  removeUpload(id: string): void;
-  editUpload(id: string, patch: Partial<Upload>): void;
-  rotateImage(uploadId: string): Promise<void>;
-  canStartUpload: boolean;
-  isUploading: boolean;
-  isUploadDone: boolean;
-  openUploadDialog(): void;
-  closeUploadDialog(forceClose?: boolean): void;
-  isDialogOpen: boolean;
-  isConfirmCloseUploadDialogOpen: boolean;
-  setConfirmCloseUploadDialogOpen: Dispatch<SetStateAction<boolean>>;
-  isFailedUploadsDialogOpen: boolean;
-  setFailedUploadsDialogOpen: Dispatch<SetStateAction<boolean>>;
-  showPhotosOnMap(): void;
-};
-
-export const UploadContext = createContext({} as UploadContextType);
-
-type ProviderProps = {
+type Props = {
   children: ReactNode;
   isDialogOpen: boolean;
   setDialogOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-export function UploadProvider({ children, isDialogOpen, setDialogOpen }: ProviderProps) {
-  const navigate = useNavigate();
-
+export function UploadProvider({ children, isDialogOpen, setDialogOpen }: Props) {
   const [uploads, setUploads] = useState<Upload[]>([]);
   const [isConfirmCloseUploadDialogOpen, setConfirmCloseUploadDialogOpen] =
     useState(false);
@@ -78,12 +43,7 @@ export function UploadProvider({ children, isDialogOpen, setDialogOpen }: Provid
     setConfirmCloseUploadDialogOpen,
   });
 
-  const showPhotosOnMap = () => {
-    closeUploadDialog();
-    navigate(paths.home);
-  };
-
-  const contextValue = useMemo(
+  const context = useMemo(
     () => ({
       uploads,
       validUploads,
@@ -93,7 +53,6 @@ export function UploadProvider({ children, isDialogOpen, setDialogOpen }: Provid
       addUploads,
       removeUpload,
       editUpload,
-      rotateImage,
       canStartUpload,
       isUploading,
       isUploadDone,
@@ -104,16 +63,10 @@ export function UploadProvider({ children, isDialogOpen, setDialogOpen }: Provid
       setConfirmCloseUploadDialogOpen,
       isFailedUploadsDialogOpen,
       setFailedUploadsDialogOpen,
-      showPhotosOnMap,
+      rotateImage,
     }),
-    [
-      uploads,
-      isUploading,
-      isDialogOpen,
-      isConfirmCloseUploadDialogOpen,
-      isFailedUploadsDialogOpen,
-    ]
+    [uploads, isDialogOpen, isConfirmCloseUploadDialogOpen, isFailedUploadsDialogOpen]
   );
 
-  return <UploadContext.Provider value={contextValue}>{children}</UploadContext.Provider>;
+  return <UploadContext.Provider value={context}>{children}</UploadContext.Provider>;
 }

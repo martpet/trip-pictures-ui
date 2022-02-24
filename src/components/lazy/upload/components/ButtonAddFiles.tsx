@@ -16,7 +16,9 @@ export function ButtonAddFiles({
   const { uploads, addUploads, isUploading } = useContext(UploadContext);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleClickAdd = () => inputRef.current?.click();
+  const handlePress = () => {
+    inputRef.current?.click();
+  };
 
   const handleAddedFiles: ChangeEventHandler<HTMLInputElement> = ({ currentTarget }) => {
     addUploads(currentTarget.files!);
@@ -27,7 +29,7 @@ export function ButtonAddFiles({
     <>
       <Button
         variant={variant}
-        onPress={handleClickAdd}
+        onPress={handlePress}
         isQuiet={isQuiet}
         isDisabled={isUploading}
         {...butonProps}
