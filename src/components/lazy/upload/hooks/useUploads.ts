@@ -1,4 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
+import toast from 'react-hot-toast';
+import { useIntl } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
 import {
@@ -17,6 +19,7 @@ type Arg = {
 
 export const useUploads = ({ uploads, setUploads, isUploading }: Arg) => {
   const dispatch = useDispatch();
+  const { formatMessage } = useIntl();
 
   const addUploads = async (fileList: FileList) => {
     if (isUploading) return;
@@ -33,20 +36,27 @@ export const useUploads = ({ uploads, setUploads, isUploading }: Arg) => {
           isStarted: false,
           isComplete: false,
           isFailed: false,
+          progress: 0,
         };
+
         if (acceptedFileTypes.includes(file.type)) {
           upload = await addExifData({ upload });
         } else {
           upload.validityErrors.push('fileTypeWrong');
         }
+
         if (file.type === 'image/heic') {
           dispatch(loadingStarted());
+          toast(formatMessage({ id: 'upload.heicToast' }, { count: files.length }), {
+            duration: 99999,
+          });
           const { convertHeicToJpeg } = await import('../utils/convertHeicToJpeg');
           upload = await convertHeicToJpeg({ upload });
-          upload.canRotate = false;
           dispatch(loadingFinished());
+          toast.dismiss();
         }
-        if (upload.validityErrors.length) {
+
+        if (upload.validityErrors.length || file.type === 'image/heic') {
           upload.canRotate = false;
         }
         return upload;

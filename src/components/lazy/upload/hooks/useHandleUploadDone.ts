@@ -1,22 +1,27 @@
 import { useContext, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { useIntl } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
 
 import { UploadContext } from '~/components/lazy/upload';
+import { paths } from '~/consts';
 
 export const useHandleUploadDone = () => {
+  const navigate = useNavigate();
+  const { formatMessage } = useIntl();
+
   const {
     isUploadDone,
     completedUploads,
     failedUploads,
-    showPhotosOnMap,
     setFailedUploadsDialogOpen,
+    closeUploadDialog,
   } = useContext(UploadContext);
-
-  const { formatMessage } = useIntl();
 
   useEffect(() => {
     if (!isUploadDone) return;
+
+    navigate(paths.home);
 
     if (completedUploads.length) {
       toast.success(
@@ -30,7 +35,7 @@ export const useHandleUploadDone = () => {
     if (failedUploads.length) {
       setFailedUploadsDialogOpen(true);
     } else {
-      showPhotosOnMap();
+      closeUploadDialog();
     }
   }, [isUploadDone]);
 };

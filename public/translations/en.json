@@ -41,13 +41,15 @@
   "upload.error.missingCoords.description": "The GPS data is usually written to the file by the device that took the photo. It could be missing if the file is not original.",
   "upload.error.missingDate": "Date is missing",
   "upload.error.missingDate.description": "The date is automatically added by the device which took the photo. It could be missing if the file is not original",
+  "upload.failedUploadsDialog.content": "You can try uploading {count, plural, one {this photo} other {this photos}} again.",
+  "upload.failedUploadsDialog.primaryAction": "ОК",
+  "upload.failedUploadsDialog.title": "{count} {count, plural, one {photo} other {photos}} failed to upload",
   "upload.heading": "Upload photos",
+  "upload.heicToast": "Converting {count, plural, one {photo} other {photos}} to JPEG. Use Safari to skip this step",
   "upload.previewAction.remove": "Remove",
   "upload.previewAction.rotate": "Rotate",
   "upload.previewStatus.allInvalid": "{count, plural, =1 {The photo} other {The photos}} cannot be uploaded.",
   "upload.previewStatus.someInvalid": "{invalidCount} of {totalCount} photos will not be uploaded.",
-  "upload.toast.completed": "Uploaded {count} {count, plural, one {photo} other {photos}}",
-  "upload.failedUploadsDialog.title": "{count} {count, plural, one {photo} other {photos}} failed to upload",
-  "upload.failedUploadsDialog.content": "You can try uploading {count, plural, one {this photo} other {this photos}} again.",
-  "upload.failedUploadsDialog.primaryAction": "ОК"
+  "upload.progressLabel": "Transferring…",
+  "upload.toast.completed": "Uploaded {count} {count, plural, one {photo} other {photos}}"
 }

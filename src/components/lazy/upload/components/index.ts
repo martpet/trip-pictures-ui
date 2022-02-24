@@ -17,5 +17,6 @@ export * from './PreviewItemActions';
 export * from './PreviewItemDate';
 export * from './PreviewItemError';
 export * from './PreviewItemHeader';
-export * from './UploadContext';
+export * from './PreviewItemProgress';
 export * from './UploadDialog';
+export * from './UploadProvider';
