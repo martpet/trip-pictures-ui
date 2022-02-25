@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 
 import { UploadContext } from '~/components/lazy/upload';
 
-export const useCloseOnEscapeKey = () => {
+export const useEscapeKey = () => {
   const { closeUploadDialog } = useContext(UploadContext);
 
   useEffect(() => {

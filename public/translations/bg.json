@@ -28,7 +28,7 @@
   "upload.button.cancel": "Отказ",
   "upload.button.start": "Публикувай {count} {count, plural, =1 {снимка} other {снимки}}",
   "upload.confirmCloseUploadDialog.cancelLabel": "Не, оставам",
-  "upload.confirmCloseUploadDialog.content": "Файловете не са качени още.",
+  "upload.confirmCloseUploadDialog.content": "Файловете още не са качени.",
   "upload.confirmCloseUploadDialog.primaryAction": "Да, излизам",
   "upload.confirmCloseUploadDialog.title": "Сигурен ли си?",
   "upload.dropZone.heading": "Премести файлове тук",
