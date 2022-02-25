@@ -45,7 +45,7 @@
   "upload.failedUploadsDialog.primaryAction": "ОК",
   "upload.failedUploadsDialog.title": "{count} {count, plural, one {photo} other {photos}} failed to upload",
   "upload.heading": "Upload photos",
-  "upload.heicToast": "Converting {count, plural, one {photo} other {photos}} to JPEG. Use Safari to skip this step",
+  "upload.heicToast": "Converting {count, plural, one {photo} other {photos}} to JPEG. This is much faster with Safari.",
   "upload.previewAction.remove": "Remove",
   "upload.previewAction.rotate": "Rotate",
   "upload.previewStatus.allInvalid": "{count, plural, =1 {The photo} other {The photos}} cannot be uploaded.",
