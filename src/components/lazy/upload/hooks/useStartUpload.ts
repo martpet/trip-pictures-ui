@@ -33,10 +33,10 @@ export const useStartUpload = () => {
       request.upload.addEventListener('progress', ({ loaded, total }) => {
         const lastTick = progressTick[upload.id];
         const thisTick = +new Date();
+        const progress = (loaded / total) * 100;
         if (!lastTick) {
           progressTick[upload.id] = thisTick;
-        } else if (thisTick - lastTick > 1000) {
-          const progress = (loaded / total) * 100;
+        } else if (thisTick - lastTick > 1000 || progress === 100) {
           editUpload(upload.id, { progress });
           progressTick[upload.id] = thisTick;
         }

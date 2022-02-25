@@ -2,7 +2,7 @@ import { Content, Heading, IllustratedMessage, View } from '@adobe/react-spectru
 import UploadIllustration from '@spectrum-icons/illustrations/Upload';
 import { FormattedMessage } from 'react-intl';
 
-import { ButtonAddFiles } from '~/components/lazy/upload';
+import { ButtonSelectFiles } from '~/components/lazy/upload';
 
 export function DropZoneIllustration() {
   return (
@@ -14,7 +14,7 @@ export function DropZoneIllustration() {
       <Content>
         <FormattedMessage id="upload.dropZone.subHeading" />
         <View marginTop="size-600">
-          <ButtonAddFiles variant="cta" isQuiet={false} />
+          <ButtonSelectFiles variant="cta" isQuiet={false} />
         </View>
       </Content>
     </IllustratedMessage>

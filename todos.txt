@@ -1,0 +1,25 @@
+-----
+Todos
+-----
+* Style PreviewErrorsSummary as In-Line Alert (https://opensource.adobe.com/spectrum-css/inlinealert.html)
+
+------
+Issues
+------
+* Translations api requests are cached - old data served after deploy - check static.json headers
+
+* cannot show loader when Safari automatically converts heic to jpeg (slow for multiple photos)
+
+* converting heic with heic2any is slow
+
+* heic2any doesn't copy exif data
+
+* cannot rotate jpeg with "@ginpei/exif-orientation" after heic2any converfsion (exif data is missing)
+
+* exif is lost when uploading from iphone library with pics taken with 'high efficency' setting (https://bugs.webkit.org/show_bug.cgi?id=207088)
+
+* unused spectrum css in bundle
+
+* mapbox freezes dragging in Safari (https://github.com/mapbox/mapbox-gl-js/issues/11095)
+
+* upload preview action "Rotate" should not close menu on click (closeOnSelect prop doesn't work)

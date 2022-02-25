@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { UploadContext } from '~/components/lazy/upload';
 import { paths } from '~/consts';
 
-export const useHandleUploadDone = () => {
+export const useUploadDone = () => {
   const navigate = useNavigate();
   const { formatMessage } = useIntl();
 

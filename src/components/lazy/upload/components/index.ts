@@ -1,5 +1,5 @@
-export * from './ButtonAddFiles';
 export * from './ButtonCloseDialog';
+export * from './ButtonSelectFiles';
 export * from './ButtonStartUpload';
 export * from './ConfirmCloseUploadDialog';
 export * from './DialogButtons';

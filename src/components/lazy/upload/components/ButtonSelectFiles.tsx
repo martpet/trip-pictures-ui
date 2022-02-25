@@ -8,21 +8,23 @@ import { acceptedFileTypes, UploadContext } from '~/components/lazy/upload';
 
 type Props = Partial<SpectrumButtonProps>;
 
-export function ButtonAddFiles({
+export function ButtonSelectFiles({
   isQuiet = true,
   variant = 'primary',
   ...butonProps
 }: Props) {
   const { uploads, addUploads, isUploading } = useContext(UploadContext);
   const inputRef = useRef<HTMLInputElement>(null);
+  const fileChooserOpenRef = useRef(false);
 
   const handlePress = () => {
     inputRef.current?.click();
+    fileChooserOpenRef.current = true;
   };
 
-  const handleAddedFiles: ChangeEventHandler<HTMLInputElement> = ({ currentTarget }) => {
+  const handleFiles: ChangeEventHandler<HTMLInputElement> = ({ currentTarget }) => {
     addUploads(currentTarget.files!);
-    if (inputRef.current) inputRef.current.value = '';
+    inputRef.current!.value = '';
   };
 
   return (
@@ -48,7 +50,7 @@ export function ButtonAddFiles({
         type="file"
         multiple
         accept={acceptedFileTypes.join(',')}
-        onChange={handleAddedFiles}
+        onChange={handleFiles}
         style={{ display: 'none' }}
       />
     </>

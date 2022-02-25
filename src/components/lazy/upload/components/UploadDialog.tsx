@@ -8,13 +8,13 @@ import {
   DialogHeader,
   FailedUploadsDialog,
   UploadProvider,
-  useCloseOnEscapeKey,
-  useHandleUploadDone,
+  useEscapeKey,
+  useUploadDone,
 } from '~/components/lazy/upload';
 
 function UploadDialog() {
-  useCloseOnEscapeKey();
-  useHandleUploadDone();
+  useEscapeKey();
+  useUploadDone();
 
   return (
     <>
