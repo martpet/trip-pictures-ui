@@ -2,7 +2,7 @@ import { Grid, minmax, repeat } from '@adobe/react-spectrum';
 import { useContext } from 'react';
 
 import {
-  ButtonSelectFiles,
+  ButtonChooseFiles,
   PreviewErrorsSummary,
   PreviewItem,
   UploadContext,
@@ -15,7 +15,7 @@ export function Preview() {
 
   return (
     <>
-      {isMobile && <ButtonSelectFiles isQuiet={false} marginBottom="size-350" />}
+      {isMobile && <ButtonChooseFiles isQuiet={false} marginBottom="size-350" />}
 
       <PreviewErrorsSummary />
 

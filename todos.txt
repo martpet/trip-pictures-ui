@@ -8,7 +8,7 @@ Issues
 ------
 * Translations api requests are cached - old data served after deploy - check static.json headers
 
-* cannot show loader when Safari automatically converts heic to jpeg (slow for multiple photos)
+* cannot show loader while Safari automatically converts heic to jpeg (https://bugs.webkit.org/show_bug.cgi?id=237190)
 
 * converting heic with heic2any is slow
 
