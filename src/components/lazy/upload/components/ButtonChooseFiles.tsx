@@ -8,7 +8,7 @@ import { acceptedFileTypes, UploadContext } from '~/components/lazy/upload';
 
 type Props = Partial<SpectrumButtonProps>;
 
-export function ButtonSelectFiles({
+export function ButtonChooseFiles({
   isQuiet = true,
   variant = 'primary',
   ...butonProps
@@ -39,7 +39,7 @@ export function ButtonSelectFiles({
         <IconAdd />
         <Text>
           <FormattedMessage
-            id="upload.button.addFiles"
+            id="upload.buttonChooseFiles"
             values={{ count: uploads.length }}
           />
         </Text>

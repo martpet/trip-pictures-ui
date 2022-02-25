@@ -24,7 +24,7 @@
   "toolbar.button.profile": "Профил",
   "toolbar.button.settings": "Настройки",
   "toolbar.button.upload": "Качи снимки",
-  "upload.button.addFiles": "Избери {count, plural, =0 {} other {още}} файлове",
+  "upload.buttonChooseFiles": "Избери {count, plural, =0 {} other {още}} файлове",
   "upload.button.cancel": "Отказ",
   "upload.button.start": "Публикувай {count} {count, plural, =1 {снимка} other {снимки}}",
   "upload.confirmCloseUploadDialog.cancelLabel": "Не, оставам",

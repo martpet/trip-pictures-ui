@@ -2,7 +2,7 @@ import { Header, Heading } from '@adobe/react-spectrum';
 import { useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { ButtonSelectFiles, UploadContext } from '~/components/lazy/upload';
+import { ButtonChooseFiles, UploadContext } from '~/components/lazy/upload';
 import { useIsMobile } from '~/hooks';
 
 export function DialogHeader() {
@@ -16,7 +16,7 @@ export function DialogHeader() {
       </Heading>
 
       <Header>
-        {!isMobile && !!uploads.length && !isUploading && <ButtonSelectFiles />}
+        {!isMobile && !!uploads.length && !isUploading && <ButtonChooseFiles />}
       </Header>
     </>
   );
