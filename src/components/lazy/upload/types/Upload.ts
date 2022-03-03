@@ -10,4 +10,5 @@ export type Upload = {
   isComplete: boolean;
   isFailed: boolean;
   progress: number;
+  s3uuid?: string;
 };

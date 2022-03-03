@@ -1,3 +1,8 @@
 export type Photo = {
-  s3key: string;
+  s3Key: string;
+  latitude: number;
+  longitude: number;
+  altitude: number;
+  bearing: number;
+  dateOriginal: string;
 };

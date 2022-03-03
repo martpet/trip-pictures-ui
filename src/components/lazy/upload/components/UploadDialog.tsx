@@ -8,14 +8,14 @@ import {
   DialogHeader,
   FailedUploadsDialog,
   UploadProvider,
-  useEscapeKey,
-  useUploadDone,
 } from '~/components/lazy/upload';
 
-function UploadDialog() {
-  useEscapeKey();
-  useUploadDone();
+type Props = {
+  isOpen: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+};
 
+function UploadDialog() {
   return (
     <>
       <Dialog>
@@ -24,7 +24,6 @@ function UploadDialog() {
         <DialogContent />
         <DialogButtons />
       </Dialog>
-
       <ConfirmCloseUploadDialog />
       <FailedUploadsDialog />
     </>
@@ -33,12 +32,7 @@ function UploadDialog() {
 
 const MemoizedComponent = memo(UploadDialog);
 
-type ProviderProps = {
-  isOpen: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>;
-};
-
-function WithProvider({ isOpen, setOpen }: ProviderProps) {
+function Provider({ isOpen, setOpen }: Props) {
   return (
     <UploadProvider isDialogOpen={isOpen} setDialogOpen={setOpen}>
       <MemoizedComponent />
@@ -46,4 +40,4 @@ function WithProvider({ isOpen, setOpen }: ProviderProps) {
   );
 }
 
-export { WithProvider as UploadDialog };
+export { Provider as UploadDialog };

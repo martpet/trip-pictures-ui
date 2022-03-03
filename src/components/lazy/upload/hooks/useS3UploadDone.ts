@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { UploadContext } from '~/components/lazy/upload';
 import { paths } from '~/consts';
 
-export const useUploadDone = () => {
+export const useS3UploadDone = () => {
   const navigate = useNavigate();
   const { formatMessage } = useIntl();
 
@@ -20,16 +20,14 @@ export const useUploadDone = () => {
 
   useEffect(() => {
     if (!isUploadDone) return;
-
     navigate(paths.home);
 
     if (completedUploads.length) {
-      toast.success(
-        formatMessage(
-          { id: 'upload.toast.completed' },
-          { count: completedUploads.length }
-        )
+      const toastMsg = formatMessage(
+        { id: 'upload.toast.completed' },
+        { count: completedUploads.length }
       );
+      toast.success(toastMsg);
     }
 
     if (failedUploads.length) {

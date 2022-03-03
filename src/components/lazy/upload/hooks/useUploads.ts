@@ -59,6 +59,7 @@ export const useUploads = ({ uploads, setUploads, isUploading }: Arg) => {
         if (upload.validityErrors.length || file.type === 'image/heic') {
           upload.canRotate = false;
         }
+
         return upload;
       })
     );
