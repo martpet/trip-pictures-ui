@@ -5,7 +5,7 @@ import { useIntl } from 'react-intl';
 
 import { Loader } from '~/components';
 
-const settingsPromise = import('~/components/lazy/settings');
+const settingsPromise = import('~/lazy/settings');
 const Settings = lazy(() => settingsPromise);
 
 export function SettingsPopover() {
