@@ -23,5 +23,13 @@ export function PreviewItemProgress({ upload }: Props) {
   if (upload.isComplete) label = <IconCheckmark {...iconProps} color="positive" />;
   if (upload.isFailed) label = <IconAlert {...iconProps} color="negative" />;
 
-  return <ProgressBar width="100%" label={label} value={upload.progress} size="S" />;
+  return (
+    <ProgressBar
+      width="100%"
+      marginBottom="size-150"
+      label={label}
+      value={upload.progress}
+      size="S"
+    />
+  );
 }
