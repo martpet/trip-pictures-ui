@@ -1,3 +1,5 @@
+import IconAlert from '@spectrum-icons/workflow/Alert';
+import IconCheckmark from '@spectrum-icons/workflow/Checkmark';
 import { createPortal } from 'react-dom';
 import { Toaster } from 'react-hot-toast';
 
@@ -10,6 +12,7 @@ function ToasterWrapper() {
     <Toaster
       toastOptions={{
         duration: 5000,
+        position: 'bottom-center',
         style: {
           background: 'var(--spectrum-semantic-informative-color-background)',
           color: 'var(--spectrum-global-color-static-white)',
@@ -20,20 +23,14 @@ function ToasterWrapper() {
             background: 'var(--spectrum-semantic-positive-color-background)',
             color: 'var(--spectrum-global-color-static-white)',
           },
-          iconTheme: {
-            primary: 'var(--spectrum-semantic-positive-color-icon)',
-            secondary: 'var(--spectrum-global-color-static-white)',
-          },
+          icon: <IconCheckmark />,
         },
         error: {
           style: {
             background: 'var(--spectrum-semantic-negative-color-background)',
             color: 'var(--spectrum-global-color-static-white)',
           },
-          iconTheme: {
-            primary: 'var(--spectrum-semantic-negative-color-icon)',
-            secondary: 'var(--spectrum-global-color-static-white)',
-          },
+          icon: <IconAlert />,
         },
       }}
     />

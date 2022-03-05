@@ -27,9 +27,9 @@ export function PreviewImageErrorOverlay({ upload }: Props) {
         height="100%"
         justifyContent="center"
         alignItems="center"
-        UNSAFE_style={{ opacity: 0.2, color: 'white' }}
+        UNSAFE_style={{ opacity: 0.5, color: 'white' }}
       >
-        <AlertIcon size="XXL" />
+        <AlertIcon size="XXL" color="notice" />
       </Flex>
     </View>
   );

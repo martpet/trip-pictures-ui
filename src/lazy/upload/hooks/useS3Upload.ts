@@ -1,7 +1,6 @@
 import { useContext, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { useIntl } from 'react-intl';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { paths } from '~/consts';
@@ -10,7 +9,6 @@ import {
   useCreatePhotosMutation,
   useCreatePresignedUploadUrlsMutation,
 } from '~/services';
-import { loadingFinished, loadingStarted } from '~/slices';
 
 export const useS3Upload = () => {
   const [createUploadUrls] = useCreatePresignedUploadUrlsMutation();
@@ -23,7 +21,6 @@ export const useS3Upload = () => {
     closeUploadDialog,
     setFailedUploadsDialogOpen,
   } = useContext(UploadContext);
-  const dispatch = useDispatch();
   const { formatMessage } = useIntl();
   const navigate = useNavigate();
   const [createPhotosMutation] = useCreatePhotosMutation();
@@ -33,16 +30,13 @@ export const useS3Upload = () => {
       ...(upload.exif as NonNullable<PhotoExifData>),
       s3uuid: upload.s3uuid!,
     }));
-    const toastMsg = formatMessage(
+    const successMsg = formatMessage(
       { id: 'upload.toast.completed' },
       { successCount: completedUploads.length }
     );
-    dispatch(loadingStarted());
-    const photos = await createPhotosMutation(requestBody).unwrap();
-    dispatch(loadingFinished());
-    console.log(photos);
+    await createPhotosMutation(requestBody).unwrap();
     navigate(paths.home);
-    toast.success(toastMsg);
+    toast.success(successMsg);
   };
 
   const handleUploadDone = () => {
@@ -64,7 +58,7 @@ export const useS3Upload = () => {
     const presignedUploads = await createUploadUrls({
       uploadsLength: validUploads.length,
     }).unwrap();
-    const progressTick: Record<Upload['id'], number> = {};
+    const progressTicks: Record<Upload['id'], number> = {};
     validUploads.forEach(({ id, file }, i) => {
       const { presignedPost, s3uuid } = presignedUploads[i];
       const { fields, url } = presignedPost;
@@ -77,19 +71,18 @@ export const useS3Upload = () => {
       request.upload.addEventListener('error', () => editUpload(id, { isFailed: true }));
       request.upload.addEventListener('progress', ({ loaded, total }) => {
         const tick = +new Date();
-        const lastTick = progressTick[id];
+        const lastTick = progressTicks[id];
         const progress = (loaded / total) * 100;
         if (!lastTick) {
-          progressTick[id] = tick;
-        } else if (tick - lastTick > 1000 || progress === 100) {
+          progressTicks[id] = tick;
+        } else if (tick - lastTick > 100 || progress === 100) {
           editUpload(id, { progress });
-          progressTick[id] = tick;
+          progressTicks[id] = tick;
         }
       });
       request.open('POST', url);
       request.send(formData);
     });
   };
-
   return { startUpload };
 };
