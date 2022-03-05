@@ -1,9 +1,9 @@
-import { UploadExifData, UploadValidityError } from '~/lazy/upload';
+import { PhotoExifData, UploadValidityError } from '~/lazy/upload';
 
 export type Upload = {
   id: string;
   file: File;
-  exif: UploadExifData;
+  exif: Partial<PhotoExifData>;
   validityErrors: UploadValidityError[];
   canRotate: boolean;
   isStarted: boolean;

@@ -1,4 +1,5 @@
 import { strapiApiPaths } from '~/consts';
+import { PhotoExifData } from '~/lazy/upload';
 import { strapiApi } from '~/services';
 import { Photo } from '~/types';
 
@@ -14,9 +15,10 @@ type CreatePresignedUrlsRes = Array<{
   s3uuid: string;
 }>;
 
-type CreatePhotoReq = Pick<
-  Photo,
-  's3Key' | 'latitude' | 'longitude' | 'altitude' | 'bearing' | 'dateOriginal'
+type CreatePhotosReq = Array<
+  PhotoExifData & {
+    s3uuid: string;
+  }
 >;
 
 const photosApiSlice = strapiApi.injectEndpoints({
@@ -32,7 +34,7 @@ const photosApiSlice = strapiApi.injectEndpoints({
       }),
     }),
 
-    createPhoto: build.mutation<Photo, CreatePhotoReq>({
+    createPhotos: build.mutation<Photo[], CreatePhotosReq>({
       query: (body) => ({
         url: strapiApiPaths.photos,
         method: 'POST',
@@ -42,5 +44,5 @@ const photosApiSlice = strapiApi.injectEndpoints({
   }),
 });
 
-export const { useCreatePhotoMutation, useCreatePresignedUploadUrlsMutation } =
+export const { useCreatePhotosMutation, useCreatePresignedUploadUrlsMutation } =
   photosApiSlice;

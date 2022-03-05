@@ -2,12 +2,12 @@ import { Button } from '@adobe/react-spectrum';
 import { useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { UploadContext, useUploadToS3 } from '~/lazy/upload';
+import { UploadContext, useS3Upload } from '~/lazy/upload';
 
 export function ButtonStartUpload() {
   const { canStartUpload, validUploads, isUploading } = useContext(UploadContext);
-  const uploadToS3 = useUploadToS3();
-  const handlePress = () => uploadToS3();
+  const { startUpload } = useS3Upload();
+  const handlePress = () => startUpload();
 
   if (!canStartUpload) return null;
 

@@ -1,3 +1,3 @@
 export * from './Upload';
 export * from './UploadError';
-export * from './UploadExifData';
+export * from './PhotoExifData';
