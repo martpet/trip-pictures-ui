@@ -51,5 +51,5 @@
   "upload.previewStatus.allInvalid": "{count, plural, =1 {Снимката не може да бъде публикувана} other {Снимките не могат да бъдат публикувани}}.",
   "upload.previewStatus.someInvalid": "{invalidCount} от общо {totalCount} снимки {invalidCount, plural, =1 {няма да бъде публикувана} other {няма да бъдат публикувани}}.",
   "upload.progressLabel": "Изпращане…",
-  "upload.toast.completed": "{count} {count, plural, one {снимка беше публикувана} other {снимки бяха публикувани}}"
+  "upload.toast.completed": "{successCount} {successCount, plural, one {снимка беше публикувана} other {снимки бяха публикувани}}"
 }
