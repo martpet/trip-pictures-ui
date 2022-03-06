@@ -1,5 +1,6 @@
 export * from './useDebounce';
-export * from './useDeviceColorMode';
+export * from './useGetCurrentUser';
+export * from './useHandleDeviceColorMode';
 export * from './useIOSAddressbarHeight';
 export * from './useIsMobile';
 export * from './useIsToolbarInMobileMode';
@@ -9,4 +10,3 @@ export * from './useMatchScreenWidth';
 export * from './usePageTitle';
 export * from './usePreventDragDrop';
 export * from './useSyncSettings';
-export * from './useWillFetchUser';
