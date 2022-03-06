@@ -1,11 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ViewportProps } from 'react-map-gl';
 
-import { ColorScheme, RootState, SettingsMenu } from '~/types';
+import { ColorScheme, PersistedViewport, RootState, SettingsMenu } from '~/types';
 
 export type AppSliceState = {
   loadersCount: number;
-  mapViewport?: ViewportProps;
+  mapViewport?: PersistedViewport;
   deviceColorMode?: ColorScheme;
   activeSettingsTab: SettingsMenu;
 };
@@ -25,7 +24,10 @@ export const appSlice = createSlice({
     loadingFinished: (state) => {
       state.loadersCount -= 1;
     },
-    mapViewportChanged: (state, { payload }: PayloadAction<ViewportProps>) => {
+    mapViewportChanged: (
+      state,
+      { payload }: PayloadAction<AppSliceState['mapViewport']>
+    ) => {
       state.mapViewport = payload;
     },
     deviceColorModeChanged: (state, { payload }: PayloadAction<ColorScheme>) => {

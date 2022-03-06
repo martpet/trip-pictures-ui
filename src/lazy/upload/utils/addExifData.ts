@@ -21,11 +21,11 @@ export const addExifData = async ({ upload }: Arg) => {
   const { exif, gps } = tags;
 
   if (gps?.Latitude) {
-    newUpload.exif.latitude = Number(gps.Latitude.toFixed(4));
+    newUpload.exif.latitude = Number(gps.Latitude.toFixed(6));
   }
 
   if (gps?.Longitude) {
-    newUpload.exif.longitude = Number(gps.Longitude.toFixed(4));
+    newUpload.exif.longitude = Number(gps.Longitude.toFixed(6));
   }
 
   if (gps?.Altitude) {

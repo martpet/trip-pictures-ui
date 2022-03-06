@@ -6,5 +6,6 @@ export * from './paths';
 export * from './servicesUrls';
 export * from './siteTitle';
 export * from './staticApiPaths';
+export * from './persistedViewportKeys';
 export * from './strapiApiPaths';
 export * from './userAgent';
