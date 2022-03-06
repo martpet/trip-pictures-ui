@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { deviceColorModeChanged } from '~/slices';
 
-export const useDeviceColorMode = () => {
+export const useHandleDeviceColorMode = () => {
   const dispatch = useDispatch();
   const matchesDark = useMediaQuery('(prefers-color-scheme: dark)');
 

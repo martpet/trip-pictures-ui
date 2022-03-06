@@ -1,20 +1,17 @@
 import { Layout, Router } from '~/components';
 import { siteTitle } from '~/consts';
 import {
-  useDeviceColorMode,
+  useGetCurrentUser,
+  useHandleDeviceColorMode,
   usePageTitle,
   usePreventDragDrop,
   useSyncSettings,
-  useWillFetchUser,
 } from '~/hooks';
-import { useGetMeQuery } from '~/services';
 
 export function App() {
-  const fetchUserPending = useWillFetchUser();
-
-  useGetMeQuery(undefined, { skip: !fetchUserPending });
+  useGetCurrentUser();
   useSyncSettings();
-  useDeviceColorMode();
+  useHandleDeviceColorMode();
   usePreventDragDrop();
   usePageTitle(siteTitle);
 
