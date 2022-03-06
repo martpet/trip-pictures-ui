@@ -22,7 +22,12 @@ import {
   settingsSlice,
   SettingsSliceState,
 } from '~/slices';
-import { errorLogger, forbiddenRequestHandler, loaderHandler } from '~/store';
+import {
+  errorLogger,
+  forbiddenRequestHandler,
+  loaderHandler,
+  mapViewportTransform,
+} from '~/store';
 
 const authSlicePersistConfig: PersistConfig<AuthSliceState> = {
   key: authSlice.name,
@@ -33,6 +38,7 @@ const authSlicePersistConfig: PersistConfig<AuthSliceState> = {
 const appSlicePersistConfig: PersistConfig<AppSliceState> = {
   key: appSlice.name,
   whitelist: ['mapViewport'],
+  transforms: [mapViewportTransform],
   storage,
 };
 
