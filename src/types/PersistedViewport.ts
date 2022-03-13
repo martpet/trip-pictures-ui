@@ -1,5 +1,5 @@
 import { ViewportProps } from 'react-map-gl';
 
-import { PersistedViewportKey } from '~/types/PersistedViewportKey';
+import { PersistedViewportProp } from '~/types/PersistedViewportProp';
 
-export type PersistedViewport = Required<Pick<ViewportProps, PersistedViewportKey>>;
+export type PersistedViewport = Required<Pick<ViewportProps, PersistedViewportProp>>;

@@ -1,5 +1,7 @@
+import { viewportUrlPathPrefix } from '~/consts/viewport';
+
 export const paths = {
   home: '/',
+  viewport: `${viewportUrlPathPrefix}:viewport`,
   notFound: '*',
-  upload: 'upload',
 } as const;

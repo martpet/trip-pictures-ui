@@ -2,31 +2,42 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 import { ReactNode, useEffect, useState } from 'react';
 import ReactMapGL, { MapEvent } from 'react-map-gl';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { mapInnerContainerId } from '~/consts';
+import { mapInnerContainerId, persistedViewportProps } from '~/consts';
 import { useDebounce } from '~/hooks';
-import { selectColorScheme, selectMapViewport } from '~/slices';
-import { persistViewport } from '~/utils';
+import { selectColorScheme, selectMapViewport, viewportChanged } from '~/slices';
+import { PersistedViewport } from '~/types';
+import { setViewportInUrl } from '~/utils';
 
 type Props = {
   children: ReactNode;
 };
 
 export function MapGL({ children }: Props) {
-  const storedViewport = useSelector(selectMapViewport);
-  const [viewport, setViewport] = useState(storedViewport);
+  const persistedViewport = useSelector(selectMapViewport);
+  const [viewport, setViewport] = useState(persistedViewport);
   const debouncedViewport = useDebounce(viewport);
   const colorScheme = useSelector(selectColorScheme);
+  const dispatch = useDispatch();
 
   const handleDoubleClick = (e: MapEvent) => {
     if (e.target.id !== mapInnerContainerId) e.stopImmediatePropagation();
   };
 
+  const persistViewport = () => {
+    if (!viewport) return;
+    const data = {} as PersistedViewport;
+    persistedViewportProps.forEach((prop) => {
+      data[prop] = viewport[prop];
+    });
+    const isChanged = JSON.stringify(data) !== JSON.stringify(persistedViewport);
+    if (isChanged) dispatch(viewportChanged(data));
+  };
+
   useEffect(() => {
-    if (viewport) {
-      persistViewport(viewport);
-    }
+    setViewportInUrl(viewport);
+    persistViewport();
   }, [debouncedViewport]);
 
   if (!colorScheme) return null;
