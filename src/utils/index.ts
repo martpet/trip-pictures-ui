@@ -1,1 +1,1 @@
-export * from './viewportUtils';
+export * from './viewportUrlUtils';

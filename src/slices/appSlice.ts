@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { ColorScheme, PersistedViewport, RootState, SettingsMenu } from '~/types';
+import { getViewportFromUrl } from '~/utils';
 
 export type AppSliceState = {
   loadersCount: number;
-  mapViewport?: PersistedViewport;
+  persistedViewport?: PersistedViewport;
   deviceColorMode?: ColorScheme;
   activeSettingsTab: SettingsMenu;
 };
@@ -24,11 +25,8 @@ export const appSlice = createSlice({
     loadingFinished: (state) => {
       state.loadersCount -= 1;
     },
-    mapViewportChanged: (
-      state,
-      { payload }: PayloadAction<AppSliceState['mapViewport']>
-    ) => {
-      state.mapViewport = payload;
+    viewportChanged: (state, { payload }: PayloadAction<PersistedViewport>) => {
+      state.persistedViewport = payload;
     },
     deviceColorModeChanged: (state, { payload }: PayloadAction<ColorScheme>) => {
       state.deviceColorMode = payload;
@@ -41,7 +39,9 @@ export const appSlice = createSlice({
 
 export const selectIsAppLoading = ({ app }: RootState) => app.loadersCount > 0;
 
-export const selectMapViewport = ({ app }: RootState) => app.mapViewport;
+export const selectMapViewport = ({ app }: RootState) => {
+  return getViewportFromUrl() || app.persistedViewport;
+};
 
 export const selectColorScheme = (state: RootState) =>
   state.settings.data.colorScheme === 'auto'
@@ -53,7 +53,7 @@ export const selectActiveSettingsMenu = ({ app }: RootState) => app.activeSettin
 export const {
   loadingStarted,
   loadingFinished,
-  mapViewportChanged,
+  viewportChanged,
   deviceColorModeChanged,
   settingsMenuSelected,
 } = appSlice.actions;
