@@ -24,6 +24,7 @@
   "toolbar.button.profile": "Profile",
   "toolbar.button.settings": "Settings",
   "toolbar.button.upload": "Upload photos",
+  "upload.loginDescription": "You need to be logged in to upload photos.",
   "upload.buttonChooseFiles": " {count, plural, =0 {Choose} other {Add more}} files",
   "upload.button.cancel": "Cancel",
   "upload.button.start": "Upload {count} {count, plural, =1 {photo} other {photos}}",

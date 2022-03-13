@@ -1,4 +1,5 @@
-import { Content, Flex } from '@adobe/react-spectrum';
+import { Content, IllustratedMessage, View } from '@adobe/react-spectrum';
+import { FormattedMessage } from 'react-intl';
 import { useSelector } from 'react-redux';
 
 import { LoginButton } from '~/components';
@@ -11,9 +12,14 @@ export function DialogContent() {
   return (
     <Content>
       {!user && (
-        <Flex height="100%" justifyContent="center" alignItems="center">
-          <LoginButton />
-        </Flex>
+        <IllustratedMessage>
+          <Content>
+            <View marginBottom="size-200">
+              <FormattedMessage id="upload.loginDescription" />
+            </View>
+            <LoginButton />
+          </Content>
+        </IllustratedMessage>
       )}
 
       {user && (

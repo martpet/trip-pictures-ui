@@ -11,7 +11,7 @@ function ToasterWrapper() {
   const element = (
     <Toaster
       toastOptions={{
-        duration: 5000,
+        duration: 4000,
         position: 'bottom-center',
         style: {
           background: 'var(--spectrum-semantic-informative-color-background)',
