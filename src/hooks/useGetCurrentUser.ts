@@ -9,13 +9,15 @@ export const useGetCurrentUser = () => {
   const currentUser = useSelector(selectCurrentUser);
   const authToken = useSelector(selectCurrentUserToken);
   const skip = Boolean(currentUser) || !authToken;
-  const hadToken = useRef(authToken);
+  const tokenRef = useRef(authToken);
+  const wasLoggedInInitialy = !!tokenRef.current;
+  const isWelcomeMsgEnabled = false;
 
   useGetMeQuery(undefined, { skip });
 
   useEffect(() => {
-    if (currentUser && !hadToken.current) {
-      toast.success(`Welcome, ${currentUser.firstName}!`);
+    if (isWelcomeMsgEnabled && currentUser && !wasLoggedInInitialy) {
+      toast(`Welcome, ${currentUser.firstName}!`);
     }
   }, [currentUser]);
 };
