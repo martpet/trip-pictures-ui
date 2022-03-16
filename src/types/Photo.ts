@@ -1,4 +1,4 @@
-import { PhotoExifData } from '~/lazy/upload';
+import { PhotoExifData } from '~/lazyload/upload';
 
 export type Photo = {
   url: string;

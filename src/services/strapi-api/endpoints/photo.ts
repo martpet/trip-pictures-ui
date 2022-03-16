@@ -1,5 +1,5 @@
 import { strapiApiPaths } from '~/consts';
-import { PhotoExifData } from '~/lazy/upload';
+import { PhotoExifData } from '~/lazyload/upload';
 import { strapiApi } from '~/services';
 import { Photo } from '~/types';
 
