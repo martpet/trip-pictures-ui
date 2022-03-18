@@ -2,15 +2,18 @@ import { isRejectedWithValue, Middleware } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
 
 export const errorLogger: Middleware = () => (next) => (action) => {
-  if (isRejectedWithValue(action) && import.meta.env.DEV) {
+  if (isRejectedWithValue(action)) {
+    const { payload, error } = action;
     const errorMsg =
-      action.payload?.data?.message?.error?.message ||
-      action.payload?.data?.data?.message ||
-      action.payload?.data?.message ||
-      action.error.data?.message ||
-      action.error.message;
+      payload?.data?.message?.error?.message ||
+      payload?.data?.data?.message ||
+      payload?.data?.message ||
+      error.data?.message ||
+      error.message;
 
-    toast.error(errorMsg);
+    if (import.meta.env.DEV) {
+      toast.error(errorMsg);
+    }
     console.warn('We got a rejected action!', action);
   }
 
