@@ -27,17 +27,17 @@ export function MapGL({ children }: Props) {
 
   const persistViewport = () => {
     if (!viewport) return;
-    const data = {} as PersistedViewport;
+    const newPersisted = {} as PersistedViewport;
     persistedViewportProps.forEach((prop) => {
-      data[prop] = viewport[prop];
+      newPersisted[prop] = viewport[prop];
     });
-    const isChanged = JSON.stringify(data) !== JSON.stringify(persistedViewport);
-    if (isChanged) dispatch(viewportChanged(data));
+    const isChanged = JSON.stringify(newPersisted) !== JSON.stringify(persistedViewport);
+    if (isChanged) dispatch(viewportChanged(newPersisted));
   };
 
   useEffect(() => {
-    setViewportInUrl(viewport);
     persistViewport();
+    setViewportInUrl(viewport);
   }, [debouncedViewport]);
 
   if (!colorScheme) return null;
