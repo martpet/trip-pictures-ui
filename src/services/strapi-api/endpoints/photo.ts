@@ -21,28 +21,32 @@ type CreatePhotosReq = Array<
   }
 >;
 
-const photosApiSlice = strapiApi.injectEndpoints({
-  endpoints: (build) => ({
-    createPresignedUploadUrls: build.mutation<
-      CreatePresignedUrlsRes,
-      CreatePresignedUrlsReq
-    >({
+const photosApi = strapiApi.injectEndpoints({
+  endpoints: ({ query, mutation }) => ({
+    createPresignedUploadUrls: mutation<CreatePresignedUrlsRes, CreatePresignedUrlsReq>({
       query: (body) => ({
         url: strapiApiPaths.presignedPhotoUploadUrls,
         method: 'POST',
         body,
       }),
     }),
-
-    createPhotos: build.mutation<Photo[], CreatePhotosReq>({
+    createPhotos: mutation<Photo[], CreatePhotosReq>({
       query: (body) => ({
         url: strapiApiPaths.photos,
         method: 'POST',
         body,
       }),
+      invalidatesTags: ['Photo'],
+    }),
+    getPhotos: query<Photo[], void>({
+      query: () => strapiApiPaths.photos,
+      providesTags: ['Photo'],
     }),
   }),
 });
 
-export const { useCreatePhotosMutation, useCreatePresignedUploadUrlsMutation } =
-  photosApiSlice;
+export const {
+  useCreatePresignedUploadUrlsMutation,
+  useCreatePhotosMutation,
+  useGetPhotosQuery,
+} = photosApi;
