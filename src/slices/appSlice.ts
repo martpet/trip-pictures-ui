@@ -19,6 +19,7 @@ export type AppSliceState = {
 
 export const appSliceInitialState: AppSliceState = {
   loadersCount: 0,
+  persistedViewport: getViewportFromUrl(),
   activeSettingsTab: 'language',
 };
 
@@ -53,10 +54,7 @@ export const appSlice = createSlice({
 });
 
 export const selectIsAppLoading = ({ app }: RootState) => app.loadersCount > 0;
-
-export const selectMapViewport = ({ app }: RootState) => {
-  return getViewportFromUrl() || app.persistedViewport;
-};
+export const selectPersistedViewport = ({ app }: RootState) => app.persistedViewport;
 
 export const selectColorScheme = (state: RootState) =>
   state.settings.data.colorScheme === 'auto'
