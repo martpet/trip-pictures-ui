@@ -1,6 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ColorScheme, PersistedViewport, RootState, SettingsMenu } from '~/types';
+import { persistedViewportProps } from '~/consts';
+import {
+  ColorScheme,
+  PersistedViewport,
+  RootState,
+  SettingsMenu,
+  Viewport,
+} from '~/types';
 import { getViewportFromUrl } from '~/utils';
 
 export type AppSliceState = {
@@ -25,8 +32,16 @@ export const appSlice = createSlice({
     loadingFinished: (state) => {
       state.loadersCount -= 1;
     },
-    viewportChanged: (state, { payload }: PayloadAction<PersistedViewport>) => {
-      state.persistedViewport = payload;
+    viewportChanged: (state, { payload }: PayloadAction<Viewport>) => {
+      if (!payload) return;
+      const newPersisted = {} as PersistedViewport;
+      persistedViewportProps.forEach((prop) => {
+        const value = payload[prop];
+        if (value !== undefined) {
+          newPersisted[prop] = value;
+        }
+      });
+      state.persistedViewport = newPersisted;
     },
     deviceColorModeChanged: (state, { payload }: PayloadAction<ColorScheme>) => {
       state.deviceColorMode = payload;

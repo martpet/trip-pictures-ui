@@ -1,6 +1,8 @@
 # Trip Pictures
 
-A photo sharing app. Work in progress.
+(work in progress)
+
+A photo sharing app. 
 
 ## How to run
 

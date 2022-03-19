@@ -1,5 +1,5 @@
 import { persistedViewportProps, viewportUrlPathPrefix } from '~/consts';
-import { PersistedViewport, PersistedViewportProp } from '~/types';
+import { PersistedViewport, PersistedViewportProp, Viewport } from '~/types';
 
 export const shortPropsNames: Partial<Record<PersistedViewportProp, string>> = {
   bearing: 'b',
@@ -70,7 +70,7 @@ export const getViewportFromUrl = () => {
   return viewport;
 };
 
-export const setViewportInUrl = (viewport?: PersistedViewport) => {
+export const setViewportInUrl = (viewport: Viewport) => {
   if (!viewport) return;
   const isInitialMapState = viewport.latitude === 0 && viewport.longitude === 0;
   if (isInitialMapState) return;
