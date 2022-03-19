@@ -1,16 +1,15 @@
 import { ActionButton, Tooltip, TooltipTrigger } from '@adobe/react-spectrum';
 import CompassIcon from '@spectrum-icons/workflow/Compass';
+import { useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { useSelector } from 'react-redux';
-
-import { selectMapViewport } from '~/slices';
+import { MapContext } from 'react-map-gl';
 
 export function Compass() {
-  const viewport = useSelector(selectMapViewport);
-  const mapboxControlSelector = '.mapboxgl-ctrl-compass';
+  const { viewport } = useContext(MapContext);
+  const compassCSSSelector = '.mapboxgl-ctrl-compass';
 
   const handlePress = () => {
-    const mapboxControl = document.querySelector(mapboxControlSelector) as HTMLDivElement;
+    const mapboxControl = document.querySelector(compassCSSSelector) as HTMLDivElement;
     mapboxControl.click();
   };
 

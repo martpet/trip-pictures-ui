@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { mapInnerContainerId } from '~/consts';
 import { useDebounce } from '~/hooks';
 import { useGetPhotosQuery } from '~/services';
-import { selectColorScheme, selectMapViewport, viewportChanged } from '~/slices';
+import { selectColorScheme, selectPersistedViewport, viewportChanged } from '~/slices';
 import { Viewport } from '~/types';
 import { setViewportInUrl } from '~/utils';
 
@@ -17,7 +17,7 @@ type Props = {
 
 export function MapGL({ children }: Props) {
   const dispatch = useDispatch();
-  const persistedViewport = useSelector(selectMapViewport);
+  const persistedViewport = useSelector(selectPersistedViewport);
   const [viewport, setViewport] = useState<Viewport>(persistedViewport);
   const debouncedViewport = useDebounce(viewport);
   const colorScheme = useSelector(selectColorScheme);
@@ -27,7 +27,7 @@ export function MapGL({ children }: Props) {
   const { data } = useGetPhotosQuery();
   console.log(data);
 
-  const preventZoomDblClickOutside = (event: MapEvent) => {
+  const preventZoomOnDblClickOutside = (event: MapEvent) => {
     if (event.target.id !== mapInnerContainerId) {
       event.stopImmediatePropagation();
     }
@@ -49,7 +49,7 @@ export function MapGL({ children }: Props) {
       width="100%"
       height="100%"
       onViewportChange={setViewport}
-      onDblClick={preventZoomDblClickOutside}
+      onDblClick={preventZoomOnDblClickOutside}
     >
       {children}
     </ReactMapGL>

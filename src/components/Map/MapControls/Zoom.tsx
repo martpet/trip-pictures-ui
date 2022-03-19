@@ -5,15 +5,13 @@ import { Key } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 export function Zoom() {
-  const mapboxControlsSelectors: Record<Key, string> = {
+  const zoomCSSSelectors: Record<Key, string> = {
     zoomin: '.mapboxgl-ctrl-zoom-in',
     zoomout: '.mapboxgl-ctrl-zoom-out',
   };
 
   const handleClick = (key: Key) => {
-    const mapboxControl = document.querySelector(
-      mapboxControlsSelectors[key]
-    ) as HTMLDivElement;
+    const mapboxControl = document.querySelector(zoomCSSSelectors[key]) as HTMLDivElement;
     mapboxControl.click();
   };
 
