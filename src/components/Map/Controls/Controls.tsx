@@ -6,7 +6,7 @@ import {
 
 import { Compass, Geolocate, Zoom } from '~/components';
 
-export function MapControls() {
+export function Controls() {
   return (
     <Flex direction="column" gap="size-75">
       <Compass />
