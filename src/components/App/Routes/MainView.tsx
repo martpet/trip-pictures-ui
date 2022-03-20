@@ -1,5 +1,5 @@
 import { Map } from '~/components';
 
-export function MapView() {
+export function MainView() {
   return <Map />;
 }
