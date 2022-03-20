@@ -4,11 +4,12 @@ import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
 import { paths } from '~/consts';
-import { PhotoExifData, Upload, UploadContext } from '~/lazyload/upload';
+import { Upload, UploadContext } from '~/lazyload/upload';
 import {
   useCreatePhotosMutation,
   useCreatePresignedUploadUrlsMutation,
 } from '~/services';
+import { PhotoExifData } from '~/types';
 
 export const useUpload = () => {
   const [createUploadUrls] = useCreatePresignedUploadUrlsMutation();

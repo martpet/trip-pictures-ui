@@ -1,4 +1,5 @@
-import { PhotoExifData, UploadValidityError } from '~/lazyload/upload';
+import { UploadValidityError } from '~/lazyload/upload';
+import { PhotoExifData } from '~/types';
 
 export type Upload = {
   id: string;

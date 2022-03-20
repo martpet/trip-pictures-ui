@@ -1,7 +1,6 @@
 import { strapiApiPaths } from '~/consts';
-import { PhotoExifData } from '~/lazyload/upload';
 import { strapiApi } from '~/services';
-import { Photo } from '~/types';
+import { Photo, PhotoExifData } from '~/types';
 
 type CreatePresignedUrlsReq = {
   uploadsLength: number;
