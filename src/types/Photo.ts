@@ -1,4 +1,4 @@
-import { PhotoExifData } from '~/lazyload/upload';
+import { PhotoExifData } from '~/types/PhotoExifData';
 import { User } from '~/types/User';
 
 export type Photo = PhotoExifData & {

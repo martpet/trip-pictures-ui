@@ -5,6 +5,7 @@ export * from './ColorScheme';
 export * from './Lang';
 export * from './OAuthProvider';
 export * from './Photo';
+export * from './PhotoExifData';
 export * from './RootState';
 export * from './Settings';
 export * from './SettingsMenu';
