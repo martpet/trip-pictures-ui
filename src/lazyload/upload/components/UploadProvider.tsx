@@ -7,7 +7,7 @@ import {
   useFilteredUploads,
   useOpenCloseDialog,
   useRotateImage,
-  useUploads,
+  useUploadsEntities,
 } from '~/lazyload/upload';
 
 type Props = {
@@ -28,7 +28,7 @@ export function UploadProvider({ children, isDialogOpen, setDialogOpen }: Props)
     Boolean(validUploads.length) &&
     validUploads.every(({ isComplete, isFailed }: Upload) => isComplete || isFailed);
   const isUploading = !isUploadDone && uploads.some((upload) => upload.isStarted);
-  const { addUploads, removeUpload, editUpload } = useUploads({
+  const { addUploads, removeUpload, editUpload } = useUploadsEntities({
     uploads,
     setUploads,
     isUploading,

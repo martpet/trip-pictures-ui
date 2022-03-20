@@ -2,12 +2,12 @@ import { Button, ProgressCircle } from '@adobe/react-spectrum';
 import { useContext } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { UploadContext, useS3Upload } from '~/lazyload/upload';
+import { UploadContext, useUpload } from '~/lazyload/upload';
 
 export function ButtonStartUpload() {
   const { canStartUpload, validUploads, isUploading, isUploadDone } =
     useContext(UploadContext);
-  const { startUpload } = useS3Upload();
+  const { startUpload } = useUpload();
   const handlePress = () => startUpload();
 
   if (!canStartUpload) return null;

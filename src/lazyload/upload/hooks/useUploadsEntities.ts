@@ -17,7 +17,7 @@ type Arg = {
   isUploading: boolean;
 };
 
-export const useUploads = ({ uploads, setUploads, isUploading }: Arg) => {
+export const useUploadsEntities = ({ uploads, setUploads, isUploading }: Arg) => {
   const dispatch = useDispatch();
   const { formatMessage } = useIntl();
 

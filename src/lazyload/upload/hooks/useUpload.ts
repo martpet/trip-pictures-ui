@@ -10,7 +10,7 @@ import {
   useCreatePresignedUploadUrlsMutation,
 } from '~/services';
 
-export const useS3Upload = () => {
+export const useUpload = () => {
   const [createUploadUrls] = useCreatePresignedUploadUrlsMutation();
   const {
     validUploads,
