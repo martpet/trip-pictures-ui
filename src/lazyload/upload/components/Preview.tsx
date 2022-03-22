@@ -22,7 +22,7 @@ export function Preview() {
       <Grid
         columns={{ S: repeat('auto-fill', minmax('size-5000', '1fr')) }}
         columnGap="size-300"
-        rowGap="size-400"
+        rowGap="size-350"
       >
         {uploads.map((upload) => (
           <PreviewItem key={upload.id} upload={upload} />

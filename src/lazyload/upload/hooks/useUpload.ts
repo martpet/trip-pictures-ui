@@ -4,15 +4,16 @@ import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 
 import { paths } from '~/consts';
-import { Upload, UploadContext } from '~/lazyload/upload';
 import {
+  Upload,
+  UploadContext,
   useCreatePhotosMutation,
   useCreatePresignedUploadUrlsMutation,
-} from '~/services';
-import { PhotoExifData } from '~/types';
+} from '~/lazyload/upload';
 
 export const useUpload = () => {
-  const [createUploadUrls] = useCreatePresignedUploadUrlsMutation();
+  const [createPresignedUrls] = useCreatePresignedUploadUrlsMutation();
+  const [createPhotosMutation] = useCreatePhotosMutation();
   const {
     validUploads,
     completedUploads,
@@ -22,68 +23,80 @@ export const useUpload = () => {
     closeUploadDialog,
     setFailedUploadsDialogOpen,
   } = useContext(UploadContext);
-  const { formatMessage } = useIntl();
   const navigate = useNavigate();
-  const [createPhotosMutation] = useCreatePhotosMutation();
+  const { formatMessage } = useIntl();
+  const progressTicks: Record<Upload['id'], number> = {};
+  const progressTickInterval = 100;
 
   const createPhotos = async () => {
-    const requestBody = completedUploads.map((upload) => ({
-      ...(upload.exif as NonNullable<PhotoExifData>),
-      s3uuid: upload.s3uuid!,
+    const request = completedUploads.map(({ s3uuid, exif, duplicatePhotoId }) => ({
+      s3uuid,
+      exif,
+      duplicatePhotoId,
     }));
+    await createPhotosMutation(request).unwrap();
     const successMsg = formatMessage(
       { id: 'upload.toast.completed' },
       { successCount: completedUploads.length }
     );
-    await createPhotosMutation(requestBody).unwrap();
     navigate(paths.home);
     toast.success(successMsg);
   };
 
-  const handleUploadDone = () => {
-    if (completedUploads.length) {
-      createPhotos();
-    }
+  const trackProgress =
+    (id: Upload['id']) =>
+    ({ loaded, total }: { loaded: number; total: number }) => {
+      const progress = (loaded / total) * 100;
+      const tick = +new Date();
+      const lastTick = progressTicks[id];
+      const isTickTime =
+        !lastTick || progress === 100 || tick - lastTick > progressTickInterval;
+      if (isTickTime) {
+        progressTicks[id] = tick;
+        editUpload(id, { progress });
+      }
+    };
+
+  const startUpload = async () => {
+    const preSignedUrlsRequestBody = validUploads.map(({ id, exif }) => ({ id, exif }));
+    const presignedUrls = await createPresignedUrls(preSignedUrlsRequestBody).unwrap();
+    presignedUrls.forEach(({ url, fields, uploadId, s3uuid, duplicatePhotoId }) => {
+      if (duplicatePhotoId !== undefined) {
+        editUpload(uploadId, {
+          duplicatePhotoId,
+          isComplete: true,
+          progress: 100,
+        });
+        return;
+      }
+      const upload = validUploads.find(({ id }) => id === uploadId)!;
+      const request = new XMLHttpRequest();
+      const formData = new FormData();
+      const { file } = upload;
+      editUpload(uploadId, { s3uuid, isStarted: true });
+      Object.entries(fields).forEach((field) => formData.append(...field));
+      formData.append('file', file);
+      request.upload.addEventListener('load', () => {
+        editUpload(uploadId, { isComplete: true });
+      });
+      request.upload.addEventListener('error', () => {
+        editUpload(uploadId, { isFailed: true });
+      });
+      request.upload.addEventListener('progress', trackProgress(uploadId));
+      request.open('POST', url);
+      request.send(formData);
+    });
+  };
+
+  useEffect(() => {
+    if (!isUploadDone) return;
+    if (completedUploads.length) createPhotos();
     if (failedUploads.length) {
       setFailedUploadsDialogOpen(true);
     } else {
       closeUploadDialog();
     }
-  };
-
-  useEffect(() => {
-    if (isUploadDone) handleUploadDone();
   }, [isUploadDone]);
 
-  const startUpload = async () => {
-    const presignedUploads = await createUploadUrls({
-      uploadsLength: validUploads.length,
-    }).unwrap();
-    const progressTicks: Record<Upload['id'], number> = {};
-    validUploads.forEach(({ id, file }, i) => {
-      const { presignedPost, s3uuid } = presignedUploads[i];
-      const { fields, url } = presignedPost;
-      const request = new XMLHttpRequest();
-      const formData = new FormData();
-      editUpload(id, { isStarted: true, s3uuid });
-      Object.entries(fields).forEach((field) => formData.append(...field));
-      formData.append('file', file);
-      request.upload.addEventListener('load', () => editUpload(id, { isComplete: true }));
-      request.upload.addEventListener('error', () => editUpload(id, { isFailed: true }));
-      request.upload.addEventListener('progress', ({ loaded, total }) => {
-        const tick = +new Date();
-        const lastTick = progressTicks[id];
-        const progress = (loaded / total) * 100;
-        if (!lastTick) {
-          progressTicks[id] = tick;
-        } else if (tick - lastTick > 100 || progress === 100) {
-          editUpload(id, { progress });
-          progressTicks[id] = tick;
-        }
-      });
-      request.open('POST', url);
-      request.send(formData);
-    });
-  };
   return { startUpload };
 };

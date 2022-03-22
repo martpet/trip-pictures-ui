@@ -18,7 +18,13 @@ export function PreviewItemHeader({ upload }: Props) {
   const { isUploading } = useContext(UploadContext);
 
   return (
-    <View height="size-400">
+    <View
+      borderTopWidth="thin"
+      borderTopColor="gray-50"
+      height="size-500"
+      backgroundColor="gray-75"
+      paddingStart="size-100"
+    >
       <Flex height="100%" alignItems="center">
         {!isUploading && (
           <>

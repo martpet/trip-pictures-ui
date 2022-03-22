@@ -9,8 +9,8 @@ type Props = {
 export function PreviewItem({ upload }: Props) {
   return (
     <View>
-      <PreviewItemHeader upload={upload} />
       <PreviewImage upload={upload} />
+      <PreviewItemHeader upload={upload} />
     </View>
   );
 }

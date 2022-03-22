@@ -25,7 +25,7 @@
   "toolbar.button.settings": "Настройки",
   "toolbar.button.upload": "Качи снимки",
   "upload.loginDescription": "Трябва да си логнат, за да качваш снимки.",
-  "upload.buttonChooseFiles": "Избери {count, plural, =0 {} other {още}} файлове",
+  "upload.buttonChooseFiles": "{count, plural, =0 {Избери} other {Добави още}} файлове",
   "upload.button.cancel": "Отказ",
   "upload.button.start": "Публикувай {count} {count, plural, =1 {снимка} other {снимки}}",
   "upload.confirmCloseUploadDialog.cancelLabel": "Не, оставам",
@@ -39,7 +39,7 @@
   "upload.error.fileTypeWrong": "Файлът не е {acceptedFileTypesFormattedList}",
   "upload.error.fileTypeWrong.description": "Сайтът работи само с {acceptedFileTypesFormattedList} файлове, в които се съдържат GPS координатите на снимката.",
   "upload.error.missingCoords": "Липсват GPS координати",
-  "upload.error.missingCoords.description": "GPS координатите обикновено се записват във файла от телефона или апарата, с който е снимано. Възможно е това да не е оригиналният файл’",
+  "upload.error.missingCoords.description": "Без GPS координати не можем да покажем снимката на картата. Възможно е координатите да липсват, ако това да не е оригиналният файл.",
   "upload.error.missingDate": "Липсва дата на заснемане",
   "upload.error.missingDate.description": "Датата на заснемане се добавя автоматично от смартфонa или апаратa, с който е направена снимката. Възможно е да липсва, ако това не е оригиналният файл.",
   "upload.failedUploadsDialog.content": "Можеш да опиташ пак да качиш {count, plural, one {тази снимка} other {тези снимки}}:",
@@ -49,8 +49,8 @@
   "upload.heicToast": "{count, plural, one {Снимката се конвертира} other {Снимките се конвертират}} към формат JPEG. Това ще стане много по-бързо с бразуър Сафари.",
   "upload.previewAction.remove": "Премахни",
   "upload.previewAction.rotate": "Завърти",
-  "upload.previewStatus.allInvalid": "{count, plural, =1 {Снимката не може да бъде публикувана} other {Снимките не могат да бъдат публикувани}}.",
-  "upload.previewStatus.someInvalid": "{invalidCount} от общо {totalCount} снимки {invalidCount, plural, =1 {няма да бъде публикувана} other {няма да бъдат публикувани}}.",
+  "upload.previewStatus.allInvalid": "{count, plural, =1 {Снимката няма да бъде качена} other {Снимките няма да бъдат публикувани}}.",
+  "upload.previewStatus.someInvalid": "{invalidCount} от общо {totalCount} снимки {invalidCount, plural, =1 {няма да бъде качена} other {няма да бъдат качени}}.",
   "upload.progressLabel": "Изпращане…",
   "upload.toast.completed": "{successCount} {successCount, plural, one {снимка беше публикувана} other {снимки бяха публикувани}}"
 }

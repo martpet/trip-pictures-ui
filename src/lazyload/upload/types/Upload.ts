@@ -10,6 +10,7 @@ export type Upload = {
   isStarted: boolean;
   isComplete: boolean;
   isFailed: boolean;
+  duplicatePhotoId?: number;
   progress: number;
   s3uuid?: string;
 };

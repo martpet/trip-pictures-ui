@@ -26,7 +26,7 @@ export function PreviewItemProgress({ upload }: Props) {
   return (
     <ProgressBar
       width="100%"
-      marginBottom="size-150"
+      marginEnd="size-100"
       label={label}
       value={upload.progress}
       size="S"

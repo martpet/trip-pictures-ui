@@ -41,9 +41,9 @@ export const addExifData = async ({ upload }: Arg) => {
     newUpload.exif.dateOriginal = `${date.replace(/:/g, '-')}T${time}`;
   }
 
-  const { latitude, longitude, altitude, dateOriginal } = newUpload.exif;
+  const { latitude, longitude, dateOriginal } = newUpload.exif;
 
-  if (!latitude || !longitude || !altitude) {
+  if (!latitude || !longitude) {
     newUpload.validityErrors.push('missingCoords');
   }
 
