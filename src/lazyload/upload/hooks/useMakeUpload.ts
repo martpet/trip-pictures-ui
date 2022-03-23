@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import toast from 'react-hot-toast';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +11,7 @@ import {
   useCreatePresignedUploadUrlsMutation,
 } from '~/lazyload/upload';
 
-export const useUpload = () => {
+export const useMakeUpload = () => {
   const [createPresignedUrls] = useCreatePresignedUploadUrlsMutation();
   const [createPhotosMutation] = useCreatePhotosMutation();
   const {
@@ -28,19 +28,20 @@ export const useUpload = () => {
   } = useContext(UploadContext);
   const navigate = useNavigate();
   const { formatMessage } = useIntl();
-  const progressTicks: Record<Upload['id'], number> = {};
-  const progressTickInterval = 100;
+  const uploadsProgresses = useRef<Record<Upload['id'], number>>({});
+  const progressInterval = 500;
+  const lastProgressTick = useRef(Date.now());
 
   const trackProgress =
-    (id: Upload['id']) =>
-    ({ loaded, total }: { loaded: number; total: number }) => {
-      const progress = (loaded / total) * 100;
-      const tick = +new Date();
-      const lastTick = progressTicks[id];
-      const shouldTick = !lastTick || tick - lastTick > progressTickInterval;
-      if (shouldTick) {
-        progressTicks[id] = tick;
-        editUpload(id, { progress });
+    (uploadId: Upload['id']) =>
+    ({ loaded, total }: XMLHttpRequestEventTargetEventMap['progress']) => {
+      uploadsProgresses.current[uploadId] = (loaded / total) * 100;
+      const tick = Date.now();
+      if (tick - progressInterval > lastProgressTick.current) {
+        lastProgressTick.current = tick;
+        Object.entries(uploadsProgresses.current).forEach(([id, progress]) => {
+          editUpload(id, { progress });
+        });
       }
     };
 

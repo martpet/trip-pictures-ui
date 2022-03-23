@@ -5,11 +5,8 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { UploadContext } from '~/lazyload/upload';
 
 export function ConfirmCloseUploadDialog() {
-  const {
-    isConfirmCloseDialogOpen,
-    setConfirmCloseDialogOpen,
-    closeUploadDialog,
-  } = useContext(UploadContext);
+  const { isConfirmCloseDialogOpen, setConfirmCloseDialogOpen, closeUploadDialog } =
+    useContext(UploadContext);
   const { formatMessage } = useIntl();
 
   const handleConfirm = () => closeUploadDialog(true);
