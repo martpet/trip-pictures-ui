@@ -7,9 +7,8 @@ export type Upload = {
   exif: Partial<PhotoExifData>;
   validityErrors: UploadValidityError[];
   canRotate: boolean;
-  isStarted: boolean;
-  isComplete: boolean;
-  isFailed: boolean;
+  transferCompleted: boolean;
+  transferFailed: boolean;
   duplicatePhotoId?: number;
   progress: number;
   s3uuid?: string;

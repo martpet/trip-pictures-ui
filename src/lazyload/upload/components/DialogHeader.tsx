@@ -7,7 +7,7 @@ import { ButtonChooseFiles, UploadContext } from '~/lazyload/upload';
 
 export function DialogHeader() {
   const isMobile = useIsMobile();
-  const { uploads, isUploading } = useContext(UploadContext);
+  const { uploads, isUploadStarted } = useContext(UploadContext);
 
   return (
     <>
@@ -16,7 +16,7 @@ export function DialogHeader() {
       </Heading>
 
       <Header>
-        {!isMobile && !!uploads.length && !isUploading && <ButtonChooseFiles />}
+        {!isMobile && !!uploads.length && !isUploadStarted && <ButtonChooseFiles />}
       </Header>
     </>
   );

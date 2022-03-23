@@ -52,5 +52,5 @@
   "upload.previewStatus.allInvalid": "{count, plural, =1 {The photo} other {The photos}} will not be uploaded.",
   "upload.previewStatus.someInvalid": "{invalidCount} of {totalCount} photos will not be uploaded.",
   "upload.progressLabel": "Transferring…",
-  "upload.toast.completed": "Uploaded {successCount} {successCount, plural, one {photo} other {photos}}"
+  "upload.doneMessage": "{uploadsCount, plural, one {The photo was uploaded} other {{uploadsCount} photos were uploaded}}"
 }

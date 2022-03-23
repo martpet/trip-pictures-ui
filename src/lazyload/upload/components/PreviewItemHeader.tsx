@@ -15,7 +15,7 @@ type Props = {
 };
 
 export function PreviewItemHeader({ upload }: Props) {
-  const { isUploading } = useContext(UploadContext);
+  const { isUploadStarted } = useContext(UploadContext);
 
   return (
     <View
@@ -26,7 +26,7 @@ export function PreviewItemHeader({ upload }: Props) {
       paddingStart="size-100"
     >
       <Flex height="100%" alignItems="center">
-        {!isUploading && (
+        {!isUploadStarted && (
           <>
             <PreviewItemDate upload={upload} />
             <PreviewItemError upload={upload} />
@@ -35,7 +35,7 @@ export function PreviewItemHeader({ upload }: Props) {
             </View>
           </>
         )}
-        {isUploading && <PreviewItemProgress upload={upload} />}
+        {isUploadStarted && <PreviewItemProgress upload={upload} />}
       </Flex>
     </View>
   );

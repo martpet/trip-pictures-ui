@@ -5,27 +5,27 @@ import { Upload } from '~/lazyload/upload';
 type Arg = {
   setUploads: Dispatch<SetStateAction<Upload[]>>;
   validUploads: Upload[];
-  isUploading: boolean;
+  isUploadStarted: boolean;
   isUploadDone: boolean;
   setDialogOpen: Dispatch<SetStateAction<boolean>>;
-  setConfirmCloseUploadDialogOpen: Dispatch<SetStateAction<boolean>>;
+  setConfirmCloseDialogOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 export const useOpenCloseDialog = ({
   setUploads,
-  isUploading,
+  isUploadStarted,
   isUploadDone,
   validUploads,
   setDialogOpen,
-  setConfirmCloseUploadDialogOpen,
+  setConfirmCloseDialogOpen,
 }: Arg) => {
   const closeUploadDialog = (forceClose?: boolean) => {
-    if (isUploading) return;
+    if (isUploadStarted && !isUploadDone) return;
 
     if (!isUploadDone && validUploads.length && !forceClose) {
-      setConfirmCloseUploadDialogOpen(true);
+      setConfirmCloseDialogOpen(true);
     } else {
-      setConfirmCloseUploadDialogOpen(false);
+      setConfirmCloseDialogOpen(false);
       setDialogOpen(false);
       setUploads([]);
     }

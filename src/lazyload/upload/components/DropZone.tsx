@@ -7,11 +7,11 @@ type Props = {
 };
 
 export function DropZone({ children }: Props) {
-  const { uploads, addUploads, isUploading } = useContext(UploadContext);
+  const { uploads, addUploads, isUploadStarted } = useContext(UploadContext);
   const [isOnTarget, setOnTarget] = useState(false);
 
   const handleDragOver: DragEventHandler<HTMLDivElement> = (event) => {
-    if (isUploading) {
+    if (isUploadStarted) {
       return;
     }
     if (!isOnTarget) {
@@ -23,7 +23,7 @@ export function DropZone({ children }: Props) {
   };
 
   const handleDrop: DragEventHandler<HTMLDivElement> = ({ dataTransfer }) => {
-    if (isUploading) {
+    if (isUploadStarted) {
       return;
     }
     addUploads(dataTransfer.files);

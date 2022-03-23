@@ -5,16 +5,14 @@ import { FormattedMessage } from 'react-intl';
 import { UploadContext, useUpload } from '~/lazyload/upload';
 
 export function ButtonStartUpload() {
-  const { canStartUpload, validUploads, isUploading, isUploadDone } =
-    useContext(UploadContext);
+  const { validUploads, isUploadStarted } = useContext(UploadContext);
   const { startUpload } = useUpload();
-  const handlePress = () => startUpload();
 
-  if (!canStartUpload) return null;
+  if (!validUploads.length) return null;
 
   return (
-    <Button variant="cta" autoFocus onPress={handlePress} isDisabled={isUploading}>
-      {(isUploading || isUploadDone) && (
+    <Button variant="cta" autoFocus onPress={startUpload} isDisabled={isUploadStarted}>
+      {isUploadStarted && (
         <ProgressCircle isIndeterminate size="S" marginEnd="size-150" />
       )}
       <FormattedMessage

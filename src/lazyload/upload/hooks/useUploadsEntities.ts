@@ -14,15 +14,15 @@ import { loadingFinished, loadingStarted } from '~/slices';
 type Arg = {
   uploads: Upload[];
   setUploads: Dispatch<SetStateAction<Upload[]>>;
-  isUploading: boolean;
+  isUploadStarted: boolean;
 };
 
-export const useUploadsEntities = ({ uploads, setUploads, isUploading }: Arg) => {
+export const useUploadsEntities = ({ uploads, setUploads, isUploadStarted }: Arg) => {
   const dispatch = useDispatch();
   const { formatMessage } = useIntl();
 
   const addUploads = async (fileList: FileList) => {
-    if (isUploading) return;
+    if (isUploadStarted) return;
     const files = Array.from(fileList);
 
     let newUploads = await Promise.all(
@@ -33,9 +33,8 @@ export const useUploadsEntities = ({ uploads, setUploads, isUploading }: Arg) =>
           exif: {},
           validityErrors: [],
           canRotate: true,
-          isStarted: false,
-          isComplete: false,
-          isFailed: false,
+          transferCompleted: false,
+          transferFailed: false,
           progress: 0,
         };
 
