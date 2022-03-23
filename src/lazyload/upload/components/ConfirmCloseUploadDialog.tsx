@@ -6,18 +6,18 @@ import { UploadContext } from '~/lazyload/upload';
 
 export function ConfirmCloseUploadDialog() {
   const {
-    isConfirmCloseUploadDialogOpen,
-    setConfirmCloseUploadDialogOpen,
+    isConfirmCloseDialogOpen,
+    setConfirmCloseDialogOpen,
     closeUploadDialog,
   } = useContext(UploadContext);
   const { formatMessage } = useIntl();
 
   const handleConfirm = () => closeUploadDialog(true);
-  const handleDismiss = () => setConfirmCloseUploadDialogOpen(false);
+  const handleDismiss = () => setConfirmCloseDialogOpen(false);
 
   return (
     <DialogContainer onDismiss={handleDismiss}>
-      {isConfirmCloseUploadDialogOpen && (
+      {isConfirmCloseDialogOpen && (
         <AlertDialog
           variant="confirmation"
           title={formatMessage({ id: 'upload.confirmCloseUploadDialog.title' })}

@@ -9,7 +9,6 @@ import {
 
 import {
   Upload,
-  useCanStartUpload,
   useFilteredUploads,
   useOpenCloseDialog,
   useRotateImage,
@@ -20,19 +19,21 @@ type ContextValue = {
   uploads: Upload[];
   validUploads: Upload[];
   invalidUploads: Upload[];
-  completedUploads: Upload[];
-  failedUploads: Upload[];
+  trasferredUploads: Upload[];
+  failedToTransferUploads: Upload[];
   addUploads(files: FileList): void;
   removeUpload(id: string): void;
   editUpload(id: string, patch: Partial<Upload>): void;
-  canStartUpload: boolean;
-  isUploading: boolean;
+  isUploadStarted: boolean;
+  setUploadStarted: Dispatch<SetStateAction<boolean>>;
+  isTransferringDone: boolean;
   isUploadDone: boolean;
+  setUploadDone: Dispatch<SetStateAction<boolean>>;
   isDialogOpen: boolean;
   openUploadDialog(): void;
   closeUploadDialog(forceClose?: boolean): void;
-  isConfirmCloseUploadDialogOpen: boolean;
-  setConfirmCloseUploadDialogOpen: Dispatch<SetStateAction<boolean>>;
+  isConfirmCloseDialogOpen: boolean;
+  setConfirmCloseDialogOpen: Dispatch<SetStateAction<boolean>>;
   isFailedUploadsDialogOpen: boolean;
   setFailedUploadsDialogOpen: Dispatch<SetStateAction<boolean>>;
   rotateImage(uploadId: string): Promise<void>;
@@ -48,29 +49,30 @@ type Props = {
 
 export function UploadProvider({ children, isDialogOpen, setDialogOpen }: Props) {
   const [uploads, setUploads] = useState<Upload[]>([]);
-  const [isConfirmCloseUploadDialogOpen, setConfirmCloseUploadDialogOpen] =
-    useState(false);
+  const [isUploadStarted, setUploadStarted] = useState(false);
+  const [isUploadDone, setUploadDone] = useState(false);
+  const [isConfirmCloseDialogOpen, setConfirmCloseDialogOpen] = useState(false);
   const [isFailedUploadsDialogOpen, setFailedUploadsDialogOpen] = useState(false);
-  const { validUploads, invalidUploads, completedUploads, failedUploads } =
+  const { validUploads, invalidUploads, trasferredUploads, failedToTransferUploads } =
     useFilteredUploads({ uploads });
-  const canStartUpload = useCanStartUpload({ validUploads });
-  const isUploadDone =
+  const isTransferringDone =
     Boolean(validUploads.length) &&
-    validUploads.every(({ isComplete, isFailed }: Upload) => isComplete || isFailed);
-  const isUploading = !isUploadDone && uploads.some((upload) => upload.isStarted);
+    validUploads.every(
+      ({ transferCompleted, transferFailed }) => transferCompleted || transferFailed
+    );
   const { addUploads, removeUpload, editUpload } = useUploadsEntities({
     uploads,
     setUploads,
-    isUploading,
+    isUploadStarted,
   });
   const rotateImage = useRotateImage({ uploads, editUpload });
   const { openUploadDialog, closeUploadDialog } = useOpenCloseDialog({
     setUploads,
     validUploads,
-    isUploading,
+    isUploadStarted,
     isUploadDone,
     setDialogOpen,
-    setConfirmCloseUploadDialogOpen,
+    setConfirmCloseDialogOpen,
   });
 
   const contextValue = useMemo(
@@ -78,24 +80,33 @@ export function UploadProvider({ children, isDialogOpen, setDialogOpen }: Props)
       uploads,
       validUploads,
       invalidUploads,
-      completedUploads,
-      failedUploads,
+      trasferredUploads,
+      failedToTransferUploads,
       addUploads,
       removeUpload,
       editUpload,
-      canStartUpload,
-      isUploading,
+      isUploadStarted,
+      setUploadStarted,
+      isTransferringDone,
       isUploadDone,
+      setUploadDone,
       isDialogOpen,
       openUploadDialog,
       closeUploadDialog,
-      isConfirmCloseUploadDialogOpen,
-      setConfirmCloseUploadDialogOpen,
+      isConfirmCloseDialogOpen,
+      setConfirmCloseDialogOpen,
       isFailedUploadsDialogOpen,
       setFailedUploadsDialogOpen,
       rotateImage,
     }),
-    [uploads, isDialogOpen, isConfirmCloseUploadDialogOpen, isFailedUploadsDialogOpen]
+    [
+      uploads,
+      isUploadStarted,
+      isUploadDone,
+      isDialogOpen,
+      isConfirmCloseDialogOpen,
+      isFailedUploadsDialogOpen,
+    ]
   );
 
   return <UploadContext.Provider value={contextValue}>{children}</UploadContext.Provider>;

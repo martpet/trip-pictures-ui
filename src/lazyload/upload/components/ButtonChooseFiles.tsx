@@ -13,7 +13,7 @@ export function ButtonChooseFiles({
   variant = 'primary',
   ...butonProps
 }: Props) {
-  const { uploads, addUploads, isUploading } = useContext(UploadContext);
+  const { uploads, addUploads, isUploadStarted } = useContext(UploadContext);
   const inputRef = useRef<HTMLInputElement>(null);
   const fileChooserOpenRef = useRef(false);
 
@@ -33,7 +33,7 @@ export function ButtonChooseFiles({
         variant={variant}
         onPress={handlePress}
         isQuiet={isQuiet}
-        isDisabled={isUploading}
+        isDisabled={isUploadStarted}
         {...butonProps}
       >
         <IconAdd />

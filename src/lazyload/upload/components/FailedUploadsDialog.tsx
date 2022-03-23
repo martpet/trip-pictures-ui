@@ -8,7 +8,7 @@ import { PreviewImage, UploadContext } from '~/lazyload/upload';
 export function FailedUploadsDialog() {
   const { formatMessage } = useIntl();
   const {
-    failedUploads,
+    failedToTransferUploads,
     isFailedUploadsDialogOpen,
     closeUploadDialog,
     setFailedUploadsDialogOpen,
@@ -27,7 +27,7 @@ export function FailedUploadsDialog() {
           variant="information"
           title={formatMessage(
             { id: 'upload.failedUploadsDialog.title' },
-            { count: failedUploads.length }
+            { count: failedToTransferUploads.length }
           )}
           primaryActionLabel={formatMessage({
             id: 'upload.failedUploadsDialog.primaryAction',
@@ -38,12 +38,12 @@ export function FailedUploadsDialog() {
             <AlertIcon color="notice" size="S" marginEnd="size-125" />
             <FormattedMessage
               id="upload.failedUploadsDialog.content"
-              values={{ count: failedUploads.length }}
+              values={{ count: failedToTransferUploads.length }}
             />
           </View>
 
           <Flex direction="column" gap="size-100">
-            {failedUploads.map((upload) => (
+            {failedToTransferUploads.map((upload) => (
               <PreviewImage upload={upload} />
             ))}
           </Flex>

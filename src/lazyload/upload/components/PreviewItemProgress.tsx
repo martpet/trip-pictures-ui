@@ -18,18 +18,22 @@ export function PreviewItemProgress({ upload }: Props) {
     position: 'absolute',
     marginTop: '-7px',
   };
-  let label: ReactNode = formatMessage({ id: 'upload.progressLabel' });
+  const progressBarValue = upload.transferCompleted ? 100 : upload.progress;
 
-  if (upload.isComplete) label = <IconCheckmark {...iconProps} color="positive" />;
-  if (upload.isFailed) label = <IconAlert {...iconProps} color="negative" />;
+  let progressBarLabel: ReactNode = formatMessage({ id: 'upload.progressLabel' });
+  if (upload.transferCompleted) {
+    progressBarLabel = <IconCheckmark {...iconProps} color="positive" />;
+  } else if (upload.transferFailed) {
+    progressBarLabel = <IconAlert {...iconProps} color="negative" />;
+  }
 
   return (
     <ProgressBar
+      value={progressBarValue}
+      label={progressBarLabel}
+      size="S"
       width="100%"
       marginEnd="size-100"
-      label={label}
-      value={upload.progress}
-      size="S"
     />
   );
 }
