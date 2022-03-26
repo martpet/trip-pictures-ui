@@ -4,7 +4,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import ReactMapGL, { MapEvent } from 'react-map-gl';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Sources } from '~/components';
+import { Layers } from '~/components';
 import { mapInnerContainerId } from '~/consts';
 import { useDebounce } from '~/hooks';
 import { selectColorScheme, selectPersistedViewport, viewportChanged } from '~/slices';
@@ -20,9 +20,7 @@ export function MapGL({ children }: Props) {
   const persistedViewport = useSelector(selectPersistedViewport);
   const [viewport, setViewport] = useState<Viewport>(persistedViewport);
   const debouncedViewport = useDebounce(viewport);
-  const token = import.meta.env.VITE_MAPBOX_TOKEN;
   const colorScheme = useSelector(selectColorScheme);
-  const style = `mapbox://styles/mapbox/${colorScheme}-v10`;
 
   const preventZoomOnDblClickOutside = (event: MapEvent) => {
     if (event.target.id !== mapInnerContainerId) {
@@ -40,8 +38,8 @@ export function MapGL({ children }: Props) {
   return (
     <ReactMapGL
       {...viewport}
-      mapboxApiAccessToken={token}
-      mapStyle={style}
+      mapboxApiAccessToken={import.meta.env.VITE_MAPBOX_TOKEN}
+      mapStyle={`mapbox://styles/mapbox/${colorScheme}-v10`}
       attributionControl={false}
       width="100%"
       height="100%"
@@ -49,8 +47,8 @@ export function MapGL({ children }: Props) {
       onDblClick={preventZoomOnDblClickOutside}
     >
       <>
-        <Sources />
         {children}
+        <Layers />
       </>
     </ReactMapGL>
   );
