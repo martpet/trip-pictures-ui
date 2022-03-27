@@ -7,7 +7,7 @@ export function Router() {
   return (
     <Routes>
       <Route path={paths.home} element={<MainView />} />
-      <Route path={paths.viewport} element={<MainView />} />
+      <Route path={paths.mapstate} element={<MainView />} />
       <Route path={paths.notFound} element={<NotFound />} />
     </Routes>
   );

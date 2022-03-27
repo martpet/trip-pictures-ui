@@ -1,20 +1,19 @@
 import { ActionButton, Tooltip, TooltipTrigger } from '@adobe/react-spectrum';
-import CompassIcon from '@spectrum-icons/workflow/Compass';
 import { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useMap } from 'react-map-gl';
 
-export function Compass() {
+export function Pitch() {
   const { current: map } = useMap();
-  const [bearing, setBearing] = useState(0);
+  const [pitch, setPitch] = useState(0);
 
   const handlePress = () => {
-    map?.resetNorth();
+    map?.flyTo({ pitch: 0 });
   };
 
   useEffect(() => {
     if (!map) return undefined;
-    const onMove = () => setBearing(map.getBearing());
+    const onMove = () => setPitch(map.getPitch());
     map.on('move', onMove);
     onMove();
     return () => {
@@ -22,15 +21,15 @@ export function Compass() {
     };
   }, [map]);
 
-  if (!bearing) return null;
+  if (!pitch) return null;
 
   return (
     <TooltipTrigger>
       <ActionButton onPress={handlePress}>
-        <CompassIcon UNSAFE_style={{ transform: `rotate(${bearing - 45}deg)` }} />
+        <span style={{ position: 'absolute' }}>2D</span>
       </ActionButton>
       <Tooltip>
-        <FormattedMessage id="map.control.navigation.bearingLabel" />
+        <FormattedMessage id="map.control.navigation.pitchLabel" />
       </Tooltip>
     </TooltipTrigger>
   );

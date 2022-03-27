@@ -1,7 +1,7 @@
-import { viewportUrlPathPrefix } from '~/consts/viewport';
+import { viewStateUrlPrefix } from '~/consts/viewStateUrlPrefix';
 
 export const paths = {
   home: '/',
-  viewport: `${viewportUrlPathPrefix}:viewport`,
+  mapstate: `${viewStateUrlPrefix}:viewstate`,
   notFound: '*',
 } as const;

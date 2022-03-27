@@ -1,6 +1,7 @@
 import { ActionButton, Tooltip, TooltipTrigger } from '@adobe/react-spectrum';
 import AnchorSelect from '@spectrum-icons/workflow/AnchorSelect';
 import { FormattedMessage } from 'react-intl';
+import { GeolocateControl } from 'react-map-gl';
 
 export function Geolocate() {
   const mapboxControlSelector = '.mapboxgl-ctrl-geolocate';
@@ -11,13 +12,16 @@ export function Geolocate() {
   };
 
   return (
-    <TooltipTrigger>
-      <ActionButton onPress={handleClick}>
-        <AnchorSelect UNSAFE_style={{ transform: 'scale(-1, 1)' }} />
-      </ActionButton>
-      <Tooltip>
-        <FormattedMessage id="map.control.geolocate.label" />
-      </Tooltip>
-    </TooltipTrigger>
+    <>
+      <GeolocateControl style={{ display: 'none' }} />
+      <TooltipTrigger>
+        <ActionButton onPress={handleClick}>
+          <AnchorSelect UNSAFE_style={{ transform: 'scale(-1, 1)' }} />
+        </ActionButton>
+        <Tooltip>
+          <FormattedMessage id="map.control.geolocate.label" />
+        </Tooltip>
+      </TooltipTrigger>
+    </>
   );
 }

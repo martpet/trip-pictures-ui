@@ -1,5 +1,5 @@
-export * from './middleware/errorLogger';
-export * from './middleware/forbiddenRequestHandler';
-export * from './middleware/loaderHandler';
-/**/
+export * from './middleware';
+export * from './transforms';
+
+/* keep at bottom */
 export * from './store';
