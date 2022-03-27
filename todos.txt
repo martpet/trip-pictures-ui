@@ -2,10 +2,7 @@
 Todos
 -----
 * Upgrade strapi to v4.2;
-* Prevent uploading duplicate images (check exif data in backend)
 * Style PreviewErrorsSummary as In-Line Alert (https://opensource.adobe.com/spectrum-css/inlinealert.html)
-* Make 'Reset North' button icon rotate like original's control icon
-* Make viewport in url more beautiful like in Google Maps: https://www.google.com/maps/@42.6735769,23.3891795,14.95z
 
 ------
 Issues

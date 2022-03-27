@@ -1,25 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ViewState } from 'react-map-gl';
 
-import { persistedViewportProps } from '~/consts';
-import {
-  ColorScheme,
-  PersistedViewport,
-  RootState,
-  SettingsMenu,
-  Viewport,
-} from '~/types';
-import { getViewportFromUrl } from '~/utils';
+import { ColorScheme, RootState, SettingsMenu } from '~/types';
+import { getViewStateFromUrl } from '~/utils';
+
+export const viewStateProp = 'viewState';
 
 export type AppSliceState = {
   loadersCount: number;
-  persistedViewport?: PersistedViewport;
+  viewState?: ViewState;
   deviceColorMode?: ColorScheme;
   activeSettingsTab: SettingsMenu;
 };
 
 export const appSliceInitialState: AppSliceState = {
   loadersCount: 0,
-  persistedViewport: getViewportFromUrl(),
+  [viewStateProp]: getViewStateFromUrl(),
   activeSettingsTab: 'language',
 };
 
@@ -33,16 +29,8 @@ export const appSlice = createSlice({
     loadingFinished: (state) => {
       state.loadersCount -= 1;
     },
-    viewportChanged: (state, { payload }: PayloadAction<Viewport>) => {
-      if (!payload) return;
-      const newPersisted = {} as PersistedViewport;
-      persistedViewportProps.forEach((prop) => {
-        const value = payload[prop];
-        if (value !== undefined) {
-          newPersisted[prop] = value;
-        }
-      });
-      state.persistedViewport = newPersisted;
+    viewStateChanged: (state, { payload }: PayloadAction<ViewState>) => {
+      state.viewState = payload;
     },
     deviceColorModeChanged: (state, { payload }: PayloadAction<ColorScheme>) => {
       state.deviceColorMode = payload;
@@ -54,19 +42,18 @@ export const appSlice = createSlice({
 });
 
 export const selectIsAppLoading = ({ app }: RootState) => app.loadersCount > 0;
-export const selectPersistedViewport = ({ app }: RootState) => app.persistedViewport;
+export const selectViewState = ({ app }: RootState) => app.viewState;
+export const selectActiveSettingsMenu = ({ app }: RootState) => app.activeSettingsTab;
 
 export const selectColorScheme = (state: RootState) =>
   state.settings.data.colorScheme === 'auto'
     ? state.app.deviceColorMode
     : state.settings.data.colorScheme;
 
-export const selectActiveSettingsMenu = ({ app }: RootState) => app.activeSettingsTab;
-
 export const {
   loadingStarted,
   loadingFinished,
-  viewportChanged,
+  viewStateChanged,
   deviceColorModeChanged,
   settingsMenuSelected,
 } = appSlice.actions;

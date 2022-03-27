@@ -1,21 +1,14 @@
-import { Flex, View } from '@adobe/react-spectrum';
-import {
-  GeolocateControl as MapboxGeolocateControl,
-  NavigationControl as MapboxNavigationControl,
-} from 'react-map-gl';
+import { Flex } from '@adobe/react-spectrum';
 
-import { Compass, Geolocate, Zoom } from '~/components';
+import { Compass, Geolocate, Pitch, Zoom } from '~/components';
 
 export function Controls() {
   return (
     <Flex direction="column" gap="size-75">
+      <Pitch />
       <Compass />
       <Geolocate />
       <Zoom />
-      <View isHidden>
-        <MapboxGeolocateControl />
-        <MapboxNavigationControl />
-      </View>
     </Flex>
   );
 }

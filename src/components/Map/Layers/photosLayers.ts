@@ -1,6 +1,7 @@
-import { LayerProps } from 'react-map-gl';
+import { CircleLayer } from 'react-map-gl';
 
-export const photosLayer: LayerProps = {
+export const photosLayer: CircleLayer = {
+  id: 'photos',
   type: 'circle',
   paint: {
     'circle-color': '#5aa9fa',

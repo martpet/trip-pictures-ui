@@ -21,22 +21,29 @@ import {
   AuthSliceState,
   settingsSlice,
   SettingsSliceState,
+  viewStateProp,
 } from '~/slices';
-import { errorLogger, forbiddenRequestHandler, loaderHandler } from '~/store';
+import {
+  errorLogger,
+  forbiddenRequestHandler,
+  loaderHandler,
+  viewStateTransform,
+} from '~/store';
 
-const authSlicePersistConfig: PersistConfig<AuthSliceState> = {
+const appPersistConfig: PersistConfig<AppSliceState> = {
+  key: appSlice.name,
+  whitelist: [viewStateProp],
+  storage,
+  transforms: [viewStateTransform],
+};
+
+const authPersistConfig: PersistConfig<AuthSliceState> = {
   key: authSlice.name,
   whitelist: ['token'],
   storage,
 };
 
-const appSlicePersistConfig: PersistConfig<AppSliceState> = {
-  key: appSlice.name,
-  whitelist: ['persistedViewport'],
-  storage,
-};
-
-const settingsSlicePersistConfig: PersistConfig<SettingsSliceState> = {
+const settingsPersistConfig: PersistConfig<SettingsSliceState> = {
   key: settingsSlice.name,
   storage,
   stateReconciler: autoMergeLevel2,
@@ -45,9 +52,9 @@ const settingsSlicePersistConfig: PersistConfig<SettingsSliceState> = {
 export const rootReducer = combineReducers({
   [strapiApi.reducerPath]: strapiApi.reducer,
   [staticApi.reducerPath]: staticApi.reducer,
-  [authSlice.name]: persistReducer(authSlicePersistConfig, authSlice.reducer),
-  [appSlice.name]: persistReducer(appSlicePersistConfig, appSlice.reducer),
-  [settingsSlice.name]: persistReducer(settingsSlicePersistConfig, settingsSlice.reducer),
+  [authSlice.name]: persistReducer(authPersistConfig, authSlice.reducer),
+  [appSlice.name]: persistReducer(appPersistConfig, appSlice.reducer),
+  [settingsSlice.name]: persistReducer(settingsPersistConfig, settingsSlice.reducer),
 });
 
 export const store = configureStore({
@@ -55,15 +62,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [
-          FLUSH,
-          REHYDRATE,
-          PAUSE,
-          PERSIST,
-          PURGE,
-          REGISTER,
-          appSlice.actions.viewportChanged.type,
-        ],
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat(
       strapiApi.middleware,
