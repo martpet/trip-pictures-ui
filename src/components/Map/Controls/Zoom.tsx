@@ -3,16 +3,17 @@ import Add from '@spectrum-icons/workflow/Add';
 import Remove from '@spectrum-icons/workflow/Remove';
 import { Key } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { useMap } from 'react-map-gl';
 
 export function Zoom() {
-  const zoomCSSSelectors: Record<Key, string> = {
-    zoomin: '.mapboxgl-ctrl-zoom-in',
-    zoomout: '.mapboxgl-ctrl-zoom-out',
-  };
+  const { current: map } = useMap();
 
   const handleClick = (key: Key) => {
-    const mapboxControl = document.querySelector(zoomCSSSelectors[key]) as HTMLDivElement;
-    mapboxControl.click();
+    if (key === 'zoomIn') {
+      map?.zoomIn();
+    } else {
+      map?.zoomOut();
+    }
   };
 
   return (
@@ -22,13 +23,13 @@ export function Zoom() {
       onAction={handleClick}
       orientation="vertical"
     >
-      <Item key="zoomin">
+      <Item key="zoomIn">
         <Add />
         <Text>
           <FormattedMessage id="map.control.navigation.zoomInLabel" />
         </Text>
       </Item>
-      <Item key="zoomout">
+      <Item key="zoomOut">
         <Remove />
         <Text>
           <FormattedMessage id="map.control.navigation.zoomOutLabel" />
