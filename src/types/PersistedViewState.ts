@@ -1,3 +1,8 @@
 import { ViewState } from 'react-map-gl';
 
-export type PersistedViewState = Omit<ViewState, 'padding'>;
+import { persistedViewStateProps } from '~/consts';
+
+export type PersistedViewStateProp = typeof persistedViewStateProps[number];
+
+export type PersistedViewState = Partial<Pick<ViewState, PersistedViewStateProp>> &
+  Pick<ViewState, 'longitude' | 'latitude'>;

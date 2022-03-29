@@ -1,7 +1,7 @@
 import { ViewState } from 'react-map-gl';
 
 import { persistedViewStateProps, viewStateUrlPrefix } from '~/consts';
-import { PersistedViewStateProp } from '~/types';
+import { PersistedViewState, PersistedViewStateProp } from '~/types';
 
 type UrlViewStateOptions = {
   [key in PersistedViewStateProp]: {
@@ -81,27 +81,30 @@ export const getViewStateFromUrl = () => {
   return viewState;
 };
 
-export const setViewStateInUrl = (viewState: ViewState) => {
+export const setViewStateInUrl = (viewState: PersistedViewState) => {
   if (!viewState) return;
-  const { latitude, longitude } = viewState;
-  const isInitialMapState = latitude === 0 && longitude === 0;
-  if (isInitialMapState) return;
+  const { longitude, latitude } = viewState;
   const { url, urlPaths, viewStateUrlPath } = parseUrl();
-  let path = `${viewStateUrlPrefix}`;
+  let path = '';
 
-  urlViewStateProps.forEach((prop, index) => {
-    const { prefix, decimals } = urlViewStateOptions[prop];
-    const value = viewState[prop];
-    if (value === undefined || (value === 0 && !isLonOrLatProp(index))) return;
-    if (index !== 0) path += ',';
-    const formattedValue = Number(viewState[prop].toFixed(decimals));
-    path += formattedValue;
-    if (prefix) path += prefix;
-  });
+  if (longitude !== 0 && latitude !== 0) {
+    path = `${viewStateUrlPrefix}`;
+
+    urlViewStateProps.forEach((prop, index) => {
+      const { prefix, decimals } = urlViewStateOptions[prop];
+      let value = viewState[prop] || 0;
+      value = Number(value.toFixed(decimals));
+      if (value === 0 && !isLonOrLatProp(index)) return;
+      if (index !== 0) path += ',';
+      const formattedValue = Number(value.toFixed(decimals));
+      path += formattedValue;
+      if (prefix) path += prefix;
+    });
+  }
 
   if (viewStateUrlPath) urlPaths.pop();
-  urlPaths.push(path);
 
+  urlPaths.push(path);
   url.pathname = urlPaths.join('/');
   window.history.replaceState({}, '', url);
 };

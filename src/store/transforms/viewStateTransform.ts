@@ -4,6 +4,7 @@ import { createTransform } from 'redux-persist';
 import { persistedViewStateProps } from '~/consts';
 import { viewStateProp } from '~/slices';
 import { PersistedViewState } from '~/types';
+import { getViewStateFromUrl } from '~/utils';
 
 export const viewStateTransform = createTransform(
   undefined,
@@ -13,12 +14,10 @@ export const viewStateTransform = createTransform(
 
     persistedViewStateProps.forEach((key) => {
       const value = outboundState[key];
-      if (value) {
-        transformedState[key] = value;
-      }
+      if (value) transformedState[key] = value;
     });
 
-    return transformedState;
+    return getViewStateFromUrl() || transformedState;
   },
 
   { whitelist: [viewStateProp] }

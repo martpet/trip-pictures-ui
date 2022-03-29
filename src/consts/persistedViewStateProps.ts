@@ -1,8 +1,8 @@
-import { PersistedViewState } from '~/types';
+import { ViewState } from 'react-map-gl';
 
-export const persistedViewStateProps: Readonly<(keyof PersistedViewState)[]> = [
-  'longitude',
+export const persistedViewStateProps: Readonly<Exclude<keyof ViewState, 'padding'>[]> = [
   'latitude',
+  'longitude',
   'zoom',
   'pitch',
   'bearing',

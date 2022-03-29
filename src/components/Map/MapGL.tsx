@@ -1,7 +1,8 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
 
+import mapbox from 'mapbox-gl';
 import { ReactNode, useEffect, useRef, useState } from 'react';
-import ReactMapGL, { MapRef } from 'react-map-gl';
+import ReactMapGL, { MapRef, ViewStateChangeEvent } from 'react-map-gl';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Layers } from '~/components';
@@ -27,6 +28,15 @@ export function MapGL({ children }: Props) {
   const toolbarPosition = useSelector(selectToolbarPosition);
   const mapRef = useRef<MapRef>(null);
 
+  const handleMove = (evt: ViewStateChangeEvent) => {
+    const { longitude, latitude } = evt.viewState;
+    const [wrapedLongitude] = new mapbox.LngLat(longitude, latitude).wrap().toArray();
+    setViewState({
+      ...evt.viewState,
+      longitude: wrapedLongitude,
+    });
+  };
+
   useEffect(() => {
     if (viewState) {
       dispatch(viewStateChanged(viewState));
@@ -47,7 +57,7 @@ export function MapGL({ children }: Props) {
       mapboxAccessToken={import.meta.env.VITE_MAPBOX_TOKEN}
       mapStyle={`mapbox://styles/mapbox/${colorScheme}-v10`}
       attributionControl={false}
-      onMove={(evt) => setViewState(evt.viewState)}
+      onMove={handleMove}
       reuseMaps
       maxPitch={85}
     >

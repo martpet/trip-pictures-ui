@@ -5,7 +5,6 @@ export * from './ColorScheme';
 export * from './Lang';
 export * from './OAuthProvider';
 export * from './PersistedViewState';
-export * from './PersistedViewStateProp';
 export * from './Photo';
 export * from './RootState';
 export * from './Settings';
