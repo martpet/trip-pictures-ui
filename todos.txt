@@ -1,18 +1,18 @@
 -----
 Todos
 -----
-* Upgrade strapi to v4.2;
+* Round url viewport decimals relative to zoom;
+* Upgrade strapi to v4.2 (or use serverless);
 * Style PreviewErrorsSummary as In-Line Alert (https://opensource.adobe.com/spectrum-css/inlinealert.html)
 
 ------
 Issues
 ------
-* Map does not resize when its container resizes (https://github.com/visgl/react-map-gl/issues/1807)
 * Translations api requests are cached - old data served after deploy - check static.json headers
-* cannot show loader while Safari automatically converts heic to jpeg (https://bugs.webkit.org/show_bug.cgi?id=237190)
-* converting heic with heic2any is slow
-* heic2any doesn't copy exif data
-* cannot rotate jpeg with "@ginpei/exif-orientation" with missing exif data after heic2any conversion
-* exif is lost when uploading from iphone library with pics taken with 'high efficency' setting (https://bugs.webkit.org/show_bug.cgi?id=207088)
-* unused spectrum css in bundle
-* upload preview action "Rotate" should not close menu on click (closeOnSelect prop doesn't work)
+* Cannot show loader while Safari automatically converts heic to jpeg (https://bugs.webkit.org/show_bug.cgi?id=237190)
+* Heic2any is slow
+* Heic2any doesn't copy exif data
+* Cannot rotate jpeg with "@ginpei/exif-orientation" with missing exif data after heic2any conversion
+* Exif is lost when uploading from iphone library with pics taken with 'high efficency' setting (https://bugs.webkit.org/show_bug.cgi?id=207088)
+* Unused spectrum css in bundle
+* Upload preview action "Rotate" should not close menu on click (closeOnSelect prop doesn't work)
