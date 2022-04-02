@@ -38,17 +38,23 @@ export function MapGL({ children }: Props) {
   };
 
   useEffect(() => {
-    if (viewState) {
-      dispatch(viewStateChanged(viewState));
-      setViewStateInUrl(viewState);
+    if (JSON.stringify(storedViewState) !== JSON.stringify(viewState)) {
+      setViewState(storedViewState);
     }
+  }, [storedViewState]);
+
+  useEffect(() => {
+    dispatch(viewStateChanged(viewState));
+    setViewStateInUrl(viewState);
   }, [debouncedViewState]);
 
   useEffect(() => {
     mapRef.current?.resize();
   }, [toolbarPosition]);
 
-  if (!colorScheme) return null;
+  if (!colorScheme) {
+    return null;
+  }
 
   return (
     <ReactMapGL

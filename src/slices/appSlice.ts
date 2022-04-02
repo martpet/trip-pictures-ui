@@ -8,7 +8,7 @@ export const viewStateProp = 'viewState';
 
 export type AppSliceState = {
   loadersCount: number;
-  viewState?: PersistedViewState | ViewState;
+  viewState: PersistedViewState | ViewState;
   deviceColorMode?: ColorScheme;
   activeSettingsTab: SettingsMenu;
 };
@@ -32,7 +32,10 @@ export const appSlice = createSlice({
     loadingFinished: (state) => {
       state.loadersCount -= 1;
     },
-    viewStateChanged: (state, { payload }: PayloadAction<PersistedViewState>) => {
+    viewStateChanged: (
+      state,
+      { payload }: PayloadAction<PersistedViewState | ViewState>
+    ) => {
       state.viewState = payload;
     },
     deviceColorModeChanged: (state, { payload }: PayloadAction<ColorScheme>) => {
