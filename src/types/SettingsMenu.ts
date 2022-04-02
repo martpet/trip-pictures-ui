@@ -1,1 +1,1 @@
-export type SettingsMenu = 'language' | 'toolbar' | 'color';
+export type SettingsMenu = 'language' | 'layout' | 'color';
