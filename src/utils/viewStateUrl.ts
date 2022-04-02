@@ -3,30 +3,30 @@ import { ViewState } from 'react-map-gl';
 import { persistedViewStateProps, viewStateUrlPrefix } from '~/consts';
 import { PersistedViewState, PersistedViewStateProp } from '~/types';
 
-type UrlViewStateOptions = {
+const lonLatDecimals = (zoom: number) => zoom / 3;
+
+const urlViewStateOptions: {
   [key in PersistedViewStateProp]: {
-    decimals: number;
+    decimals(zoom?: number): number;
     prefix?: string;
   };
-};
-
-const urlViewStateOptions: UrlViewStateOptions = {
+} = {
   longitude: {
-    decimals: 6,
+    decimals: lonLatDecimals,
   },
   latitude: {
-    decimals: 6,
+    decimals: lonLatDecimals,
   },
   bearing: {
-    decimals: 2,
+    decimals: () => 2,
     prefix: 'b',
   },
   pitch: {
-    decimals: 0,
+    decimals: () => 0,
     prefix: 'p',
   },
   zoom: {
-    decimals: 0,
+    decimals: () => 1,
     prefix: 'z',
   },
 };
@@ -83,7 +83,7 @@ export const getViewStateFromUrl = () => {
 
 export const setViewStateInUrl = (viewState: PersistedViewState) => {
   if (!viewState) return;
-  const { longitude, latitude } = viewState;
+  const { longitude, latitude, zoom } = viewState;
   const { url, urlPaths, viewStateUrlPath } = parseUrl();
   let path = '';
 
@@ -92,12 +92,10 @@ export const setViewStateInUrl = (viewState: PersistedViewState) => {
 
     urlViewStateProps.forEach((prop, index) => {
       const { prefix, decimals } = urlViewStateOptions[prop];
-      let value = viewState[prop] || 0;
-      value = Number(value.toFixed(decimals));
+      const value = Number((viewState[prop] || 0).toFixed(decimals(zoom)));
       if (value === 0 && !isLonOrLatProp(index)) return;
       if (index !== 0) path += ',';
-      const formattedValue = Number(value.toFixed(decimals));
-      path += formattedValue;
+      path += value;
       if (prefix) path += prefix;
     });
   }
